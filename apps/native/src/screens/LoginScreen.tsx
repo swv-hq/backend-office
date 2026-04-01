@@ -4,7 +4,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { useOAuth } from "@clerk/clerk-expo";
 import { AntDesign } from "@expo/vector-icons";
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = () => {
   const { startOAuthFlow: startGoogleAuthFlow } = useOAuth({
     strategy: "oauth_google",
   });
@@ -18,13 +18,11 @@ const LoginScreen = ({ navigation }) => {
         const { createdSessionId, setActive } = await startGoogleAuthFlow();
         if (createdSessionId) {
           setActive({ session: createdSessionId });
-          navigation.navigate("NotesDashboardScreen");
         }
       } else if (authType === "apple") {
         const { createdSessionId, setActive } = await startAppleAuthFlow();
         if (createdSessionId) {
           setActive({ session: createdSessionId });
-          navigation.navigate("NotesDashboardScreen");
         }
       }
     } catch (err) {
