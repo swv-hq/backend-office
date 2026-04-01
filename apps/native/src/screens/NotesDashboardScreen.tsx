@@ -8,10 +8,13 @@ import {
   Image,
   FlatList,
   Dimensions,
+  Platform,
+  ActionSheetIOS,
+  Alert,
 } from "react-native";
 import { Feather, AntDesign } from "@expo/vector-icons";
 import { RFValue } from "react-native-responsive-fontsize";
-import { useAuth, useUser } from "@clerk/clerk-expo";
+import { useAuth, useUser, useClerk } from "@clerk/clerk-expo";
 import { api } from "@packages/backend/convex/_generated/api";
 import { useQuery } from "convex/react";
 
@@ -19,9 +22,32 @@ const NotesDashboardScreen = ({ navigation }) => {
   const user = useUser();
   const imageUrl = user?.user?.imageUrl;
   const firstName = user?.user?.firstName;
+  const { signOut } = useClerk();
 
   const allNotes = useQuery(api.notes.getNotes);
   const [search, setSearch] = useState("");
+
+  const handleLogout = () => {
+    if (Platform.OS === "ios") {
+      ActionSheetIOS.showActionSheetWithOptions(
+        {
+          options: ["Cancel", "Log out"],
+          destructiveButtonIndex: 1,
+          cancelButtonIndex: 0,
+        },
+        (buttonIndex) => {
+          if (buttonIndex === 1) {
+            signOut();
+          }
+        },
+      );
+    } else {
+      Alert.alert("Log out", "Are you sure you want to log out?", [
+        { text: "Cancel", style: "cancel" },
+        { text: "Log out", style: "destructive", onPress: () => signOut() },
+      ]);
+    }
+  };
 
   const finalNotes = search
     ? allNotes.filter(
@@ -58,11 +84,13 @@ const NotesDashboardScreen = ({ navigation }) => {
         {/* @ts-ignore, for css purposes */}
         <Image style={styles.avatarSmall} />
         <Text style={styles.title}>Your Notes</Text>
-        {imageUrl ? (
-          <Image style={styles.avatarSmall} source={{ uri: imageUrl }} />
-        ) : (
-          <Text>{firstName ? firstName : ""}</Text>
-        )}
+        <TouchableOpacity onPress={handleLogout} activeOpacity={0.7}>
+          {imageUrl ? (
+            <Image style={styles.avatarSmall} source={{ uri: imageUrl }} />
+          ) : (
+            <Text>{firstName ? firstName : ""}</Text>
+          )}
+        </TouchableOpacity>
       </View>
       <View style={styles.searchContainer}>
         <Feather
