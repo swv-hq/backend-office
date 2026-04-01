@@ -202,6 +202,10 @@ Formalize the change management process to SOC 2 standards: branch protection on
 
 Formal SOC 2 Type II audit. The codebase is built to SOC 2 standards (audit logging, monitoring, access controls) but the formal audit ($20-50K+) and policy documentation (incident response plan, vendor risk assessment, security policies) are deferred until enterprise customers or partners require it.
 
+### Usage Tier-Based Pricing
+
+Two-tier pricing model aligned to contractor business maturity. **Starter tier**: core functionality with usage limits — designed for contractors just getting their business going who need affordable tools to start winning jobs. **Pro tier**: increased usage limits plus additional non-core features (TBD) — designed for established businesses with steady deal flow that need more capacity and advanced capabilities. Pricing tiers are enforced via usage tracking and gating in the backend, with clear upgrade prompts when a Starter contractor approaches their limits. Requires defining specific usage dimensions to meter (e.g., estimates per month, active jobs, contacts, voicemail minutes), setting tier thresholds, and building the upgrade/downgrade flow integrated with Stripe subscription billing (SPEC-023). Pro-only features to be determined based on post-launch usage patterns and customer feedback.
+
 ### GDPR Compliance
 
 Full GDPR compliance including consent management, data portability, right to erasure, and DPO appointment. Only needed if the app expands to EU markets.
