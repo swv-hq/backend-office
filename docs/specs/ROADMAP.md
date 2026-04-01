@@ -194,6 +194,10 @@ Full web-based dashboard beyond read-only. Create estimates, manage jobs, handle
 
 Allow contractors on Express accounts to switch to a full Standard Stripe account from settings. Involves disconnecting the Express account and re-linking a new Standard account. Low demand expected but important for contractor autonomy.
 
+### SOC 2 Compliant Change Management
+
+Formalize the change management process to SOC 2 standards: branch protection on main (require PRs, require CI to pass), PR template with security/test/spec-linkage checklist, deployment logging, and documented rollback procedures. For a solo developer, compensating controls include automated CI checks as an "automated reviewer," a documented self-review checklist per PR, and post-deployment monitoring. Adopt disciplined use of GitHub features: every PR links to a SPEC or issue, commits tagged with spec IDs, no direct pushes to main. This is low-effort but requires consistency.
+
 ### SOC 2 Audit & Policy Documents
 
 Formal SOC 2 Type II audit. The codebase is built to SOC 2 standards (audit logging, monitoring, access controls) but the formal audit ($20-50K+) and policy documentation (incident response plan, vendor risk assessment, security policies) are deferred until enterprise customers or partners require it.
