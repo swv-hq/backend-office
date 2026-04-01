@@ -6,10 +6,14 @@
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
     "clean": "turbo run clean && rm -rf node_modules",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore"
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
+    "test:spec-coverage": "tsx scripts/spec-coverage.ts",
+    "test:spec-coverage:strict": "tsx scripts/spec-coverage.ts --strict"
   },
   "devDependencies": {
+    "glob": "^11.0.2",
     "prettier": "3.7.4",
+    "tsx": "^4.19.4",
     "turbo": "2.6.2"
   },
   "engines": {
