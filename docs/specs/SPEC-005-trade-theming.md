@@ -16,8 +16,8 @@ Back-End Office ships as a single app but must feel like it was built specifical
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                              |
+| ---------- | ------------------------------------------------------------------- |
 | Contractor | App feels personalized to their trade — builds trust and engagement |
 
 ## Desired Outcome

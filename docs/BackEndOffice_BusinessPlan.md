@@ -1,8 +1,6 @@
-
-
 **BACK-END OFFICE**
 
-*The Back Office That Fits in Your Pocket*
+_The Back Office That Fits in Your Pocket_
 
 Business Plan & Product Strategy
 
@@ -24,15 +22,15 @@ The product will launch as trade-specific branded experiences: Handyman’s Back
 
 Solo tradespeople and small crews face a set of problems that compound throughout the day:
 
-* **Missed calls \= lost revenue.** When a potential customer calls and doesn’t get an answer, they call the next contractor. There is no second chance.
+- **Missed calls \= lost revenue.** When a potential customer calls and doesn’t get an answer, they call the next contractor. There is no second chance.
 
-* **Estimates look unprofessional or never get sent.** Many handymen give verbal estimates because writing them up takes too long. Plumbers and electricians are somewhat better, but still waste significant time on this step.
+- **Estimates look unprofessional or never get sent.** Many handymen give verbal estimates because writing them up takes too long. Plumbers and electricians are somewhat better, but still waste significant time on this step.
 
-* **Invoicing happens at 9pm.** Instead of spending time with family, contractors sit at the kitchen table typing up invoices from handwritten notes.
+- **Invoicing happens at 9pm.** Instead of spending time with family, contractors sit at the kitchen table typing up invoices from handwritten notes.
 
-* **No idea what they actually earned.** After materials, drive time, phone time, and shopping, most contractors have no idea whether a job was profitable.
+- **No idea what they actually earned.** After materials, drive time, phone time, and shopping, most contractors have no idea whether a job was profitable.
 
-* **Tech-averse audience.** Many existing solutions (ServiceTitan, Housecall Pro, FieldPulse) are designed for larger operations with office staff. Solo operators find them overwhelming, expensive, and hard to set up.
+- **Tech-averse audience.** Many existing solutions (ServiceTitan, Housecall Pro, FieldPulse) are designed for larger operations with office staff. Solo operators find them overwhelming, expensive, and hard to set up.
 
 Back-End Office is purpose-built for the one-truck operator who has a phone and nothing else.
 
@@ -40,39 +38,39 @@ Back-End Office is purpose-built for the one-truck operator who has a phone and 
 
 The primary user is a solo operator or very small crew (1–3 people) in the handyman, plumbing, or electrical trade. Key characteristics:
 
-* Works 6–12 jobs per week across residential and light commercial
+- Works 6–12 jobs per week across residential and light commercial
 
-* Has a smartphone but may not be highly tech-literate
+- Has a smartphone but may not be highly tech-literate
 
-* May not be a native English speaker
+- May not be a native English speaker
 
-* Does not have office staff, a bookkeeper, or a dispatcher
+- Does not have office staff, a bookkeeper, or a dispatcher
 
-* Currently manages leads, scheduling, and invoicing via text messages, handwritten notes, or memory
+- Currently manages leads, scheduling, and invoicing via text messages, handwritten notes, or memory
 
-* Will abandon any tool that takes more than 10 minutes to set up or adds work to their day
+- Will abandon any tool that takes more than 10 minutes to set up or adds work to their day
 
 # **Product Overview**
 
 ## **Design Principles**
 
-| Principle | What It Means |
-| :---- | :---- |
-| **Mobile-Only (P1)** | Phone is the only device that matters for v1. Desktop is P2/P3. |
-| **10-Minute Onboarding** | If setup takes longer than 10 minutes, we’ve lost the customer. |
-| **Zero Extra Work** | Every feature must save time, never add it. If it creates a task, it doesn’t ship. |
-| **Hands-Free First** | These guys are driving and working with their hands. Voice input is the primary interaction model. |
-| **Don’t Sound Like a Robot** | Everything customer-facing must feel human and personal. If it sounds like AI, customers move on. |
+| Principle                    | What It Means                                                                                      |
+| :--------------------------- | :------------------------------------------------------------------------------------------------- |
+| **Mobile-Only (P1)**         | Phone is the only device that matters for v1. Desktop is P2/P3.                                    |
+| **10-Minute Onboarding**     | If setup takes longer than 10 minutes, we’ve lost the customer.                                    |
+| **Zero Extra Work**          | Every feature must save time, never add it. If it creates a task, it doesn’t ship.                 |
+| **Hands-Free First**         | These guys are driving and working with their hands. Voice input is the primary interaction model. |
+| **Don’t Sound Like a Robot** | Everything customer-facing must feel human and personal. If it sounds like AI, customers move on.  |
 
 ## **Branding Strategy**
 
 The product is branded as Back-End Office with trade-specific sub-brands that make each user feel the app was built specifically for them:
 
-* **Handyman’s Back-End**
+- **Handyman’s Back-End**
 
-* **Plumber’s Back-End**
+- **Plumber’s Back-End**
 
-* **Electrician’s Back-End**
+- **Electrician’s Back-End**
 
 All versions share the same core codebase. The trade-specific branding extends to onboarding language, suggested pricing databases, and terminology used throughout the app.
 
@@ -82,7 +80,7 @@ All versions share the same core codebase. The trade-specific branding extends t
 
 When the contractor misses a call, the app automatically sends the caller a personalized text message and/or voicemail. The message is warm, human, and specific:
 
-*“Hey, I saw that you called. Sorry I wasn’t able to answer — I’m in the middle of a job. I’ll call you back as soon as I’m free. Looking forward to talking to you.”*
+_“Hey, I saw that you called. Sorry I wasn’t able to answer — I’m in the middle of a job. I’ll call you back as soon as I’m free. Looking forward to talking to you.”_
 
 Key details: The auto-response is vague on timing to accommodate unpredictable schedules. The voicemail version uses the contractor’s own cloned voice (recorded during onboarding) so it sounds like them, not a robot. The text version is personalized with the contractor’s name and business.
 
@@ -98,7 +96,7 @@ The app detects when the contractor is back in their truck (using GPS/motion sen
 
 When the contractor calls the customer back, the app listens to the call (with appropriate legal disclosure). During the conversation, the app: identifies when the customer is trying to schedule an appointment, shows the contractor their available time slots, and once a time is agreed upon, automatically adds the appointment to the contractor’s calendar. The contractor never has to pull over, open a calendar, or write anything down.
 
-*Legal note: Call recording/monitoring laws vary by state (one-party vs. two-party consent). A brief automated disclosure at the start of calls will be required in two-party consent states. Legal counsel should review before launch.*
+_Legal note: Call recording/monitoring laws vary by state (one-party vs. two-party consent). A brief automated disclosure at the start of calls will be required in two-party consent states. Legal counsel should review before launch._
 
 ## **Feature 5: Voice-to-Estimate**
 
@@ -122,14 +120,14 @@ The app syncs with the contractor’s existing calendar (Google Calendar, Apple 
 
 # **Future Features (P2/P3)**
 
-| Priority | Feature | Description |
-| :---- | :---- | :---- |
-| P2 | Receipt Scanning | Snap photos of receipts; app extracts amounts and tags them to the relevant job. |
-| P2 | Expense Import | Connect a credit card or Home Depot/supply house account; automatically import purchases and tag to jobs. |
-| P2 | Job Profitability Report | Show how much the contractor actually made on each job after factoring in materials, drive time, phone time, and shopping time. |
-| P3 | Time Tracking | Start/stop job timer for contractors who bill hourly. |
-| P3 | Desktop Version | Web-based dashboard for end-of-week review, reporting, and tax prep. |
-| P3 | Customer Database / CRM | Searchable history of all customers, jobs, estimates, and invoices. |
+| Priority | Feature                  | Description                                                                                                                     |
+| :------- | :----------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| P2       | Receipt Scanning         | Snap photos of receipts; app extracts amounts and tags them to the relevant job.                                                |
+| P2       | Expense Import           | Connect a credit card or Home Depot/supply house account; automatically import purchases and tag to jobs.                       |
+| P2       | Job Profitability Report | Show how much the contractor actually made on each job after factoring in materials, drive time, phone time, and shopping time. |
+| P3       | Time Tracking            | Start/stop job timer for contractors who bill hourly.                                                                           |
+| P3       | Desktop Version          | Web-based dashboard for end-of-week review, reporting, and tax prep.                                                            |
+| P3       | Customer Database / CRM  | Searchable history of all customers, jobs, estimates, and invoices.                                                             |
 
 # **Onboarding Flow**
 
@@ -167,12 +165,12 @@ The subscription is automatically deducted from the contractor’s payment accou
 
 The field service management space has several established players, but they all target larger operations:
 
-| Competitor | Target | Pricing | Our Advantage |
-| :---- | :---- | :---- | :---- |
-| ServiceTitan | Mid-to-large contractors with office staff | Enterprise pricing, requires demo | Too complex and expensive for solo operators |
-| Housecall Pro | Small-to-mid contractors | $65+/month | Still requires significant setup; not voice-first |
-| FieldPulse | Small crews | $99+/month | Feature-heavy; overwhelming for solo operators |
-| Invoice Fly | Freelancers | Free/low-cost | Invoicing only; no missed-call response, voice-to-estimate, or AI features |
+| Competitor    | Target                                     | Pricing                           | Our Advantage                                                              |
+| :------------ | :----------------------------------------- | :-------------------------------- | :------------------------------------------------------------------------- |
+| ServiceTitan  | Mid-to-large contractors with office staff | Enterprise pricing, requires demo | Too complex and expensive for solo operators                               |
+| Housecall Pro | Small-to-mid contractors                   | $65+/month                        | Still requires significant setup; not voice-first                          |
+| FieldPulse    | Small crews                                | $99+/month                        | Feature-heavy; overwhelming for solo operators                             |
+| Invoice Fly   | Freelancers                                | Free/low-cost                     | Invoicing only; no missed-call response, voice-to-estimate, or AI features |
 
 **Back-End Office’s differentiation:** Voice-first design, AI-powered automation, 10-minute setup, priced for the little guy, and smart missed-call response that literally pays for itself on the first saved lead.
 
@@ -196,13 +194,13 @@ Tradespeople all know each other. A simple referral program: give a contractor a
 
 ## **Additional Free Tactics**
 
-* YouTube Shorts showing before/after comparisons of a day with vs. without Back-End Office
+- YouTube Shorts showing before/after comparisons of a day with vs. without Back-End Office
 
-* Google Business Profile for local discoverability once the landing page is live
+- Google Business Profile for local discoverability once the landing page is live
 
-* Micro-influencer partnerships with trade TikTokers (under 10K followers) — offer free access in exchange for honest reviews
+- Micro-influencer partnerships with trade TikTokers (under 10K followers) — offer free access in exchange for honest reviews
 
-* Founder’s construction background as content credibility — someone who’s been in the trades talking to people in the trades
+- Founder’s construction background as content credibility — someone who’s been in the trades talking to people in the trades
 
 ## **Conversion Funnel**
 
@@ -226,12 +224,11 @@ The goal is to get to proof of concept as fast as possible. Ship the MVP, get it
 
 The following items need decisions before or during development:
 
-| \# | Question | Notes |
-| :---- | :---- | :---- |
-| 1 | Voicemail auto-reply: text only, or text \+ cloned voice? | Cloned voice is a differentiator but adds complexity. Could start with text-only and add voice in a fast follow. |
-| 2 | Call monitoring legal requirements by state | Need legal counsel. Two-party consent states require disclosure. Could use a brief automated message. |
-| 3 | Subscription pricing | Target range $19–$39/month. Need to validate with beta users. |
-| 4 | Transaction fee on payments | Additional revenue stream, but could deter price-sensitive users. Test during beta. |
-| 5 | Multi-language support for voice input | Spanish is highest priority. How many languages for v1? |
-| 6 | iOS-first or iOS \+ Android simultaneously? | React Native or Flutter could enable both. Depends on Brian’s preference and speed to market. |
-
+| \#  | Question                                                  | Notes                                                                                                            |
+| :-- | :-------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------- |
+| 1   | Voicemail auto-reply: text only, or text \+ cloned voice? | Cloned voice is a differentiator but adds complexity. Could start with text-only and add voice in a fast follow. |
+| 2   | Call monitoring legal requirements by state               | Need legal counsel. Two-party consent states require disclosure. Could use a brief automated message.            |
+| 3   | Subscription pricing                                      | Target range $19–$39/month. Need to validate with beta users.                                                    |
+| 4   | Transaction fee on payments                               | Additional revenue stream, but could deter price-sensitive users. Test during beta.                              |
+| 5   | Multi-language support for voice input                    | Spanish is highest priority. How many languages for v1?                                                          |
+| 6   | iOS-first or iOS \+ Android simultaneously?               | React Native or Flutter could enable both. Depends on Brian’s preference and speed to market.                    |

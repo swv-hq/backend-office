@@ -1,8 +1,8 @@
 {
   "expo": {
     "newArchEnabled": true,
-    "name": "NotesContract",
-    "slug": "NotesContract",
+    "name": "Back-End Office",
+    "slug": "backend-office",
     "scheme": "backend-office",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -13,11 +13,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#0D87E1"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.backendoffice.app"
     },
     "android": {
       "adaptiveIcon": {
@@ -28,9 +27,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "expo-font",
-      "expo-secure-store"
-    ]
+    "plugins": ["expo-font", "expo-secure-store"]
   }
 }

@@ -16,8 +16,8 @@ The first AI-generated estimate is a starting point, not the final product. Cont
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                                         |
+| ---------- | ------------------------------------------------------------------------------ |
 | Contractor | Refines estimates by talking, not typing; full control over the final document |
 
 ## Desired Outcome

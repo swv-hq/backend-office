@@ -16,8 +16,8 @@ A contractor's work follows a natural progression: a lead comes in, they estimat
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                       |
+| ---------- | ------------------------------------------------------------ |
 | Contractor | Clear view of all jobs and their statuses; nothing gets lost |
 
 ## Desired Outcome

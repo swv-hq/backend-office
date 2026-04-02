@@ -16,10 +16,10 @@ Getting paid is the final step. Customers need a frictionless way to pay after r
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
-| Customer | Pays instantly from their phone via a link in the invoice SMS |
-| Contractor | Gets paid faster; no chasing checks or cash |
+| User Role  | Impact                                                        |
+| ---------- | ------------------------------------------------------------- |
+| Customer   | Pays instantly from their phone via a link in the invoice SMS |
+| Contractor | Gets paid faster; no chasing checks or cash                   |
 
 ## Desired Outcome
 

@@ -16,18 +16,21 @@ const Navigation = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        id={undefined}
-        screenOptions={{ headerShown: false }}
-      >
+      <Stack.Navigator id={undefined} screenOptions={{ headerShown: false }}>
         {isSignedIn ? (
           <>
             <Stack.Screen
               name="NotesDashboardScreen"
               component={NotesDashboardScreen}
             />
-            <Stack.Screen name="InsideNoteScreen" component={InsideNoteScreen} />
-            <Stack.Screen name="CreateNoteScreen" component={CreateNoteScreen} />
+            <Stack.Screen
+              name="InsideNoteScreen"
+              component={InsideNoteScreen}
+            />
+            <Stack.Screen
+              name="CreateNoteScreen"
+              component={CreateNoteScreen}
+            />
           </>
         ) : (
           <Stack.Screen name="LoginScreen" component={LoginScreen} />

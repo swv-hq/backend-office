@@ -16,10 +16,10 @@ Once the contractor sends an estimate, the customer needs a clean, professional 
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
-| Customer | Views professional estimates, approves/declines, and communicates — all from a link on their phone |
-| Contractor | Gets real-time status updates and AI-processed customer feedback |
+| User Role  | Impact                                                                                             |
+| ---------- | -------------------------------------------------------------------------------------------------- |
+| Customer   | Views professional estimates, approves/declines, and communicates — all from a link on their phone |
+| Contractor | Gets real-time status updates and AI-processed customer feedback                                   |
 
 ## Desired Outcome
 

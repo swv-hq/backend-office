@@ -16,8 +16,8 @@ Contractors need to know how long they spend on each job — for billing hourly 
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                                                 |
+| ---------- | -------------------------------------------------------------------------------------- |
 | Contractor | Automatic time tracking per job; accurate hours for billing and profitability analysis |
 
 ## Desired Outcome

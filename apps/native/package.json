@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "main": "index.tsx",
   "scripts": {
-    "dev": "expo start",
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "dev": "expo start --dev-client",
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo start --ios --dev-client",
     "web": "expo start --web",
+    "test": "jest",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "expo": "^55.0.9",
     "expo-asset": "~55.0.10",
     "expo-auth-session": "~55.0.10",
+    "expo-dev-client": "~55.0.19",
     "expo-font": "~55.0.4",
     "expo-secure-store": "~55.0.9",
     "expo-system-ui": "~55.0.11",

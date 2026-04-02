@@ -16,8 +16,8 @@ Contractors miss calls during jobs and forget to call back. By the time they rem
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                          |
+| ---------- | ----------------------------------------------- |
 | Contractor | Never forgets to return a call; leads stay warm |
 
 ## Desired Outcome

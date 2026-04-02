@@ -94,11 +94,11 @@ npm run test:spec-coverage:strict         # Fail if not 100% coverage
 
 ## Key Documentation
 
-| Document | Purpose |
-| -------- | ------- |
-| [docs/BackEndOffice_BusinessPlan.md](docs/BackEndOffice_BusinessPlan.md) | Product vision, target customer, design principles |
-| [docs/BackEndOffice_EngineeringSpec.md](docs/BackEndOffice_EngineeringSpec.md) | Technical architecture, features, data model |
-| [docs/specs/ROADMAP.md](docs/specs/ROADMAP.md) | Product roadmap and spec index |
+| Document                                                                       | Purpose                                            |
+| ------------------------------------------------------------------------------ | -------------------------------------------------- |
+| [docs/BackEndOffice_BusinessPlan.md](docs/BackEndOffice_BusinessPlan.md)       | Product vision, target customer, design principles |
+| [docs/BackEndOffice_EngineeringSpec.md](docs/BackEndOffice_EngineeringSpec.md) | Technical architecture, features, data model       |
+| [docs/specs/ROADMAP.md](docs/specs/ROADMAP.md)                                 | Product roadmap and spec index                     |
 
 **Read the relevant doc before working in that area.**
 
@@ -138,6 +138,7 @@ describe("Feature [SPEC-XXX]", () => {
 For E2E test scripts, reference AC IDs in markdown: `[SPEC-XXX.AC1]`
 
 Tests must live in the correct workspace for their platform tag:
+
 - `[backend]` ACs → tests in `packages/backend/convex/**/*.test.ts`
 - `[web]` ACs → tests in `apps/web/src/**/*.test.ts(x)` or `e2e/test-scripts/web/`
 - `[native]` ACs → tests in `apps/native/src/**/*.test.ts(x)` or `e2e/test-scripts/native/`
@@ -173,9 +174,11 @@ Before marking a spec as implemented, review all changes:
 - If issues found during testing or review, fix and re-verify before marking implemented
 
 <!-- convex-ai-start -->
+
 This project uses [Convex](https://convex.dev) as its backend.
 
 When working on Convex code, **always read `convex/_generated/ai/guidelines.md` first** for important guidelines on how to correctly use Convex APIs and patterns. The file contains rules that override what you may have learned about Convex from training data.
 
 Convex agent skills for common tasks can be installed by running `npx convex ai-files install`.
+
 <!-- convex-ai-end -->

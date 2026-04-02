@@ -16,8 +16,8 @@ Back-End Office charges a monthly subscription. The billing must be automatic â€
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                                |
+| ---------- | --------------------------------------------------------------------- |
 | Contractor | Seamless auto-billing; no invoices to manage for the app subscription |
 
 ## Desired Outcome

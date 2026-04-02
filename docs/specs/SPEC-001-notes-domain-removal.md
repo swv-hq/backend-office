@@ -16,8 +16,8 @@ The codebase contains a starter/example "notes" domain (CRUD + AI summaries) acr
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role | Impact                                                          |
+| --------- | --------------------------------------------------------------- |
 | Developer | Clean codebase with no dead code or confusing starter artifacts |
 
 ## Desired Outcome

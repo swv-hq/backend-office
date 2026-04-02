@@ -16,8 +16,8 @@ The web app has a generic marketing homepage from the starter template. Before l
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role            | Impact                                                                    |
+| -------------------- | ------------------------------------------------------------------------- |
 | Prospective customer | First impression of the product; determines whether they download the app |
 
 ## Desired Outcome

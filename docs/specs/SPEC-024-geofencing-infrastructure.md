@@ -16,8 +16,8 @@ Several features (job time tracking, smart callback reminders) need to detect wh
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                                                         |
+| ---------- | ---------------------------------------------------------------------------------------------- |
 | Contractor | Automatic detection of arrival/departure at job sites powers time tracking and smart reminders |
 
 ## Desired Outcome

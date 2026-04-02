@@ -16,8 +16,8 @@ The app's core telephony features (missed call detection, SMS auto-reply, voicem
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                               |
+| ---------- | -------------------------------------------------------------------- |
 | Contractor | Gets a business phone number that the app can monitor and respond to |
 
 ## Desired Outcome

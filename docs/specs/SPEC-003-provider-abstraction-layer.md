@@ -16,8 +16,8 @@ The app integrates with multiple external services (AI, speech-to-text, telephon
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role | Impact                                                            |
+| --------- | ----------------------------------------------------------------- |
 | Developer | Can swap vendors without rewriting features; cleaner architecture |
 
 ## Desired Outcome

@@ -1,7 +1,7 @@
 ---
 id: SPEC-031
 title: Custom Expo Dev Build
-status: approved
+status: implemented
 priority: P0
 phase: 0
 created: 2026-04-01
@@ -16,10 +16,10 @@ The app currently runs via Expo Go, which limits native module usage to whatever
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
-| Developer | Unblocked to use any native module; faster iteration on native features |
-| Beta tester | Dev builds can also serve as internal test builds via TestFlight |
+| User Role   | Impact                                                                  |
+| ----------- | ----------------------------------------------------------------------- |
+| Developer   | Unblocked to use any native module; faster iteration on native features |
+| Beta tester | Dev builds can also serve as internal test builds via TestFlight        |
 
 ## Desired Outcome
 

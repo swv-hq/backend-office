@@ -16,8 +16,8 @@ New contractors must set up their profile, connect services, and configure their
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                                   |
+| ---------- | ------------------------------------------------------------------------ |
 | Contractor | First-run experience that determines whether they keep or delete the app |
 
 ## Desired Outcome

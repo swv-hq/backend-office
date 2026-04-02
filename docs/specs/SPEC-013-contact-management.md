@@ -16,8 +16,8 @@ Contractors interact with customers across multiple channels: missed calls, voic
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                   |
+| ---------- | -------------------------------------------------------- |
 | Contractor | Single view of all customers/leads with relevant details |
 
 ## Desired Outcome

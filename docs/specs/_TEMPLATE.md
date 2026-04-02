@@ -31,9 +31,9 @@ updated: YYYY-MM-DD
 <!-- Tag each AC with the platform(s) it applies to: [web], [native], [backend], or combinations like [web, native] -->
 <!-- The spec-coverage script uses these tags to verify tests exist in the correct workspace(s) -->
 
-- **SPEC-XXX.AC1** [backend]: 
-- **SPEC-XXX.AC2** [web, native]: 
-- **SPEC-XXX.AC3** [native]: 
+- **SPEC-XXX.AC1** [backend]:
+- **SPEC-XXX.AC2** [web, native]:
+- **SPEC-XXX.AC3** [native]:
 
 ## Open Questions
 

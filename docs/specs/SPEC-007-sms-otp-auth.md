@@ -16,8 +16,8 @@ The app currently supports Google and Apple OAuth for login. Many tradespeople m
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                                                    |
+| ---------- | ----------------------------------------------------------------------------------------- |
 | Contractor | Can sign up and log in with just their phone number — no Google or Apple account required |
 
 ## Desired Outcome

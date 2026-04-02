@@ -16,9 +16,9 @@ The app needs a new data model to support contractor profiles, contacts, jobs, e
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
-| Developer | Foundation schema that all features build upon |
+| User Role  | Impact                                                   |
+| ---------- | -------------------------------------------------------- |
+| Developer  | Foundation schema that all features build upon           |
 | Contractor | Data structures that represent their business operations |
 
 ## Desired Outcome

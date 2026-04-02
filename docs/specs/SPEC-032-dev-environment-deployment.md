@@ -16,10 +16,10 @@ The entire application stack (Convex backend, Next.js web app, React Native app)
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
-| Developer | Can test full integration against real services; catch deployment-specific issues early |
-| Beta tester | Can access the web app and connect the native app to a real backend |
+| User Role   | Impact                                                                                  |
+| ----------- | --------------------------------------------------------------------------------------- |
+| Developer   | Can test full integration against real services; catch deployment-specific issues early |
+| Beta tester | Can access the web app and connect the native app to a real backend                     |
 
 ## Desired Outcome
 

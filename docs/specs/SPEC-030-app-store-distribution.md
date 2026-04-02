@@ -16,9 +16,9 @@ The app needs to get into the hands of beta testers and eventually the general p
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
-| Beta tester | Can install and test the app via TestFlight |
+| User Role            | Impact                                           |
+| -------------------- | ------------------------------------------------ |
+| Beta tester          | Can install and test the app via TestFlight      |
 | Prospective customer | Can find and download the app from the App Store |
 
 ## Desired Outcome

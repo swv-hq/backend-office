@@ -16,10 +16,10 @@ The app handles sensitive data: phone numbers, voicemail recordings, call transc
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
-| Contractor | Knows what data is collected, can delete their account and data |
-| Customer | Understands data handling when interacting with estimates/invoices |
+| User Role  | Impact                                                             |
+| ---------- | ------------------------------------------------------------------ |
+| Contractor | Knows what data is collected, can delete their account and data    |
+| Customer   | Understands data handling when interacting with estimates/invoices |
 
 ## Desired Outcome
 

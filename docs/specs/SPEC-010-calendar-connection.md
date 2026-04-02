@@ -16,8 +16,8 @@ Contractors need to see their schedule and have appointments created automatical
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                                             |
+| ---------- | ---------------------------------------------------------------------------------- |
 | Contractor | Their schedule is managed in the app, optionally synced to their existing calendar |
 
 ## Desired Outcome

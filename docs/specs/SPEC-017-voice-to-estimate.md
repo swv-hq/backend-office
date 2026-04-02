@@ -16,10 +16,10 @@ Creating professional estimates is one of the biggest time sinks for solo contra
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                                 |
+| ---------- | ---------------------------------------------------------------------- |
 | Contractor | Creates professional estimates in seconds by talking instead of typing |
-| Customer | Receives clean, itemized estimates that build trust |
+| Customer   | Receives clean, itemized estimates that build trust                    |
 
 ## Desired Outcome
 

@@ -16,10 +16,10 @@ Every missed call is a potential lost job. When a contractor is on a job site an
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------- |
 | Contractor | Saves missed leads automatically; never loses a job because they couldn't pick up the phone |
-| Customer | Gets immediate acknowledgment that their call was received, reducing frustration |
+| Customer   | Gets immediate acknowledgment that their call was received, reducing frustration            |
 
 ## Desired Outcome
 

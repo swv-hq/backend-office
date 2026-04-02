@@ -16,10 +16,10 @@ Contractors spend evenings typing up invoices from handwritten notes. When the j
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                   |
+| ---------- | -------------------------------------------------------- |
 | Contractor | Closes out jobs instantly on-site; no more 9pm paperwork |
-| Customer | Receives the invoice immediately; can pay right away |
+| Customer   | Receives the invoice immediately; can pay right away     |
 
 ## Desired Outcome
 

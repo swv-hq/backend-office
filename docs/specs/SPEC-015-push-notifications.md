@@ -16,8 +16,8 @@ The app needs to reach the contractor when they're not actively using it — mis
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                               |
+| ---------- | -------------------------------------------------------------------- |
 | Contractor | Receives timely alerts about business events without opening the app |
 
 ## Desired Outcome

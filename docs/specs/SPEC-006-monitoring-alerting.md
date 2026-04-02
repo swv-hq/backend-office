@@ -16,10 +16,10 @@ Without monitoring, issues like failed API calls, error spikes, or provider outa
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
-| Developer | Knows when things break before users report it |
-| Contractor | Better uptime and faster issue resolution |
+| User Role  | Impact                                         |
+| ---------- | ---------------------------------------------- |
+| Developer  | Knows when things break before users report it |
+| Contractor | Better uptime and faster issue resolution      |
 
 ## Desired Outcome
 

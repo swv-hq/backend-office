@@ -1,5 +1,3 @@
-
-
 **BACK-END OFFICE**
 
 Engineering Spec for Brian
@@ -16,44 +14,44 @@ March 2026 — v1.0
 
 Make these choices first. Everything else depends on them.
 
-| Decision | Recommendation |
-| :---- | :---- |
-| **Framework** | React Native or Flutter. Either works. Pick whichever you’re faster in. Cross-platform is mandatory — iOS \+ Android from day one. |
-| **Backend** | Supabase or Firebase. Both give you auth, DB, storage, and push notifications out of the box. Supabase if you want Postgres; Firebase if you want faster prototyping. |
-| **Voice-to-Text (real-time)** | Whisper API (OpenAI) or Deepgram. Need high accuracy on rough English and Spanish. Deepgram has better real-time streaming. |
-| **AI Processing (estimates, summaries)** | Claude API (Anthropic). Use for: voicemail summarization, voice-to-estimate generation, voice-to-invoice adjustments, market rate suggestions. |
-| **Voice Cloning** | ElvenLabs API. Contractor records \~30 seconds during onboarding. API generates voicemails in their voice. Can defer to P1.5 if needed — start with text-only auto-reply. |
-| **Payments** | Stripe Connect. Handles contractor payouts, customer payments, and your subscription fee auto-deduction all in one integration. |
-| **Calendar Sync** | Google Calendar API \+ Apple EventKit. Sync to their existing calendar. Don’t build your own calendar UI for v1. |
-| **Telephony / SMS** | Twilio. Handles auto-reply SMS, voicemail detection, call recording, and the legal disclosure announcement. |
+| Decision                                 | Recommendation                                                                                                                                                            |
+| :--------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Framework**                            | React Native or Flutter. Either works. Pick whichever you’re faster in. Cross-platform is mandatory — iOS \+ Android from day one.                                        |
+| **Backend**                              | Supabase or Firebase. Both give you auth, DB, storage, and push notifications out of the box. Supabase if you want Postgres; Firebase if you want faster prototyping.     |
+| **Voice-to-Text (real-time)**            | Whisper API (OpenAI) or Deepgram. Need high accuracy on rough English and Spanish. Deepgram has better real-time streaming.                                               |
+| **AI Processing (estimates, summaries)** | Claude API (Anthropic). Use for: voicemail summarization, voice-to-estimate generation, voice-to-invoice adjustments, market rate suggestions.                            |
+| **Voice Cloning**                        | ElvenLabs API. Contractor records \~30 seconds during onboarding. API generates voicemails in their voice. Can defer to P1.5 if needed — start with text-only auto-reply. |
+| **Payments**                             | Stripe Connect. Handles contractor payouts, customer payments, and your subscription fee auto-deduction all in one integration.                                           |
+| **Calendar Sync**                        | Google Calendar API \+ Apple EventKit. Sync to their existing calendar. Don’t build your own calendar UI for v1.                                                          |
+| **Telephony / SMS**                      | Twilio. Handles auto-reply SMS, voicemail detection, call recording, and the legal disclosure announcement.                                                               |
 
 # **Onboarding Flow**
 
 Must be completable in under 10 minutes. Target 5\. One screen per step. Big buttons, minimal text input.
 
-| Step | Screen | Input | Tech Notes |
-| :---- | :---- | :---- | :---- |
-| 1 | Your Name | First name, last name | Text fields. Auto-capitalize. |
-| 2 | Business Name | Business name (optional logo upload) | Text field \+ image picker. Logo goes on estimates/invoices. |
-| 3 | Phone Number | Their business phone number | Twilio number provisioning. This becomes the number the app monitors for missed calls. |
-| 4 | Trade Type | Tap one: Handyman / Plumber / Electrician | Determines branding, default price book, and terminology throughout the app. |
-| 5 | Calendar | Tap to connect Google or Apple Calendar | OAuth for Google. EventKit for Apple. Read+write access. |
-| 6 | Voice Recording | Read a 3-sentence script aloud | Record audio, send to ElevenLabs to create voice clone. Can be skipped and done later. |
-| 7 | Payment Setup | Connect Stripe account | Stripe Connect onboarding flow (hosted). Creates their merchant account. |
+| Step | Screen          | Input                                     | Tech Notes                                                                             |
+| :--- | :-------------- | :---------------------------------------- | :------------------------------------------------------------------------------------- |
+| 1    | Your Name       | First name, last name                     | Text fields. Auto-capitalize.                                                          |
+| 2    | Business Name   | Business name (optional logo upload)      | Text field \+ image picker. Logo goes on estimates/invoices.                           |
+| 3    | Phone Number    | Their business phone number               | Twilio number provisioning. This becomes the number the app monitors for missed calls. |
+| 4    | Trade Type      | Tap one: Handyman / Plumber / Electrician | Determines branding, default price book, and terminology throughout the app.           |
+| 5    | Calendar        | Tap to connect Google or Apple Calendar   | OAuth for Google. EventKit for Apple. Read+write access.                               |
+| 6    | Voice Recording | Read a 3-sentence script aloud            | Record audio, send to ElevenLabs to create voice clone. Can be skipped and done later. |
+| 7    | Payment Setup   | Connect Stripe account                    | Stripe Connect onboarding flow (hosted). Creates their merchant account.               |
 
 **Action items:**
 
-* Build a 7-screen onboarding wizard with a progress bar at the top
+- Build a 7-screen onboarding wizard with a progress bar at the top
 
-* Each screen: one question, one input, one “Next” button
+- Each screen: one question, one input, one “Next” button
 
-* Skip button on voice recording (can do it later from settings)
+- Skip button on voice recording (can do it later from settings)
 
-* Time yourself going through it — if it takes you more than 3 minutes as a dev, it’s too slow for the user
+- Time yourself going through it — if it takes you more than 3 minutes as a dev, it’s too slow for the user
 
 # **Feature 1: Smart Missed-Call Response**
 
-*Why: Every missed call is a lost job. This saves them money without them lifting a finger.*
+_Why: Every missed call is a lost job. This saves them money without them lifting a finger._
 
 ## **How It Works**
 
@@ -69,25 +67,25 @@ Must be completable in under 10 minutes. Target 5\. One screen per step. Big but
 
 ## **SMS Template**
 
-*“Hi\! This is \[contractor name\] from \[business name\]. I saw you called — sorry I couldn’t pick up, I’m on a job right now. I’ll get back to you as soon as I’m free. Looking forward to connecting\!”*
+_“Hi\! This is \[contractor name\] from \[business name\]. I saw you called — sorry I couldn’t pick up, I’m on a job right now. I’ll get back to you as soon as I’m free. Looking forward to connecting\!”_
 
 Keep it vague on timing. Don’t promise “30 minutes” because their day is unpredictable.
 
 **Action items:**
 
-* Set up Twilio webhook for missed calls on the contractor’s provisioned number
+- Set up Twilio webhook for missed calls on the contractor’s provisioned number
 
-* Build SMS auto-reply with template variables: {contractor\_name}, {business\_name}
+- Build SMS auto-reply with template variables: {contractor_name}, {business_name}
 
-* Integrate ElevenLabs API for voice clone voicemail generation (can defer to v1.5)
+- Integrate ElevenLabs API for voice clone voicemail generation (can defer to v1.5)
 
-* Auto-create a lead/contact record for every missed call with: phone number, timestamp, voicemail transcript (if left)
+- Auto-create a lead/contact record for every missed call with: phone number, timestamp, voicemail transcript (if left)
 
-* If caller leaves voicemail: transcribe with Whisper/Deepgram, then pass to Claude API to generate a 1-sentence summary (who \+ what they need)
+- If caller leaves voicemail: transcribe with Whisper/Deepgram, then pass to Claude API to generate a 1-sentence summary (who \+ what they need)
 
 # **Feature 2: Smart Callback Reminders**
 
-*Why: Contractors forget to call back. This reminds them when they’re actually able to do it.*
+_Why: Contractors forget to call back. This reminds them when they’re actually able to do it._
 
 ## **How It Works**
 
@@ -101,19 +99,19 @@ Keep it vague on timing. Don’t promise “30 minutes” because their day is u
 
 **Action items:**
 
-* Implement background location \+ motion detection (iOS: Core Motion \+ Core Location; Android: Activity Recognition API)
+- Implement background location \+ motion detection (iOS: Core Motion \+ Core Location; Android: Activity Recognition API)
 
-* Build a “pending callbacks” queue in the local database
+- Build a “pending callbacks” queue in the local database
 
-* Push notification with expandable card showing caller info and voicemail summary
+- Push notification with expandable card showing caller info and voicemail summary
 
-* Tapping the notification opens the dialer with the number pre-filled
+- Tapping the notification opens the dialer with the number pre-filled
 
-* Battery optimization: use geofencing or significant location changes, not continuous GPS
+- Battery optimization: use geofencing or significant location changes, not continuous GPS
 
 # **Feature 3: Live Call Assistant**
 
-*Why: The contractor can schedule appointments hands-free while driving instead of pulling over to write in a book.*
+_Why: The contractor can schedule appointments hands-free while driving instead of pulling over to write in a book._
 
 ## **How It Works**
 
@@ -131,23 +129,23 @@ Keep it vague on timing. Don’t promise “30 minutes” because their day is u
 
 **Action items:**
 
-* Route calls through Twilio so you can tap into the audio stream server-side
+- Route calls through Twilio so you can tap into the audio stream server-side
 
-* Set up Deepgram streaming transcription on the audio
+- Set up Deepgram streaming transcription on the audio
 
-* Build a lightweight Claude API integration that watches the transcript for scheduling keywords/intent
+- Build a lightweight Claude API integration that watches the transcript for scheduling keywords/intent
 
-* When triggered: query the calendar API for available slots in the discussed timeframe
+- When triggered: query the calendar API for available slots in the discussed timeframe
 
-* Display available times as an overlay on the call screen (contractor glances at it)
+- Display available times as an overlay on the call screen (contractor glances at it)
 
-* On confirmation: create calendar event via Google Calendar API / EventKit
+- On confirmation: create calendar event via Google Calendar API / EventKit
 
-* LEGAL: Add configurable call disclosure message. Research two-party consent states before launch. Flag this as needing a lawyer’s review.
+- LEGAL: Add configurable call disclosure message. Research two-party consent states before launch. Flag this as needing a lawyer’s review.
 
 # **Feature 4: Voice-to-Estimate**
 
-*Why: This is the killer feature. A handyman who barely speaks English gets the same professional estimate that a company with office staff would send.*
+_Why: This is the killer feature. A handyman who barely speaks English gets the same professional estimate that a company with office staff would send._
 
 ## **How It Works**
 
@@ -169,27 +167,27 @@ When Claude generates the estimate, it should suggest pricing based on typical r
 
 **Action items:**
 
-* Build a “New Estimate” screen with a big microphone button (think voice memo UX)
+- Build a “New Estimate” screen with a big microphone button (think voice memo UX)
 
-* Integrate Whisper/Deepgram for speech-to-text with multi-language support (English \+ Spanish minimum)
+- Integrate Whisper/Deepgram for speech-to-text with multi-language support (English \+ Spanish minimum)
 
-* Design the Claude API prompt for estimate generation — output must be structured JSON with: description, quantity, unit, unit\_price, total per line item
+- Design the Claude API prompt for estimate generation — output must be structured JSON with: description, quantity, unit, unit_price, total per line item
 
-* Build an estimate preview screen: line items in a clean list, each tappable to edit
+- Build an estimate preview screen: line items in a clean list, each tappable to edit
 
-* Total auto-calculates. Include labor subtotal and materials subtotal.
+- Total auto-calculates. Include labor subtotal and materials subtotal.
 
-* Build a pricing suggestion database seeded with common jobs per trade \+ average rates by region (can start with Claude-generated seed data)
+- Build a pricing suggestion database seeded with common jobs per trade \+ average rates by region (can start with Claude-generated seed data)
 
-* “Send” button triggers SMS (via Twilio) \+ email to the customer
+- “Send” button triggers SMS (via Twilio) \+ email to the customer
 
-* Customer receives a link to a web-hosted version of the estimate with “Approve” / “Decline” buttons
+- Customer receives a link to a web-hosted version of the estimate with “Approve” / “Decline” buttons
 
-* Approval/decline status syncs back to the app in real time via webhook or push notification
+- Approval/decline status syncs back to the app in real time via webhook or push notification
 
 # **Feature 5: Voice-to-Invoice & Payment**
 
-*Why: The contractor closes out the job before they leave the site. No more 9pm paperwork.*
+_Why: The contractor closes out the job before they leave the site. No more 9pm paperwork._
 
 ## **How It Works**
 
@@ -207,83 +205,83 @@ When Claude generates the estimate, it should suggest pricing based on typical r
 
 **Action items:**
 
-* Build “Complete Job” flow branching into “No changes” (auto-generate invoice from estimate) or “Describe changes” (voice input)
+- Build “Complete Job” flow branching into “No changes” (auto-generate invoice from estimate) or “Describe changes” (voice input)
 
-* Reuse the same Whisper/Deepgram \+ Claude pipeline from estimates, but with a “modify existing estimate” prompt
+- Reuse the same Whisper/Deepgram \+ Claude pipeline from estimates, but with a “modify existing estimate” prompt
 
-* Generate a customer-facing invoice web page with Stripe Checkout embedded
+- Generate a customer-facing invoice web page with Stripe Checkout embedded
 
-* Handle payment webhooks: mark invoice as paid, notify contractor via push notification
+- Handle payment webhooks: mark invoice as paid, notify contractor via push notification
 
-* Stripe Connect: configure so your subscription fee is auto-deducted from the contractor’s Stripe balance each month — no separate billing needed
+- Stripe Connect: configure so your subscription fee is auto-deducted from the contractor’s Stripe balance each month — no separate billing needed
 
 # **Feature 6: Calendar Sync**
 
-*Why: Don’t make them learn a new calendar. Plug into what they already use.*
+_Why: Don’t make them learn a new calendar. Plug into what they already use._
 
 **Action items:**
 
-* Google Calendar: OAuth 2.0 flow during onboarding. Read \+ write scopes.
+- Google Calendar: OAuth 2.0 flow during onboarding. Read \+ write scopes.
 
-* Apple Calendar: EventKit framework. Request calendar access permission.
+- Apple Calendar: EventKit framework. Request calendar access permission.
 
-* All appointments created by the Live Call Assistant (Feature 3\) write to the synced calendar
+- All appointments created by the Live Call Assistant (Feature 3\) write to the synced calendar
 
-* When checking availability for scheduling, read from the synced calendar
+- When checking availability for scheduling, read from the synced calendar
 
-* Two-way sync: if the contractor adds something directly to their calendar, the app knows about it
+- Two-way sync: if the contractor adds something directly to their calendar, the app knows about it
 
 # **Suggested Build Order**
 
 Ship fast. Here’s the order that gets you to a usable product the fastest, with each step building on the last.
 
-| Phase | What to Build | Why This Order |
-| :---- | :---- | :---- |
-| **1** | Project scaffolding \+ onboarding | Get the app installable and the user through setup. Nothing works without this. |
-| **2** | Twilio integration \+ missed call auto-reply (SMS only) | The simplest feature with the most immediate value. Contractor installs the app, sets up their number, and is already saving missed leads. |
-| **3** | Voicemail transcription \+ summary | Builds on the Twilio integration. Adds Whisper/Deepgram. Now the contractor sees who called and why. |
-| **4** | Calendar sync \+ callback reminders | Now the contractor gets nudged to call back when they’re in the truck. Requires GPS/motion detection. |
-| **5** | Voice-to-estimate \+ delivery \+ approval | The big feature. Requires Whisper/Deepgram \+ Claude API \+ customer-facing web pages. Most complex, but the previous phases give you all the infrastructure. |
-| **6** | Voice-to-invoice \+ Stripe payments | Reuses the estimate pipeline. Adds Stripe Connect for payments and subscription billing. |
-| **7** | Live call assistant | The most complex feature. Save for last. Requires real-time transcription \+ Claude \+ calendar integration all working together during a live call. |
+| Phase | What to Build                                           | Why This Order                                                                                                                                                |
+| :---- | :------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **1** | Project scaffolding \+ onboarding                       | Get the app installable and the user through setup. Nothing works without this.                                                                               |
+| **2** | Twilio integration \+ missed call auto-reply (SMS only) | The simplest feature with the most immediate value. Contractor installs the app, sets up their number, and is already saving missed leads.                    |
+| **3** | Voicemail transcription \+ summary                      | Builds on the Twilio integration. Adds Whisper/Deepgram. Now the contractor sees who called and why.                                                          |
+| **4** | Calendar sync \+ callback reminders                     | Now the contractor gets nudged to call back when they’re in the truck. Requires GPS/motion detection.                                                         |
+| **5** | Voice-to-estimate \+ delivery \+ approval               | The big feature. Requires Whisper/Deepgram \+ Claude API \+ customer-facing web pages. Most complex, but the previous phases give you all the infrastructure. |
+| **6** | Voice-to-invoice \+ Stripe payments                     | Reuses the estimate pipeline. Adds Stripe Connect for payments and subscription billing.                                                                      |
+| **7** | Live call assistant                                     | The most complex feature. Save for last. Requires real-time transcription \+ Claude \+ calendar integration all working together during a live call.          |
 
 # **Core Data Model**
 
 Minimum tables/collections you need. Keep it simple — you can always add fields later.
 
-| Entity | Key Fields | Notes |
-| :---- | :---- | :---- |
-| **Contractor** | id, name, business\_name, phone, trade\_type, zip\_code, stripe\_account\_id, calendar\_provider, voice\_clone\_id | One record per user. Created during onboarding. |
-| **Contact** | id, contractor\_id, phone, name, email, source, created\_at | Auto-created from missed calls. Updated as info is gathered. |
-| **Job** | id, contractor\_id, contact\_id, status, description, scheduled\_at, completed\_at | Status: lead → estimated → approved → in\_progress → completed → paid |
-| **Estimate** | id, job\_id, line\_items (JSON), total, status, sent\_at, approved\_at | Line items: \[{description, qty, unit\_price, total}\]. Status: draft → sent → approved/declined |
-| **Invoice** | id, job\_id, estimate\_id, line\_items (JSON), total, status, paid\_at, stripe\_payment\_id | Generated from estimate. Status: draft → sent → paid |
-| **CallLog** | id, contractor\_id, contact\_id, direction, voicemail\_url, transcript, summary, callback\_status | Every call in/out. Callback status: pending → reminded → completed |
+| Entity         | Key Fields                                                                                                 | Notes                                                                                           |
+| :------------- | :--------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------- |
+| **Contractor** | id, name, business_name, phone, trade_type, zip_code, stripe_account_id, calendar_provider, voice_clone_id | One record per user. Created during onboarding.                                                 |
+| **Contact**    | id, contractor_id, phone, name, email, source, created_at                                                  | Auto-created from missed calls. Updated as info is gathered.                                    |
+| **Job**        | id, contractor_id, contact_id, status, description, scheduled_at, completed_at                             | Status: lead → estimated → approved → in_progress → completed → paid                            |
+| **Estimate**   | id, job_id, line_items (JSON), total, status, sent_at, approved_at                                         | Line items: \[{description, qty, unit_price, total}\]. Status: draft → sent → approved/declined |
+| **Invoice**    | id, job_id, estimate_id, line_items (JSON), total, status, paid_at, stripe_payment_id                      | Generated from estimate. Status: draft → sent → paid                                            |
+| **CallLog**    | id, contractor_id, contact_id, direction, voicemail_url, transcript, summary, callback_status              | Every call in/out. Callback status: pending → reminded → completed                              |
 
 # **API Integration Summary**
 
 Every external service you’ll need, what it does, and what to sign up for.
 
-| Service | Used For | Key Endpoint | Pricing Model |
-| :---- | :---- | :---- | :---- |
-| **Twilio** | Phone number provisioning, SMS auto-reply, voicemail recording, call routing | Programmable Voice \+ Messaging APIs | Pay per use |
-| **Deepgram** | Real-time speech-to-text for call assistant; batch transcription for voicemails | Streaming \+ pre-recorded transcription APIs | Pay per audio minute |
-| **Claude API** | Voicemail summarization, voice-to-estimate, voice-to-invoice, scheduling intent detection, market rate suggestions | /v1/messages | Pay per token |
-| **ElevenLabs** | Voice cloning for personalized voicemails | Voice Clone \+ Text-to-Speech APIs | Pay per character |
-| **Stripe Connect** | Customer payments, contractor payouts, subscription auto-deduction | Connect Accounts \+ Checkout \+ Billing | 2.9% \+ 30¢ per transaction |
-| **Google Calendar** | Read/write calendar events | Calendar API v3 | Free |
+| Service             | Used For                                                                                                           | Key Endpoint                                 | Pricing Model               |
+| :------------------ | :----------------------------------------------------------------------------------------------------------------- | :------------------------------------------- | :-------------------------- |
+| **Twilio**          | Phone number provisioning, SMS auto-reply, voicemail recording, call routing                                       | Programmable Voice \+ Messaging APIs         | Pay per use                 |
+| **Deepgram**        | Real-time speech-to-text for call assistant; batch transcription for voicemails                                    | Streaming \+ pre-recorded transcription APIs | Pay per audio minute        |
+| **Claude API**      | Voicemail summarization, voice-to-estimate, voice-to-invoice, scheduling intent detection, market rate suggestions | /v1/messages                                 | Pay per token               |
+| **ElevenLabs**      | Voice cloning for personalized voicemails                                                                          | Voice Clone \+ Text-to-Speech APIs           | Pay per character           |
+| **Stripe Connect**  | Customer payments, contractor payouts, subscription auto-deduction                                                 | Connect Accounts \+ Checkout \+ Billing      | 2.9% \+ 30¢ per transaction |
+| **Google Calendar** | Read/write calendar events                                                                                         | Calendar API v3                              | Free                        |
 
 # **Decisions You Need to Make**
 
 These are things only you can decide based on what you’re fastest with. Pick one and move.
 
-| Decision | Options |
-| :---- | :---- |
-| **React Native vs Flutter?** | Whichever you ship faster in. Both work. Don’t overthink this. |
-| **Supabase vs Firebase?** | Supabase \= Postgres \+ Row Level Security. Firebase \= faster prototyping \+ better mobile SDKs. Pick based on what you know. |
-| **Whisper vs Deepgram for STT?** | Deepgram has better streaming (important for live call assistant). Whisper is great for batch (voicemails). Could use both. |
-| **Voice clone at launch?** | Can ship v1 with text-only auto-reply and add voice clone in a fast follow. Reduces launch complexity. |
-| **Phone number strategy?** | Does each contractor get a Twilio number, or do you intercept calls on their existing number? Twilio number is simpler technically but means customers call a different number. |
-| **Monorepo or separate repos?** | Up to you. Monorepo is usually simpler for a 1-person team. |
+| Decision                         | Options                                                                                                                                                                         |
+| :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **React Native vs Flutter?**     | Whichever you ship faster in. Both work. Don’t overthink this.                                                                                                                  |
+| **Supabase vs Firebase?**        | Supabase \= Postgres \+ Row Level Security. Firebase \= faster prototyping \+ better mobile SDKs. Pick based on what you know.                                                  |
+| **Whisper vs Deepgram for STT?** | Deepgram has better streaming (important for live call assistant). Whisper is great for batch (voicemails). Could use both.                                                     |
+| **Voice clone at launch?**       | Can ship v1 with text-only auto-reply and add voice clone in a fast follow. Reduces launch complexity.                                                                          |
+| **Phone number strategy?**       | Does each contractor get a Twilio number, or do you intercept calls on their existing number? Twilio number is simpler technically but means customers call a different number. |
+| **Monorepo or separate repos?**  | Up to you. Monorepo is usually simpler for a 1-person team.                                                                                                                     |
 
 **That’s the build. Questions? Ask Claude.**

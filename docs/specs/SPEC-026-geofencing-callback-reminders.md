@@ -16,8 +16,8 @@ Time-based callback reminders (SPEC-016) work on a schedule, but the ideal momen
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                                               |
+| ---------- | ------------------------------------------------------------------------------------ |
 | Contractor | Gets callback reminders at the perfect moment — when they're free and in their truck |
 
 ## Desired Outcome

@@ -16,8 +16,8 @@ Contractors don't have time to listen to voicemails. They need to quickly see wh
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                         |
+| ---------- | -------------------------------------------------------------- |
 | Contractor | Sees caller intent at a glance without listening to voicemails |
 
 ## Desired Outcome

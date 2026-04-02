@@ -16,8 +16,8 @@ After onboarding, contractors need a place to manage their account: update profi
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                                     |
+| ---------- | -------------------------------------------------------------------------- |
 | Contractor | Can manage their account, update preferences, and troubleshoot connections |
 
 ## Desired Outcome

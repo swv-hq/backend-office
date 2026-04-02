@@ -33,12 +33,11 @@ const platformTestPatterns: Record<Platform, string[]> = {
 // 1. Find all spec files and extract acceptance criteria IDs with platform tags
 const specPattern = "docs/specs/*.md";
 const specFiles = globSync(specPattern, { cwd: rootDir }).filter(
-  (f) => !f.endsWith("_TEMPLATE.md") && !f.endsWith("ROADMAP.md")
+  (f) => !f.endsWith("_TEMPLATE.md") && !f.endsWith("ROADMAP.md"),
 );
 
 const acIdRegex = /SPEC-\d+\.AC\d+/g;
-const acPlatformRegex =
-  /\*\*(SPEC-\d+\.AC\d+)\*\*\s*\[([^\]]+)\]/g;
+const acPlatformRegex = /\*\*(SPEC-\d+\.AC\d+)\*\*\s*\[([^\]]+)\]/g;
 const statusRegex = /^status:\s*(.+)$/m;
 const activeStatuses = new Set(["in-progress", "in-testing", "implemented"]);
 
@@ -99,7 +98,7 @@ for (const specFile of specFiles) {
 const testFilesByPlatform = new Map<Platform, string[]>();
 for (const [platform, patterns] of Object.entries(platformTestPatterns)) {
   const files = patterns.flatMap((pattern) =>
-    globSync(pattern, { cwd: rootDir, ignore: ["node_modules/**"] })
+    globSync(pattern, { cwd: rootDir, ignore: ["node_modules/**"] }),
   );
   testFilesByPlatform.set(platform as Platform, files);
 }
@@ -154,8 +153,7 @@ for (const [acId, details] of coverageMap) {
 }
 
 const uncoveredCount = uncoveredAcs.length;
-const percentage =
-  total === 0 ? 100 : Math.round((fullyCovered / total) * 100);
+const percentage = total === 0 ? 100 : Math.round((fullyCovered / total) * 100);
 
 // 5. Report results
 console.log(bold("\n=== Spec Coverage Report ===\n"));
@@ -163,8 +161,8 @@ console.log(bold("\n=== Spec Coverage Report ===\n"));
 if (skippedSpecs.length > 0) {
   console.log(
     dim(
-      `Skipped ${skippedSpecs.length} spec(s) not yet in-progress: ${skippedSpecs.map((f) => f.replace("docs/specs/", "")).join(", ")}`
-    )
+      `Skipped ${skippedSpecs.length} spec(s) not yet in-progress: ${skippedSpecs.map((f) => f.replace("docs/specs/", "")).join(", ")}`,
+    ),
   );
   console.log();
 }
@@ -172,11 +170,11 @@ if (skippedSpecs.length > 0) {
 if (total === 0) {
   console.log(
     yellow(
-      "No acceptance criteria found. Add specs to docs/specs/ using the template."
-    )
+      "No acceptance criteria found. Add specs to docs/specs/ using the template.",
+    ),
   );
   console.log(
-    dim("  Copy docs/specs/_TEMPLATE.md and define SPEC-XXX.AC# criteria.\n")
+    dim("  Copy docs/specs/_TEMPLATE.md and define SPEC-XXX.AC# criteria.\n"),
   );
   process.exit(0);
 }
@@ -185,14 +183,14 @@ console.log(`${bold("Total criteria:")}    ${total}`);
 console.log(`${bold("Fully covered:")}     ${green(String(fullyCovered))}`);
 if (partiallyCovered > 0) {
   console.log(
-    `${bold("Partially covered:")} ${yellow(String(partiallyCovered))}`
+    `${bold("Partially covered:")} ${yellow(String(partiallyCovered))}`,
   );
 }
 console.log(
-  `${bold("Uncovered:")}         ${uncoveredCount > 0 ? red(String(uncoveredCount)) : green(String(uncoveredCount))}`
+  `${bold("Uncovered:")}         ${uncoveredCount > 0 ? red(String(uncoveredCount)) : green(String(uncoveredCount))}`,
 );
 console.log(
-  `${bold("Coverage:")}          ${percentage === 100 ? green(`${percentage}%`) : percentage >= 75 ? yellow(`${percentage}%`) : red(`${percentage}%`)}\n`
+  `${bold("Coverage:")}          ${percentage === 100 ? green(`${percentage}%`) : percentage >= 75 ? yellow(`${percentage}%`) : red(`${percentage}%`)}\n`,
 );
 
 // Show fully covered criteria
@@ -223,7 +221,7 @@ if (partialAcs.length > 0) {
       .filter((d) => d.files.length === 0)
       .map((d) => d.platform);
     console.log(
-      `  ${yellow("~")} ${acId} ${dim(`(covered: ${covered.join(", ")} | missing: ${missing.join(", ")})`)}`
+      `  ${yellow("~")} ${acId} ${dim(`(covered: ${covered.join(", ")} | missing: ${missing.join(", ")})`)}`,
     );
   }
   console.log();
@@ -236,7 +234,7 @@ if (uncoveredAcs.length > 0) {
     const info = allCriteria.get(acId);
     const platforms = info?.platforms.join(", ") ?? "";
     console.log(
-      `  ${red("\u2717")} ${acId} ${dim(`(from ${info?.sourceFile}, platforms: ${platforms})`)}`
+      `  ${red("\u2717")} ${acId} ${dim(`(from ${info?.sourceFile}, platforms: ${platforms})`)}`,
     );
   }
   console.log();
@@ -246,8 +244,8 @@ if (uncoveredAcs.length > 0) {
 if (strict && percentage < 100) {
   console.log(
     red(
-      `Strict mode: coverage is ${percentage}%, required 100%. Exiting with error.\n`
-    )
+      `Strict mode: coverage is ${percentage}%, required 100%. Exiting with error.\n`,
+    ),
   );
   process.exit(1);
 }

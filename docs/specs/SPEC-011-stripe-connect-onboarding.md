@@ -16,8 +16,8 @@ Contractors need to accept payments from customers and the app needs to auto-ded
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
+| User Role  | Impact                                                               |
+| ---------- | -------------------------------------------------------------------- |
 | Contractor | Can accept card payments from customers; subscription is auto-billed |
 
 ## Desired Outcome

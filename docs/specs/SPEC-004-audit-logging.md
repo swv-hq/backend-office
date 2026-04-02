@@ -16,9 +16,9 @@ For SOC 2 readiness, debugging, and customer support, all significant data mutat
 
 ## Affected Users
 
-| User Role | Impact |
-| --------- | ------ |
-| Developer | Debugging aid, ability to trace data changes |
+| User Role  | Impact                                                 |
+| ---------- | ------------------------------------------------------ |
+| Developer  | Debugging aid, ability to trace data changes           |
 | Contractor | Assurance that their data access is tracked and secure |
 
 ## Desired Outcome
