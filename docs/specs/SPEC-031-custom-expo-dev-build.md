@@ -1,7 +1,7 @@
 ---
 id: SPEC-031
 title: Custom Expo Dev Build
-status: draft
+status: approved
 priority: P0
 phase: 0
 created: 2026-04-01
@@ -36,21 +36,44 @@ A custom Expo development client is configured and buildable locally (and option
 - **SPEC-031.AC7** [native]: Dev scripts updated in `package.json`: `dev` command uses `--dev-client` flag
 - **SPEC-031.AC8** [native, web]: All workspaces pass typecheck and lint with zero errors after changes
 
-## Open Questions
+## Decisions
 
-- Should we use EAS Build (cloud) or local builds (`npx expo run:ios`) for day-to-day development? EAS Build is simpler but slower; local builds are faster but require Xcode setup.
-- What `ios.bundleIdentifier` should we use? Suggestion: `com.backendoffice.app`
-- Do we need an Android development profile now, or defer until Android work begins?
+- **Local vs cloud builds**: Local builds (`npx expo run:ios`) for day-to-day development (faster feedback loop). EAS Build for `preview` profile builds distributed via TestFlight to beta testers.
+- **Bundle identifier**: `com.backendoffice.app`. Can be changed with minimal effort any time before App Store submission (Phase 8). After App Store submission, a new bundle ID means a new app listing.
+- **Android**: Deferred. Android development profile will be added to `eas.json` when Android work begins (post-MVP). iOS-only for now.
 
 ## Technical Notes
 
-- Install `expo-dev-client` as a dependency. This replaces Expo Go with a custom development client that loads the same JS bundle but includes all native modules in the project.
-- `eas.json` build profiles:
-  - `development`: includes dev tools, internal distribution, simulator support (`"ios": { "simulator": true }`)
-  - `preview`: ad-hoc distribution for physical device testing
-- The `app.json` still has the old "NotesContract" naming — this spec should update it to "Back-End Office" (or "BackEndOffice" for the slug).
-- EAS Build requires an Expo account and Apple Developer credentials (for device builds). Simulator builds don't need Apple credentials.
-- After creating the dev build, the `expo start` command should use `--dev-client` instead of connecting to Expo Go.
+### Current State
+
+- `app.json` uses old "NotesContract" naming for `name` and `slug` — needs to be updated to "Back-End Office" branding
+- `ios.bundleIdentifier` is missing from `app.json` — required for dev builds
+- No `eas.json` exists yet
+- `expo-secure-store` and `expo-font` are already configured as plugins
+- `package.json` `dev` script currently runs `expo start` (Expo Go) — needs `--dev-client` flag
+
+### Implementation
+
+1. **Install `expo-dev-client`** as a dependency. This replaces Expo Go with a custom development client that loads the same JS bundle but includes all native modules in the project.
+2. **Update `app.json`**:
+   - `name`: "Back-End Office"
+   - `slug`: "backend-office"
+   - `ios.bundleIdentifier`: "com.backendoffice.app"
+   - Keep existing `scheme`, plugins, splash, and icon config
+3. **Create `eas.json`** with iOS-only build profiles:
+   - `development`: includes dev tools, internal distribution, simulator support (`"ios": { "simulator": true }`)
+   - `preview`: ad-hoc distribution for physical device testing via TestFlight
+4. **Update `package.json` scripts**: `dev` command uses `--dev-client` flag
+5. **Local build workflow**: `npx expo run:ios` for simulator builds (no Apple credentials needed). `eas build --profile preview --platform ios` for physical device builds (requires Apple Developer credentials).
+
+### Prerequisites
+
+- Xcode installed with iOS Simulator
+- Expo account (free) for EAS CLI
+- Apple Developer account (for physical device builds only, not needed for simulator)
+
+### Dependencies
+
 - This is a prerequisite for SPEC-030 (App Store & Distribution) since EAS Build configuration established here is extended for production builds.
 
 ## Manual Test Scripts

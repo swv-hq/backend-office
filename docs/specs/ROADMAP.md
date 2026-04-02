@@ -51,7 +51,7 @@ Clear the slate, set up the new architecture. Everything else builds on this.
 | [SPEC-004](SPEC-004-audit-logging.md) | Audit Logging | P0 | draft |
 | [SPEC-005](SPEC-005-trade-theming.md) | Trade Theming System | P0 | draft |
 | [SPEC-006](SPEC-006-monitoring-alerting.md) | Monitoring & Alerting | P0 | draft |
-| [SPEC-031](SPEC-031-custom-expo-dev-build.md) | Custom Expo Dev Build | P0 | draft |
+| [SPEC-031](SPEC-031-custom-expo-dev-build.md) | Custom Expo Dev Build | P0 | approved |
 | [SPEC-032](SPEC-032-dev-environment-deployment.md) | Dev Environment Deployment | P0 | draft |
 
 ## Phase 1: Onboarding
