@@ -14,7 +14,7 @@ Audit and summarize outdated dependencies across all three monorepo workspaces.
    - `packages/backend`
    - `apps/web`
    - `apps/native`
-   Also check latest versions of key dependencies (convex, @clerk/nextjs, expo) via `npm view`.
+     Also check latest versions of key dependencies (convex, @clerk/nextjs, expo) via `npm view`.
 
 2. **Classify each outdated package** into one of:
    - **Update (safe)** — Patch or backward-compatible minor release. No known risk.
@@ -38,6 +38,7 @@ Audit and summarize outdated dependencies across all three monorepo workspaces.
 ## Classification Guidelines
 
 ### Always Hold
+
 - Major version bumps (e.g., 5.x -> 6.x) unless changelog confirms no breaking changes
 - Packages tied to framework versions (e.g., `@react-native/virtualized-lists` must match `react-native`)
 - Pre-1.0 packages with minor bumps (0.7 -> 0.8 can break)
@@ -47,6 +48,7 @@ Audit and summarize outdated dependencies across all three monorepo workspaces.
 - `jest` major — config and transform changes
 
 ### Safe to Update
+
 - Patch releases of any package
 - Minor releases of stable (1.0+) packages with good semver track records
 - `@types/*` patch updates

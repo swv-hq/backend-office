@@ -131,13 +131,13 @@
 
 ## AC Coverage Matrix
 
-| AC ID         | Test(s)        | Platform |
-| ------------- | -------------- | -------- |
-| SPEC-031.AC1  | Automated test | native   |
-| SPEC-031.AC2  | Automated test | native   |
-| SPEC-031.AC3  | Automated test | native   |
-| SPEC-031.AC4  | Test 1, Test 2 | native   |
-| SPEC-031.AC5  | Test 3         | native   |
-| SPEC-031.AC6  | Test 4         | native   |
-| SPEC-031.AC7  | Test 2, Automated test | native |
-| SPEC-031.AC8  | Test 5         | native, web |
+| AC ID        | Test(s)                | Platform    |
+| ------------ | ---------------------- | ----------- |
+| SPEC-031.AC1 | Automated test         | native      |
+| SPEC-031.AC2 | Automated test         | native      |
+| SPEC-031.AC3 | Automated test         | native      |
+| SPEC-031.AC4 | Test 1, Test 2         | native      |
+| SPEC-031.AC5 | Test 3                 | native      |
+| SPEC-031.AC6 | Test 4                 | native      |
+| SPEC-031.AC7 | Test 2, Automated test | native      |
+| SPEC-031.AC8 | Test 5                 | native, web |

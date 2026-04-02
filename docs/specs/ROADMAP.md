@@ -43,16 +43,16 @@ draft → in-review → approved → in-progress → in-testing → implemented
 
 Clear the slate, set up the new architecture. Everything else builds on this.
 
-| Spec                                               | Title                      | Priority | Status   |
-| -------------------------------------------------- | -------------------------- | -------- | -------- |
-| [SPEC-001](SPEC-001-notes-domain-removal.md)       | Notes Domain Removal       | P0       | approved |
-| [SPEC-002](SPEC-002-core-data-model.md)            | Core Data Model            | P0       | draft    |
-| [SPEC-003](SPEC-003-provider-abstraction-layer.md) | Provider Abstraction Layer | P0       | draft    |
-| [SPEC-004](SPEC-004-audit-logging.md)              | Audit Logging              | P0       | draft    |
-| [SPEC-005](SPEC-005-trade-theming.md)              | Trade Theming System       | P0       | draft    |
-| [SPEC-006](SPEC-006-monitoring-alerting.md)        | Monitoring & Alerting      | P0       | draft    |
+| Spec                                               | Title                      | Priority | Status      |
+| -------------------------------------------------- | -------------------------- | -------- | ----------- |
+| [SPEC-001](SPEC-001-notes-domain-removal.md)       | Notes Domain Removal       | P0       | implemented |
+| [SPEC-002](SPEC-002-core-data-model.md)            | Core Data Model            | P0       | draft       |
+| [SPEC-003](SPEC-003-provider-abstraction-layer.md) | Provider Abstraction Layer | P0       | draft       |
+| [SPEC-004](SPEC-004-audit-logging.md)              | Audit Logging              | P0       | draft       |
+| [SPEC-005](SPEC-005-trade-theming.md)              | Trade Theming System       | P0       | draft       |
+| [SPEC-006](SPEC-006-monitoring-alerting.md)        | Monitoring & Alerting      | P0       | draft       |
 | [SPEC-031](SPEC-031-custom-expo-dev-build.md)      | Custom Expo Dev Build      | P0       | implemented |
-| [SPEC-032](SPEC-032-dev-environment-deployment.md) | Dev Environment Deployment | P0       | draft    |
+| [SPEC-032](SPEC-032-dev-environment-deployment.md) | Dev Environment Deployment | P0       | draft       |
 
 ## Phase 1: Onboarding
 

@@ -1,11 +1,11 @@
 ---
 id: SPEC-001
 title: Notes Domain Removal
-status: approved
+status: implemented
 priority: P0
 phase: 0
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-02
 ---
 
 # SPEC-001: Notes Domain Removal
