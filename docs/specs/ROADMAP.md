@@ -45,7 +45,7 @@ Clear the slate, set up the new architecture. Everything else builds on this.
 
 | Spec                                               | Title                      | Priority | Status   |
 | -------------------------------------------------- | -------------------------- | -------- | -------- |
-| [SPEC-001](SPEC-001-notes-domain-removal.md)       | Notes Domain Removal       | P0       | draft    |
+| [SPEC-001](SPEC-001-notes-domain-removal.md)       | Notes Domain Removal       | P0       | approved |
 | [SPEC-002](SPEC-002-core-data-model.md)            | Core Data Model            | P0       | draft    |
 | [SPEC-003](SPEC-003-provider-abstraction-layer.md) | Provider Abstraction Layer | P0       | draft    |
 | [SPEC-004](SPEC-004-audit-logging.md)              | Audit Logging              | P0       | draft    |
