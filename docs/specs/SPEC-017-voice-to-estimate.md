@@ -51,6 +51,7 @@ The contractor speaks into the app describing the job. The app transcribes the s
 
 ## Technical Notes
 
+- The `estimates.conversationHistory` field (SPEC-002) is currently typed as `v.array(v.any())`. This spec should define the concrete shape for AI conversation context (e.g., role, content, timestamp per entry) and tighten the validator accordingly.
 - Audio recording: use `expo-av` for recording on React Native. Compress audio (e.g., AAC) to reduce upload size and STT cost.
 - Deepgram pre-recorded API accepts audio uploads. Enable `detect_language: true` and set `model: "nova-2"` for best accuracy.
 - Claude prompt for estimate generation should include: trade type, zip code, transcript, pricing data from external service, and instructions to output valid JSON matching the estimate line item schema.

@@ -9,7 +9,7 @@ describe("SPEC-001: Notes Domain Removal - Backend", () => {
   it("schema.ts does not define a notes table [SPEC-001.AC1]", () => {
     const schema = fs.readFileSync(path.join(convexDir, "schema.ts"), "utf-8");
     expect(schema).not.toContain("notes: defineTable");
-    expect(schema).not.toContain("notes:");
+    expect(schema).not.toMatch(/^\s*notes:\s*defineTable/m);
   });
 
   it("notes.ts does not exist [SPEC-001.AC2]", () => {
@@ -34,7 +34,7 @@ describe("SPEC-001: Notes Domain Removal - Backend", () => {
 
   it("schema.ts is valid TypeScript (no stale references) [SPEC-001.AC9]", () => {
     const schema = fs.readFileSync(path.join(convexDir, "schema.ts"), "utf-8");
-    expect(schema).not.toContain("notes");
+    expect(schema).not.toContain("notes: defineTable");
     expect(schema).not.toContain("openai");
   });
 

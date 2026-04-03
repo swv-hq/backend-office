@@ -81,6 +81,25 @@ npm run test:spec-coverage:strict         # Fail if not 100% coverage
 - **`apps/native/`** — React Native, Expo 55, Clerk auth, React Navigation
 - **`packages/backend/`** — Convex (serverless database + functions), shared by both apps
 
+### Backend Layered Architecture
+
+**Read [docs/architecture.md](docs/architecture.md) before writing any Convex code.** All backend code follows a strict 4-layer pattern:
+
+| Layer        | Directory          | Responsibility                                                                               |
+| ------------ | ------------------ | -------------------------------------------------------------------------------------------- |
+| 4. API       | `convex/*.ts`      | Thin wrappers — `query()`, `mutation()`, `action()` with validators. Delegates to use cases. |
+| 3. Use Cases | `convex/useCases/` | All business logic. Auth and permission checks, validation, orchestration.                   |
+| 2. Data      | `convex/data/`     | Pure CRUD. `ctx.db` queries only, always use `withIndex()`. No business logic.               |
+| 1. Schema    | `convex/schema.ts` | Table definitions and indexes.                                                               |
+| Shared       | `convex/lib/`      | Reusable validators, constants, date utilities.                                              |
+
+**Rules:**
+
+- Never put business logic in the API layer or data layer
+- Never access `ctx.db` directly outside the data layer
+- Always use `withIndex()` — never use `filter()`
+- Every API function must include `args` and `returns` validators
+
 ### Key Directories
 
 - `apps/web/src/app/` — Next.js App Router pages
@@ -88,6 +107,9 @@ npm run test:spec-coverage:strict         # Fail if not 100% coverage
 - `apps/native/src/screens/` — React Native screens
 - `apps/native/src/navigation/` — React Navigation setup
 - `packages/backend/convex/` — Convex schema, queries, mutations, actions
+- `packages/backend/convex/data/` — Data access layer (pure CRUD)
+- `packages/backend/convex/useCases/` — Business logic layer
+- `packages/backend/convex/lib/` — Shared validators and utilities
 - `packages/backend/convex/_generated/` — Auto-generated types (do not edit)
 - `docs/specs/` — Feature specifications with acceptance criteria
 - `scripts/` — Development utility scripts (spec coverage)
@@ -98,6 +120,7 @@ npm run test:spec-coverage:strict         # Fail if not 100% coverage
 | ------------------------------------------------------------------------------ | -------------------------------------------------- |
 | [docs/BackEndOffice_BusinessPlan.md](docs/BackEndOffice_BusinessPlan.md)       | Product vision, target customer, design principles |
 | [docs/BackEndOffice_EngineeringSpec.md](docs/BackEndOffice_EngineeringSpec.md) | Technical architecture, features, data model       |
+| [docs/architecture.md](docs/architecture.md)                                   | Backend layered architecture (4-layer pattern)     |
 | [docs/specs/ROADMAP.md](docs/specs/ROADMAP.md)                                 | Product roadmap and spec index                     |
 
 **Read the relevant doc before working in that area.**

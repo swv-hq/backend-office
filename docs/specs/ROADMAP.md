@@ -46,7 +46,7 @@ Clear the slate, set up the new architecture. Everything else builds on this.
 | Spec                                               | Title                      | Priority | Status      |
 | -------------------------------------------------- | -------------------------- | -------- | ----------- |
 | [SPEC-001](SPEC-001-notes-domain-removal.md)       | Notes Domain Removal       | P0       | implemented |
-| [SPEC-002](SPEC-002-core-data-model.md)            | Core Data Model            | P0       | draft       |
+| [SPEC-002](SPEC-002-core-data-model.md)            | Core Data Model            | P0       | implemented |
 | [SPEC-003](SPEC-003-provider-abstraction-layer.md) | Provider Abstraction Layer | P0       | draft       |
 | [SPEC-004](SPEC-004-audit-logging.md)              | Audit Logging              | P0       | draft       |
 | [SPEC-005](SPEC-005-trade-theming.md)              | Trade Theming System       | P0       | draft       |
@@ -207,6 +207,14 @@ Formal SOC 2 Type II audit. The codebase is built to SOC 2 standards (audit logg
 ### Usage Tier-Based Pricing
 
 Two-tier pricing model aligned to contractor business maturity. **Starter tier**: core functionality with usage limits — designed for contractors just getting their business going who need affordable tools to start winning jobs. **Pro tier**: increased usage limits plus additional non-core features (TBD) — designed for established businesses with steady deal flow that need more capacity and advanced capabilities. Pricing tiers are enforced via usage tracking and gating in the backend, with clear upgrade prompts when a Starter contractor approaches their limits. Requires defining specific usage dimensions to meter (e.g., estimates per month, active jobs, contacts, voicemail minutes), setting tier thresholds, and building the upgrade/downgrade flow integrated with Stripe subscription billing (SPEC-023). Pro-only features to be determined based on post-launch usage patterns and customer feedback.
+
+### Smart Geographic Scheduling
+
+When a new job is being scheduled, the app suggests time slots that cluster jobs geographically to minimize driving across town on the same day. Uses the contractor's existing schedule, job site addresses, and basic route optimization to propose efficient sequencing. Could enable contractors to expand their service area by dedicating specific days to farther-out regions — e.g., "Thursday is your north-side day" — because jobs are batched smartly. Builds on geofencing infrastructure (Phase 6) and structured job addresses (SPEC-002).
+
+### Multi-Contractor Teams
+
+Support multiple contractors under a single account for small teams (2–3 people). The account owner invites team members who get their own profiles, schedules, and job assignments, while the owner sees everything across the team — jobs, invoices, payments, and availability. Requires role-based access (owner vs. team member), per-contractor scheduling, and shared contact/job databases. The current data model assumes one contractor per account (`userId` → single contractor), so this would need a team/organization layer above the contractor. Natural upgrade path for successful solo contractors who start hiring helpers.
 
 ### GDPR Compliance
 
