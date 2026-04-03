@@ -8,10 +8,13 @@
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "test:spec-coverage": "tsx scripts/spec-coverage.ts",
-    "test:spec-coverage:strict": "tsx scripts/spec-coverage.ts --strict"
+    "test:spec-coverage:strict": "tsx scripts/spec-coverage.ts --strict",
+    "prepare": "husky"
   },
   "devDependencies": {
     "glob": "^11.0.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "prettier": "3.7.4",
     "tsx": "^4.19.4",
     "turbo": "2.6.2"
@@ -23,5 +26,8 @@
     "apps/*",
     "packages/*"
   ],
-  "packageManager": "npm@10.9.2"
+  "packageManager": "npm@10.9.2",
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,md}": "prettier --write"
+  }
 }
