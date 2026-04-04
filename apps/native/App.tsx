@@ -1,6 +1,5 @@
-import { View, StatusBar, Platform } from "react-native";
+import { View, StatusBar, Platform, LogBox } from "react-native";
 import { useFonts } from "expo-font";
-import { LogBox } from "react-native";
 import Navigation from "./src/navigation/Navigation";
 import ConvexClientProvider from "./ConvexClientProvider";
 
