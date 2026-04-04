@@ -16,14 +16,14 @@ This is a Turborepo monorepo with three workspaces:
 
 - **Always create backend, web, native, and e2e tests when adding new features.** Test edge cases: empty inputs, boundaries, auth states, error handling. Use TDD pattern: write tests first, verify they fail, implement the code, verify the tests pass.
 - **Do not run `npm run dev`** — Dev servers run in separate terminals; never start them from here.
-- **Run typecheck after changes** — Run `turbo run typecheck` and fix any errors.
-- **Run lint after changes** — Run `turbo run lint` and fix any errors.
+- **Run typecheck after changes** — Run `npm run typecheck` and fix any errors.
+- **Run lint after changes** — Run `npm run lint` and fix any errors.
 - **Run format after changes** — Run `npm run format` and fix any errors.
 - **Run backend tests after Convex changes** — Run `cd packages/backend && npm test` and fix any errors.
 - **Run web tests after web changes** — Run `cd apps/web && npm test` and fix any errors.
 - **Run native tests after native changes** — Run `cd apps/native && npm test` and fix any errors.
 - **Run spec coverage after feature work** — Run `npm run test:spec-coverage` to verify all ACs have linked tests.
-- **Run build after larger changes** — Run `turbo run build` to catch build errors.
+- **Run build after larger changes** — Run `npm run build` to catch build errors.
 - **After changes run a security check and make sure the changes are secure.**
 - **After changes run a performance check and make sure the changes are performant.**
 
@@ -50,9 +50,9 @@ This is a Turborepo monorepo with three workspaces:
 ```bash
 # Monorepo
 npm run dev              # Start all apps + backend in parallel (TUI)
-turbo run build          # Build all workspaces
-turbo run typecheck      # Type check all packages
-turbo run lint           # Lint all packages
+npm run build            # Build all workspaces
+npm run lint             # Lint all packages (ESLint 9 flat config)
+npm run typecheck        # Type check all packages
 npm run format           # Prettier format all files
 npm run clean            # Clear build artifacts and node_modules
 
