@@ -1,7 +1,7 @@
 ---
 id: SPEC-002
 title: Core Data Model
-status: in-progress
+status: implemented
 priority: P0
 phase: 0
 created: 2026-04-01
