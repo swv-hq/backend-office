@@ -125,76 +125,21 @@ npm run test:spec-coverage:strict         # Fail if not 100% coverage
 
 **Read the relevant doc before working in that area.**
 
-## Feature Development Workflow
+## Feature Development Conventions
 
-Every new feature follows a spec-driven, test-linked process:
+The `build` skill owns the feature/bug/enhancement workflow. The project-specific conventions the skill relies on:
 
-### 1. Create a Spec
-
-- Copy `docs/specs/_TEMPLATE.md` to `docs/specs/SPEC-XXX-feature-name.md`
-- Assign a unique `SPEC-XXX` ID
-- Define acceptance criteria with IDs: `SPEC-XXX.AC1`, `SPEC-XXX.AC2`, etc.
-- Tag each AC with platforms: `[web]`, `[native]`, `[backend]`, or combinations like `[web, native]`
-- Walk through open questions with the user before marking `status: approved`
-- Spec status progression: `draft` → `in-review` → `approved` → `in-progress` → `in-testing` → `implemented`
-
-### 2. Build in Vertical Slices
-
-Break the spec into thin end-to-end slices, each delivering working functionality:
-
-1. **Plan the slice** — identify which ACs it covers
-2. **Write tests first (TDD)** — tag with AC IDs, verify they fail
-3. **Implement** — backend first (schema → queries → mutations), then web and/or native
-4. **Verify** — run tests, typecheck, lint, build
-5. **Repeat** for next slice
-
-### 3. Link Tests to Acceptance Criteria
-
-Tag every test with the AC ID it verifies:
-
-```typescript
-describe("Feature [SPEC-XXX]", () => {
-  it("does something specific [SPEC-XXX.AC1]", async () => { ... });
-});
-```
-
-For E2E test scripts, reference AC IDs in markdown: `[SPEC-XXX.AC1]`
-
-Tests must live in the correct workspace for their platform tag:
-
-- `[backend]` ACs → tests in `packages/backend/convex/**/*.test.ts`
-- `[web]` ACs → tests in `apps/web/src/**/*.test.ts(x)` or `e2e/test-scripts/web/`
-- `[native]` ACs → tests in `apps/native/src/**/*.test.ts(x)` or `e2e/test-scripts/native/`
-
-### 4. Verify Spec Coverage
-
-Run `npm run test:spec-coverage` to verify all acceptance criteria have linked tests in the correct workspace(s). The script scans `docs/specs/` for AC IDs with platform tags and checks for matches in test files across all workspaces.
-
-### 5. Write Manual E2E Test Scripts
-
-Create manual testing scripts separately for each platform:
-
-- **Web**: `e2e/test-scripts/web/SPEC-XXX-feature-name.md`
-- **Native**: `e2e/test-scripts/native/SPEC-XXX-feature-name.md`
-
-Each test has: **Instructions** (step-by-step actions) and **Expected Result** (what to verify). Tag each test with AC IDs: `[SPEC-XXX.AC1]`. Include an AC coverage matrix at the bottom. Update spec status to `in-testing`.
-
-### 6. Code Review
-
-Before marking a spec as implemented, review all changes:
-
-- **Architecture**: Backend logic in Convex functions, not in frontend components. Shared backend serves both web and native.
-- **Security**: Auth checks on all endpoints, ownership verification, input sanitization, no sensitive data in logs.
-- **Performance**: No N+1 queries, bounded `.take(n)` instead of `.collect()`, proper index usage.
-- **Type safety**: No `as any` casts. Use proper Convex types.
-- **Test completeness**: All ACs have tests in the correct workspaces. Test happy path and error cases. Test auth boundaries.
-- **Cross-platform**: Features tagged for both web and native work correctly on both platforms. Shared backend changes don't break either client.
-- **Accessibility**: `aria-invalid`, `aria-describedby` on web form inputs. Proper accessibility labels on native components.
-
-### 7. Update Spec Status
-
-- After code review fixes and manual testing pass, update the spec frontmatter to `status: implemented`
-- If issues found during testing or review, fix and re-verify before marking implemented
+- **Specs** live in `docs/specs/`. Copy `_TEMPLATE.md` to `SPEC-XXX-feature-name.md`. Status progression: `draft` → `in-review` → `approved` → `in-progress` → `in-testing` → `implemented`. Keep `docs/specs/ROADMAP.md` in sync on every status change.
+- **Acceptance criteria** use IDs `SPEC-XXX.AC1`, `SPEC-XXX.AC2`, … and are platform-tagged `[web]`, `[native]`, `[backend]` (or combinations).
+- **Tests are tagged with AC IDs** and must live in the workspace matching the platform tag:
+  - `[backend]` → `packages/backend/convex/**/*.test.ts`
+  - `[web]` → `apps/web/src/**/*.test.ts(x)` or `e2e/test-scripts/web/`
+  - `[native]` → `apps/native/src/**/*.test.ts(x)` or `e2e/test-scripts/native/`
+  - Format: `it("does something [SPEC-XXX.AC1]", ...)`; for markdown E2E scripts, include `[SPEC-XXX.AC1]` inline.
+- **Coverage check**: `npm run test:spec-coverage` verifies every AC has a linked test in the right workspace.
+- **Manual E2E scripts** are written per platform at `e2e/test-scripts/web/SPEC-XXX-*.md` and `e2e/test-scripts/native/SPEC-XXX-*.md`, each with Instructions + Expected Result and an AC coverage matrix.
+- **Implementation order for a slice**: backend first (schema → data → use cases → API), then web and/or native.
+- **Spec sign-off**: never move a spec to `implemented` without Brian's explicit approval.
 
 <!-- convex-ai-start -->
 
