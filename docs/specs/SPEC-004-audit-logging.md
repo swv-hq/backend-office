@@ -5,7 +5,7 @@ status: draft
 priority: P0
 phase: 0
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-06
 ---
 
 # SPEC-004: Audit Logging
@@ -27,9 +27,9 @@ Every significant mutation (create, update, delete) and sensitive read operation
 
 ## Acceptance Criteria
 
-- **SPEC-004.AC1** [backend]: `auditLogs` table stores: contractorId (optional — null for system actions), action (string: create, update, delete, access, auth_success, auth_failure), entityType (string: contractor, contact, job, estimate, invoice, callLog), entityId (string), details (optional object with before/after state or context), ipAddress (optional), timestamp
+- **SPEC-004.AC1** [backend]: `auditLogs` table stores: contractorId (optional — null for system actions), action (string: create, update, delete, access, auth_success, auth_failure), entityType (string: contractor, contact, job, jobSegment, estimate, invoice, callLog), entityId (string), details (optional object with before/after state or context), ipAddress (optional), timestamp
 - **SPEC-004.AC2** [backend]: Helper function `logAudit()` that mutations and actions call to create audit log entries
-- **SPEC-004.AC3** [backend]: All mutations that create, update, or delete contractors, contacts, jobs, estimates, invoices, or call logs call `logAudit()` with appropriate action and entity info
+- **SPEC-004.AC3** [backend]: All mutations that create, update, or delete contractors, contacts, jobs, jobSegments, estimates, invoices, or call logs call `logAudit()` with appropriate action and entity info. Segment status transitions (scheduled → in_progress → completed, and cancellation) are logged. Derived job status changes written back by `computeJobRollup` are also logged as `update` events on the parent job, with `details` indicating the previous and new status.
 - **SPEC-004.AC4** [backend]: Auth events (login success, login failure) are logged when detectable via Clerk webhooks or session events
 - **SPEC-004.AC5** [backend]: Audit log entries are append-only — no mutation exists to update or delete audit log records
 - **SPEC-004.AC6** [backend]: Index on auditLogs by contractorId + timestamp for efficient querying

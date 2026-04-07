@@ -5,7 +5,7 @@ status: draft
 priority: P0
 phase: 5
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-06
 ---
 
 # SPEC-022: Customer Payments
@@ -13,6 +13,8 @@ updated: 2026-04-01
 ## Problem Statement
 
 Getting paid is the final step. Customers need a frictionless way to pay after receiving an invoice. The payment should be as easy as tapping a link and entering a card. The money goes to the contractor's Stripe account, and both parties are notified instantly.
+
+A single job may have multiple invoices over its life (deposit, progress, final), each with its own payment session. Each invoice is paid independently. The job is only marked "paid" when **every** non-draft invoice for the job has reached the `paid` state.
 
 ## Affected Users
 
@@ -28,11 +30,11 @@ The customer taps "Pay Now" on the invoice web page, enters their card via Strip
 ## Acceptance Criteria
 
 - **SPEC-022.AC1** [web]: Public route `/invoice/[token]` renders the invoice as a mobile-first web page. No login required. Token-based access.
-- **SPEC-022.AC2** [web]: Invoice page shows: contractor business name/logo, trade-themed colors, itemized line items, total amount due, "Pay Now" button
-- **SPEC-022.AC3** [web]: "Pay Now" button opens Stripe Checkout (hosted payment page) pre-configured with the invoice amount and contractor's Stripe Connect account as the destination
-- **SPEC-022.AC4** [backend]: Stripe Checkout session created with: amount, currency (USD), contractor's connected account, platform application fee (if applicable), success/cancel redirect URLs
-- **SPEC-022.AC5** [backend]: Stripe `checkout.session.completed` webhook handled: invoice status updated to "paid", `paidAt` timestamp set, `stripePaymentId` stored
-- **SPEC-022.AC6** [backend]: Job status auto-transitions to "paid" when the invoice is paid
+- **SPEC-022.AC2** [web]: Invoice page shows: invoice number (e.g., `INV-1042-3`), invoice type badge ("Deposit" / "Progress" / "Final"), contractor business name/logo, trade-themed colors, itemized line items (positive work lines AND any deposit credit lines as negative-amount entries with their source invoice number referenced in the description), total amount due (which is always `sum(lineItems)` — the deposit credits naturally reduce the visible balance), "Pay Now" button. For non-final invoices, the page makes clear this is a partial payment toward an ongoing job.
+- **SPEC-022.AC3** [web]: "Pay Now" button opens Stripe Checkout (hosted payment page) pre-configured with the invoice amount and contractor's Stripe Connect account as the destination. If the invoice total is zero or negative (over-deposited final invoice), the "Pay Now" button is hidden and the page shows "No payment due."
+- **SPEC-022.AC4** [backend]: Stripe Checkout session created with: amount, currency (USD), contractor's connected account, platform application fee (if applicable), success/cancel redirect URLs. One Stripe session per invoice.
+- **SPEC-022.AC5** [backend]: Stripe `checkout.session.completed` webhook handled: invoice status updated to "paid", `paidAt` timestamp set, `stripePaymentId` stored. After the update, `computeJobRollup` is called and the resulting status written back to the job.
+- **SPEC-022.AC6** [backend]: Job status rollup to "paid" is emergent from `computeJobRollup` — it requires that all non-canceled segments are completed AND every non-draft invoice for the job is `paid`. Paying a deposit or a progress invoice in isolation does not move the job to "paid"; it only updates the invoice and may leave the job at `in_progress` or `completed`.
 - **SPEC-022.AC7** [native]: Contractor receives push notification: "Payment received: ${amount} from {customerName} for {jobDescription}"
 - **SPEC-022.AC8** [web]: After successful payment, customer sees a confirmation page: "Payment received. Thank you!"
 - **SPEC-022.AC9** [web]: Invoice page shows "Paid" badge with payment date if the invoice has already been paid (prevents double payment)

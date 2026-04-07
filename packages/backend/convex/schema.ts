@@ -24,6 +24,7 @@ export default defineSchema({
     forwardingConfigured: v.optional(v.boolean()),
     logoFileId: v.optional(v.id("_storage")),
     onboardingCompleted: v.boolean(),
+    nextJobNumber: v.number(),
     createdAt: v.number(),
   }).index("by_userId", ["userId"]),
 
@@ -49,6 +50,10 @@ export default defineSchema({
   jobs: defineTable({
     contractorId: v.id("contractors"),
     contactId: v.optional(v.id("contacts")),
+    jobNumber: v.number(),
+    // Denormalized cache; source of truth is convex/lib/jobStatus.ts -> computeJobRollup.
+    // Any mutation that creates/updates segments or invoices must call the helper and
+    // write the result back atomically. Never set this field directly from a use case.
     status: v.union(
       v.literal("lead"),
       v.literal("estimated"),
@@ -58,19 +63,45 @@ export default defineSchema({
       v.literal("paid"),
     ),
     description: v.optional(v.string()),
-    scheduledAt: v.optional(v.number()),
-    completedAt: v.optional(v.number()),
     address: v.optional(addressValidator),
+    nextEstimateVersion: v.number(),
+    nextInvoiceSequence: v.number(),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
     .index("by_contractorId", ["contractorId"])
     .index("by_contactId", ["contactId"])
-    .index("by_status", ["status"]),
+    .index("by_status", ["status"])
+    .index("by_contractorId_jobNumber", ["contractorId", "jobNumber"]),
+
+  jobSegments: defineTable({
+    jobId: v.id("jobs"),
+    contractorId: v.id("contractors"),
+    sequence: v.number(),
+    title: v.optional(v.string()),
+    description: v.optional(v.string()),
+    status: v.union(
+      v.literal("scheduled"),
+      v.literal("in_progress"),
+      v.literal("completed"),
+      v.literal("canceled"),
+    ),
+    scheduledAt: v.optional(v.number()),
+    scheduledDuration: v.optional(v.number()),
+    startedAt: v.optional(v.number()),
+    completedAt: v.optional(v.number()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_jobId", ["jobId"])
+    .index("by_contractorId", ["contractorId"])
+    .index("by_contractorId_scheduledAt", ["contractorId", "scheduledAt"])
+    .index("by_contractorId_status", ["contractorId", "status"]),
 
   estimates: defineTable({
     jobId: v.id("jobs"),
     contractorId: v.id("contractors"),
+    estimateNumber: v.string(),
     version: v.number(),
     lineItems: v.array(lineItemValidator),
     total: v.number(),
@@ -95,6 +126,14 @@ export default defineSchema({
     jobId: v.id("jobs"),
     contractorId: v.id("contractors"),
     estimateId: v.id("estimates"),
+    invoiceNumber: v.string(),
+    invoiceType: v.union(
+      v.literal("deposit"),
+      v.literal("progress"),
+      v.literal("final"),
+    ),
+    segmentIds: v.array(v.id("jobSegments")),
+    creditedDepositInvoiceIds: v.array(v.id("invoices")),
     lineItems: v.array(lineItemValidator),
     total: v.number(),
     status: v.union(

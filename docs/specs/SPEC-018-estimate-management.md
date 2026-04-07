@@ -5,7 +5,7 @@ status: draft
 priority: P0
 phase: 4
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-06
 ---
 
 # SPEC-018: Estimate Management & Iterative Refinement
@@ -42,7 +42,9 @@ After the initial estimate is generated, the contractor enters an iterative refi
 - **SPEC-018.AC14** [backend]: Estimate status flow: draft (iterating with AI) -> finalized -> sent -> approved | declined
 - **SPEC-018.AC15** [backend]: All AI interactions go through the provider interface (SPEC-003)
 - **SPEC-018.AC16** [backend]: Audit log entries for estimate updates and status transitions
-- **SPEC-018.AC17** [backend, native]: All code passes typecheck and lint
+- **SPEC-018.AC17** [backend]: On estimate approval, `jobSegments` are auto-created from the estimate's line item groupings. Line items grouped by `(segmentId, segmentTitle)` produce one segment per group, in the order encountered. Line items with no segment grouping all attach to a single default segment ("Job") so even single-visit jobs get exactly one segment row. Pre-existing segments referenced by `segmentId` on line items are not duplicated. After segment creation, `computeJobRollup` is called and the resulting status written back to the job.
+- **SPEC-018.AC18** [backend]: Estimate creation assigns `estimateNumber` atomically from the parent job's `nextEstimateVersion` counter. Format: `EST-{jobNumber}-{version}`.
+- **SPEC-018.AC19** [backend, native]: All code passes typecheck and lint
 
 ## Open Questions
 

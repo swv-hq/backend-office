@@ -5,7 +5,7 @@ status: draft
 priority: P0
 phase: 1
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-06
 ---
 
 # SPEC-010: Calendar Connection
@@ -48,5 +48,6 @@ During onboarding (step 5), the contractor picks one of three options. All three
 - Google Calendar OAuth: Use `expo-auth-session` for the OAuth flow on native. Store tokens in Convex (encrypted or via a secrets mechanism).
 - Apple Calendar: Use `expo-calendar` (wraps EventKit) for iOS. Read and write events directly on device.
 - For Google Calendar two-way sync, Google's Calendar API supports push notifications (webhooks) to notify of changes. This requires a publicly accessible endpoint — Convex HTTP endpoints work.
-- The in-app calendar option means all scheduling data lives only in the Convex `jobs` table (using `scheduledAt`). No external API calls needed.
-- A calendar abstraction (similar to the provider pattern in SPEC-003) may be useful here: a calendar interface with Google, Apple, and InApp implementations.
+- The in-app calendar option means all scheduling data lives in the Convex `jobSegments` table (using `scheduledAt` per segment). A single job with multiple segments produces multiple calendar entries — one per segment. No external API calls needed for the in-app option.
+- A calendar abstraction (similar to the provider pattern in SPEC-003) may be useful here: a calendar interface with Google, Apple, and InApp implementations. The unit of sync is a `jobSegment`, not a `job`. Each provider implementation maps a segment to a calendar event (one-to-one) and persists the external event id back on the segment for two-way sync.
+- Sync queries should use the `by_contractorId_scheduledAt` index on `jobSegments` to fetch segments within a date window.

@@ -15,4 +15,6 @@ export const lineItemValidator = v.object({
   unitPrice: v.number(),
   total: v.number(),
   type: v.string(),
+  segmentId: v.optional(v.id("jobSegments")),
+  segmentTitle: v.optional(v.string()),
 });

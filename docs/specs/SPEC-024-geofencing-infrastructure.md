@@ -5,7 +5,7 @@ status: draft
 priority: P1
 phase: 6
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-06
 ---
 
 # SPEC-024: Geofencing Infrastructure
@@ -28,12 +28,12 @@ When a job has a scheduled address, the app creates a geofence around it. The ap
 
 - **SPEC-024.AC1** [native]: Location permissions requested with clear explanation: "Back-End Office uses your location to automatically track job time and remind you to call people back when you leave a job site"
 - **SPEC-024.AC2** [native]: "When In Use" location permission requested initially. "Always" permission requested with justification when geofencing is first needed.
-- **SPEC-024.AC3** [native]: When a job has an address and is in "approved" or "in_progress" status, a geofence is created around that address
+- **SPEC-024.AC3** [native]: When a `jobSegment` is in `scheduled` or `in_progress` status and its parent job has an address, a geofence is created around that address. The geofence is keyed off the segment, not the job — a job with three segments produces up to three geofences (one per segment). When a segment is completed or canceled, its geofence is removed.
 - **SPEC-024.AC4** [native]: Geofence radius configurable (default: 200 meters)
-- **SPEC-024.AC5** [backend]: Job address geocoded to lat/long coordinates using a geocoding service. Coordinates stored on the job record.
-- **SPEC-024.AC6** [native]: iOS Core Location region monitoring used for geofencing (CLCircularRegion). Respects the 20-geofence iOS limit.
-- **SPEC-024.AC7** [native]: Geofence entry event detected and logged: contractorId, jobId, timestamp, eventType: "enter"
-- **SPEC-024.AC8** [native]: Geofence exit event detected and logged: contractorId, jobId, timestamp, eventType: "exit"
+- **SPEC-024.AC5** [backend]: Job address geocoded to lat/long coordinates using a geocoding service. Coordinates stored on the job record (segments inherit the parent job's coordinates).
+- **SPEC-024.AC6** [native]: iOS Core Location region monitoring used for geofencing (CLCircularRegion). Respects the 20-geofence iOS limit. When more than 20 segments are eligible, prioritize by `scheduledAt` (soonest first).
+- **SPEC-024.AC7** [native]: Geofence entry event detected and logged: contractorId, jobId, segmentId, timestamp, eventType: "enter"
+- **SPEC-024.AC8** [native]: Geofence exit event detected and logged: contractorId, jobId, segmentId, timestamp, eventType: "exit"
 - **SPEC-024.AC9** [native]: Geofence events fire reliably when app is in the background
 - **SPEC-024.AC10** [native]: Active geofences managed automatically: created when jobs are scheduled, removed when jobs are completed or cancelled
 - **SPEC-024.AC11** [native]: Graceful degradation if location permission is denied: time tracking and geofence reminders disabled, manual alternatives available

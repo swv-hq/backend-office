@@ -5,7 +5,7 @@ status: draft
 priority: P1
 phase: 6
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-06
 ---
 
 # SPEC-026: Geofencing Callback Reminders
@@ -26,7 +26,7 @@ When the contractor leaves a job site (geofence exit), the app checks for pendin
 
 ## Acceptance Criteria
 
-- **SPEC-026.AC1** [native]: On geofence exit event (SPEC-024), check for pending callbacks (callbackStatus: "pending")
+- **SPEC-026.AC1** [native]: On geofence exit event from a job segment (SPEC-024), check for pending callbacks (callbackStatus: "pending")
 - **SPEC-026.AC2** [native]: If pending callbacks exist, send push notification: "You just left {address}. You have {count} people to call back."
 - **SPEC-026.AC3** [native]: Tapping the notification opens the Pending Callbacks screen (same as SPEC-016)
 - **SPEC-026.AC4** [native]: Notification includes an expandable preview of the first 1-2 pending callers with their AI summary

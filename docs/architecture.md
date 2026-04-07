@@ -85,6 +85,7 @@ export const create = mutation({
 ## Shared Utilities (`convex/lib/`)
 
 - `validators.ts` — Reusable Convex validators (addressValidator, lineItemValidator, etc.)
+- `jobStatus.ts` — `computeJobRollup` helper. Single source of truth for `jobs.status`, the scheduled window, and job-level `completedAt`. Any mutation that touches segments or invoices MUST call this and write the result back to the job.
 - `constants.ts` — Application-wide constants and limits
 - `dates.ts` — Date manipulation functions (as needed)
 
@@ -113,12 +114,14 @@ packages/backend/convex/
 ├── schema.ts                    # Layer 1: Table definitions + indexes
 ├── contractors.ts               # Layer 4: API — contractor endpoints
 ├── jobs.ts                      # Layer 4: API — job endpoints
+├── jobSegments.ts               # Layer 4: API — segment endpoints
 ├── estimates.ts                 # Layer 4: API — estimate endpoints
 ├── invoices.ts                  # Layer 4: API — invoice endpoints
 ├── callLogs.ts                  # Layer 4: API — call log endpoints
 ├── data/                        # Layer 2: Data access
 │   ├── contractors.data.ts
 │   ├── jobs.data.ts
+│   ├── jobSegments.data.ts
 │   ├── estimates.data.ts
 │   ├── invoices.data.ts
 │   └── callLogs.data.ts
@@ -129,10 +132,12 @@ packages/backend/convex/
 │   │   └── types.ts
 │   ├── contractors/
 │   ├── jobs/
+│   ├── jobSegments/
 │   ├── estimates/
 │   └── invoices/
 ├── lib/                         # Shared utilities
 │   ├── validators.ts
+│   ├── jobStatus.ts             # computeJobRollup — derived job status
 │   └── constants.ts
 ├── _generated/                  # Auto-generated (do not edit)
 └── auth.config.js               # Clerk auth config

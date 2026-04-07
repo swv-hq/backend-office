@@ -5,7 +5,7 @@ status: draft
 priority: P1
 phase: 6
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-06
 ---
 
 # SPEC-025: Job Time Tracking
@@ -26,16 +26,16 @@ When the contractor arrives at a job site (geofence entry), a timer starts autom
 
 ## Acceptance Criteria
 
-- **SPEC-025.AC1** [native]: When geofence entry is detected for a job (SPEC-024), auto-start a time tracking session. Push notification: "Timer started for {jobDescription} at {address}"
-- **SPEC-025.AC2** [native]: When geofence exit is detected, auto-stop the time tracking session. Push notification: "Timer stopped for {jobDescription} — {duration} logged"
-- **SPEC-025.AC3** [backend]: Time tracking session stored: jobId, contractorId, startTime, endTime (null while running), duration, source (geofence | manual)
-- **SPEC-025.AC4** [native]: Manual start/stop timer button on the job detail screen for contractors who don't use geofencing or need to override
-- **SPEC-025.AC5** [native]: Active timer visible as a persistent banner/indicator at the top of the app showing: job name, elapsed time, stop button
-- **SPEC-025.AC6** [native]: Multiple time sessions per job supported (contractor may leave for lunch and come back)
-- **SPEC-025.AC7** [native]: Job detail screen shows total time spent: sum of all sessions, with a breakdown of each session (start, end, duration)
+- **SPEC-025.AC1** [native]: When geofence entry is detected for a segment (SPEC-024), auto-start a time tracking session attached to that segment. Push notification: "Timer started for {segmentTitle or jobDescription} at {address}"
+- **SPEC-025.AC2** [native]: When geofence exit is detected, auto-stop the time tracking session. Push notification: "Timer stopped for {segmentTitle or jobDescription} — {duration} logged"
+- **SPEC-025.AC3** [backend]: Time tracking session stored: segmentId, jobId (denormalized for queries), contractorId, startTime, endTime (null while running), duration, source (geofence | manual)
+- **SPEC-025.AC4** [native]: Manual start/stop timer button on the segment row in the job detail screen, for contractors who don't use geofencing or need to override
+- **SPEC-025.AC5** [native]: Active timer visible as a persistent banner/indicator at the top of the app showing: segment title (or job name), elapsed time, stop button
+- **SPEC-025.AC6** [native]: Multiple time sessions per segment supported (contractor may leave for lunch and come back)
+- **SPEC-025.AC7** [native]: Job detail screen shows total time spent per segment AND total across the whole job: sum of all sessions, with a breakdown of each session (start, end, duration)
 - **SPEC-025.AC8** [native]: Contractor can edit/delete time entries (e.g., correct a geofence misfire or forgot to stop the manual timer)
-- **SPEC-025.AC9** [backend]: Total job duration auto-calculated from all sessions and stored on the job record
-- **SPEC-025.AC10** [native]: When creating an invoice (SPEC-021), job duration is shown as reference info so the contractor can factor in time spent
+- **SPEC-025.AC9** [backend]: Per-segment total duration is derived by summing sessions for that segment; per-job total is the sum across all non-canceled segments. Neither is stored on the row — both are computed at read time.
+- **SPEC-025.AC10** [native]: When creating an invoice (SPEC-021) for one or more segments, the total tracked time across the selected segments is shown as reference info so the contractor can factor in time spent
 - **SPEC-025.AC11** [backend]: Audit log entries for time session start, stop, edit, delete
 - **SPEC-025.AC12** [backend, native]: All code passes typecheck and lint
 

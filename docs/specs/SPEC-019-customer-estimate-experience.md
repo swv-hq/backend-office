@@ -5,7 +5,7 @@ status: draft
 priority: P0
 phase: 4
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-06
 ---
 
 # SPEC-019: Customer Estimate Experience
@@ -28,9 +28,9 @@ The customer receives an SMS (and email if available) with a link to a mobile-fi
 ## Acceptance Criteria
 
 - **SPEC-019.AC1** [web]: Public route `/estimate/[token]` renders the estimate as a mobile-first web page. No login required. Token-based access for security.
-- **SPEC-019.AC2** [web]: Estimate page shows: contractor business name and logo (if uploaded), trade-themed colors, itemized line items with descriptions and prices, labor subtotal, materials subtotal, grand total
+- **SPEC-019.AC2** [web]: Estimate page shows: estimate number (e.g., `EST-1042-1`), contractor business name and logo (if uploaded), trade-themed colors, itemized line items grouped by `segmentTitle` when present (so multi-day jobs show a per-segment breakdown), per-type subtotals (labor, materials, etc. — derived by grouping line items on `type`), grand total
 - **SPEC-019.AC3** [web]: "Approve" and "Decline" buttons prominently displayed
-- **SPEC-019.AC4** [web]: On approve: estimate status updated to "approved", job status updated to "approved", contractor notified via push notification
+- **SPEC-019.AC4** [web]: On approve: estimate status updated to "approved"; the estimate-approval use case auto-creates `jobSegments` from the estimate's line item groupings (per SPEC-018.AC17) and then calls `computeJobRollup`, which transitions the job to "approved". Contractor notified via push notification.
 - **SPEC-019.AC5** [web]: On decline: estimate status updated to "declined", contractor notified via push notification
 - **SPEC-019.AC6** [web]: Reply text field: customer can type a message with questions, change requests, or feedback before or instead of approving/declining
 - **SPEC-019.AC7** [backend]: Customer reply stored and sent to AI provider for analysis. AI extracts: sentiment, specific change requests, scheduling preferences, questions that need answering.

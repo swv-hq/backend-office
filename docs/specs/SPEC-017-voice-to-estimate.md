@@ -5,7 +5,7 @@ status: draft
 priority: P0
 phase: 4
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-06
 ---
 
 # SPEC-017: Voice-to-Estimate Generation
@@ -31,9 +31,9 @@ The contractor speaks into the app describing the job. The app transcribes the s
 - **SPEC-017.AC2** [native]: Visual recording indicator (waveform or pulsing animation) while contractor is speaking
 - **SPEC-017.AC3** [native]: Audio sent to STT provider (Deepgram) with multi-language detection enabled (English + Spanish + code-switching)
 - **SPEC-017.AC4** [backend]: Transcript sent to AI provider (Claude) with prompt context: trade type, zip code, contractor name/business name. Prompt instructs AI to generate structured JSON estimate.
-- **SPEC-017.AC5** [backend]: AI returns structured estimate: array of line items, each with: description, type (labor | material), quantity, unit, unitPrice, total. Plus laborSubtotal, materialsSubtotal, grandTotal.
+- **SPEC-017.AC5** [backend]: AI returns structured estimate: array of line items, each with: description, type (string — typically "labor" or "material" but freeform), quantity, unit, unitPrice, total, and optional `segmentTitle` to indicate intended work segment grouping (e.g., "Day 1 — Rough-in", "Day 2 — Trim"). For multi-day jobs the AI is instructed to propose segment titles; for simple single-visit jobs `segmentTitle` is omitted (or set uniformly) and a single default segment will be created at approval time. Subtotals (labor, materials, grand total) are computed at read time by grouping on `type` per SPEC-002 design decision 2.
 - **SPEC-017.AC6** [backend]: External pricing service queried for material costs and labor rates based on trade type and zip code. Results provided to AI as context for pricing suggestions.
-- **SPEC-017.AC7** [backend]: Estimate record created in `estimates` table with status: "draft", version: 1, and the generated line items
+- **SPEC-017.AC7** [backend]: Estimate record created in `estimates` table with status: "draft", version assigned atomically from the job's `nextEstimateVersion` counter, formatted `estimateNumber` (e.g., `EST-1042-1`), and the generated line items (each with optional `segmentTitle` from the AI). `segmentId` is left unset at creation time and only resolved to real segment ids on estimate approval (SPEC-018.AC17).
 - **SPEC-017.AC8** [backend]: When seeded from a voicemail (SPEC-014), the voicemail transcript is used as input instead of live microphone recording. Same AI pipeline.
 - **SPEC-017.AC9** [backend]: When seeded from an inbound SMS (SPEC-012), the SMS text is used as input. Same AI pipeline.
 - **SPEC-017.AC10** [native]: After generation, estimate preview screen shown immediately (flows into SPEC-018 for review and refinement)
