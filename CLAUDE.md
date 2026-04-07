@@ -205,3 +205,15 @@ When working on Convex code, **always read `convex/_generated/ai/guidelines.md` 
 Convex agent skills for common tasks can be installed by running `npx convex ai-files install`.
 
 <!-- convex-ai-end -->
+
+<!-- swv-skills-start -->
+
+## Claude Skills
+
+The following Claude Code skills are installed in `.claude/skills/`:
+
+- **build** — Structured development workflow for features, bug fixes, and enhancements
+- **issue** — Capture a bug, enhancement, or feature as a GitHub Issue from the terminal
+- **next** — Show prioritized open issues and upcoming specs to decide what to work on next
+
+<!-- swv-skills-end -->

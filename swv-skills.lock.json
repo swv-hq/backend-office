@@ -1,0 +1,51 @@
+{
+  "version": "3.0.0",
+  "packageVersion": "3.1.3",
+  "installedAt": "2026-04-07T13:09:56.094Z",
+  "updatedAt": "2026-04-07T13:11:55.182Z",
+  "skills": {
+    "build": {
+      "tool": "claude-code",
+      "dest": ".claude/skills/build",
+      "files": {
+        ".claude/skills/build/SKILL.md": "269f9c348d20bb458b5e14b41e5abe8ac1e4da11d67cddf7c4550cea39140b17",
+        ".claude/skills/build/bug-workflow.md": "48cabbe4e4adc946625ecb5e3e177b158c3dbdd8303094698e62bc58b3e1e605",
+        ".claude/skills/build/code-review.md": "e4be656db405a96d6f32af3e2c408a124a58e572d9df4eb72eff39aef50cd72c",
+        ".claude/skills/build/enhancement-workflow.md": "5d539b23a90c249a202b11955ca3ca6f5f095f85fd339a0c6d561e8faf86d9c3",
+        ".claude/skills/build/feature-workflow.md": "979c3835a7feeaf478b6d862ded27f91a19c839c83cf84ca6bd2d703f70f895c",
+        ".claude/skills/build/spec-template.md": "d43e75382d7d94ed97cafbd09d15c2aac3295816712509e757d3abc94554e9df"
+      }
+    },
+    "issue": {
+      "tool": "claude-code",
+      "dest": ".claude/skills/issue",
+      "files": {
+        ".claude/skills/issue/SKILL.md": "fb02096ef13d08f0a3e792597894f467bd0d98310e0d96c4c04b2d3eab17ffee"
+      }
+    },
+    "ts-style": {
+      "tool": "cursor",
+      "dest": ".cursor/rules/ts-style.mdc",
+      "files": {
+        ".cursor/rules/ts-style.mdc": "f8aaf5b95ea71675a0c8440f3c16f65347ba999dadfe2ef8d7cb561b142313c1"
+      },
+      "kind": "rule"
+    },
+    "scaffold": {
+      "tool": "cursor",
+      "dest": ".cursor/commands/scaffold.md",
+      "files": {
+        ".cursor/commands/scaffold.md": "2e2e7ab87a03228b209553dd57dbe3984bdccc50739e8107597832ced44f6dd9"
+      },
+      "kind": "command"
+    },
+    "next": {
+      "tool": "claude-code",
+      "dest": ".claude/skills/next",
+      "files": {
+        ".claude/skills/next/SKILL.md": "29e4c0b38fe5c10170f45c9ff789491be7c7d3fb5373e0b9c5ee6e04a96bfdc9"
+      }
+    }
+  },
+  "claudeMdSectionHash": "7aaac2a5fea817e9b0ac271fe0248306195209a56572d2b360d54e0c64a0b6c0"
+}

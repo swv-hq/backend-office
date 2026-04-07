@@ -1,0 +1,10 @@
+---
+description: "Placeholder Cursor rule for testing the installer"
+globs: ["**/*.ts", "**/*.tsx"]
+alwaysApply: false
+---
+Prefer `const` over `let` unless reassignment is required.
+
+Use explicit return types on exported functions.
+
+Avoid `any` — reach for `unknown` and narrow.
