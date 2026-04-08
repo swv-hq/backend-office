@@ -17,6 +17,7 @@ This monorepo hosts multiple products. When the user's task is scoped to a singl
 
 ## Critical Rules (apply to every product)
 
+- **Never commit, push, or create PRs without Brian's explicit approval.**
 - **Always create backend, web, native, and e2e tests when adding new features.** Test edge cases: empty inputs, boundaries, auth states, error handling. Use TDD: write tests first, verify they fail, implement, verify they pass.
 - **Do not run `npm run dev`** — Dev servers run in separate terminals; never start them from here.
 - **Run typecheck after changes** — `npm run typecheck`. Fix any errors.
