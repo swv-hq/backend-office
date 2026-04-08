@@ -19,7 +19,7 @@ gh issue list \
 
 ### Specs
 
-Read the frontmatter of each spec file in `docs/specs/` (excluding `_TEMPLATE.md` and `ROADMAP.md`). Extract `id`, `title`, `status`, `priority`, and `phase` from each.
+Read the frontmatter of each spec file in `docs/products/backend-office/specs/` (excluding `_TEMPLATE.md`). Extract `id`, `title`, `status`, `priority`, and `phase` from each.
 
 Include specs with these statuses: `draft`, `in-review`, `approved`, `in-progress`, `in-testing`
 
@@ -77,7 +77,7 @@ Ask: **"Which item would you like to work on?"**
 When the user picks one:
 
 - **If an issue**: fetch full details with `gh issue view <number> --repo swv-hq/backend-office` and present them
-- **If a spec**: read the full spec file at `docs/specs/SPEC-XXX-*.md` and present it
+- **If a spec**: read the full spec file at `docs/products/backend-office/specs/SPEC-XXX-*.md` and present it
 
 Then ask how they'd like to proceed.
 

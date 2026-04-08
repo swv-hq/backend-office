@@ -83,7 +83,7 @@ npm run test:spec-coverage:strict         # Fail if not 100% coverage
 
 ### Backend Layered Architecture
 
-**Read [docs/architecture.md](docs/architecture.md) before writing any Convex code.** All backend code follows a strict 4-layer pattern:
+**Read [docs/shared/architecture.md](docs/shared/architecture.md) before writing any Convex code.** All backend code follows a strict 4-layer pattern:
 
 | Layer        | Directory          | Responsibility                                                                               |
 | ------------ | ------------------ | -------------------------------------------------------------------------------------------- |
@@ -111,17 +111,17 @@ npm run test:spec-coverage:strict         # Fail if not 100% coverage
 - `packages/backend-office-backend/convex/useCases/` — Business logic layer
 - `packages/backend-office-backend/convex/lib/` — Shared validators and utilities
 - `packages/backend-office-backend/convex/_generated/` — Auto-generated types (do not edit)
-- `docs/specs/` — Feature specifications with acceptance criteria
+- `docs/products/backend-office/specs/` — Feature specifications with acceptance criteria
 - `scripts/` — Development utility scripts (spec coverage)
 
 ## Key Documentation
 
-| Document                                                                       | Purpose                                            |
-| ------------------------------------------------------------------------------ | -------------------------------------------------- |
-| [docs/BackEndOffice_BusinessPlan.md](docs/BackEndOffice_BusinessPlan.md)       | Product vision, target customer, design principles |
-| [docs/BackEndOffice_EngineeringSpec.md](docs/BackEndOffice_EngineeringSpec.md) | Technical architecture, features, data model       |
-| [docs/architecture.md](docs/architecture.md)                                   | Backend layered architecture (4-layer pattern)     |
-| [docs/specs/ROADMAP.md](docs/specs/ROADMAP.md)                                 | Product roadmap and spec index                     |
+| Document                                                                                           | Purpose                                            |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| [docs/products/backend-office/BusinessPlan.md](docs/products/backend-office/BusinessPlan.md)       | Product vision, target customer, design principles |
+| [docs/products/backend-office/EngineeringSpec.md](docs/products/backend-office/EngineeringSpec.md) | Technical architecture, features, data model       |
+| [docs/shared/architecture.md](docs/shared/architecture.md)                                         | Backend layered architecture (4-layer pattern)     |
+| [docs/products/backend-office/ROADMAP.md](docs/products/backend-office/ROADMAP.md)                 | Product roadmap and spec index                     |
 
 **Read the relevant doc before working in that area.**
 
@@ -129,15 +129,15 @@ npm run test:spec-coverage:strict         # Fail if not 100% coverage
 
 The `build` skill owns the feature/bug/enhancement workflow. The project-specific conventions the skill relies on:
 
-- **Specs** live in `docs/specs/`. Copy `_TEMPLATE.md` to `SPEC-XXX-feature-name.md`. Status progression: `draft` → `in-review` → `approved` → `in-progress` → `in-testing` → `implemented`. Keep `docs/specs/ROADMAP.md` in sync on every status change.
+- **Specs** live in `docs/products/backend-office/specs/`. Copy `_TEMPLATE.md` to `SPEC-XXX-feature-name.md`. Status progression: `draft` → `in-review` → `approved` → `in-progress` → `in-testing` → `implemented`. Keep `docs/products/backend-office/ROADMAP.md` in sync on every status change.
 - **Acceptance criteria** use IDs `SPEC-XXX.AC1`, `SPEC-XXX.AC2`, … and are platform-tagged `[web]`, `[native]`, `[backend]` (or combinations).
 - **Tests are tagged with AC IDs** and must live in the workspace matching the platform tag:
   - `[backend]` → `packages/backend-office-backend/convex/**/*.test.ts`
-  - `[web]` → `apps/backend-office-web/src/**/*.test.ts(x)` or `e2e/test-scripts/web/`
-  - `[native]` → `apps/backend-office-native/src/**/*.test.ts(x)` or `e2e/test-scripts/native/`
+  - `[web]` → `apps/backend-office-web/src/**/*.test.ts(x)` or `e2e/test-scripts/backend-office/web/`
+  - `[native]` → `apps/backend-office-native/src/**/*.test.ts(x)` or `e2e/test-scripts/backend-office/native/`
   - Format: `it("does something [SPEC-XXX.AC1]", ...)`; for markdown E2E scripts, include `[SPEC-XXX.AC1]` inline.
 - **Coverage check**: `npm run test:spec-coverage` verifies every AC has a linked test in the right workspace.
-- **Manual E2E scripts** are written per platform at `e2e/test-scripts/web/SPEC-XXX-*.md` and `e2e/test-scripts/native/SPEC-XXX-*.md`, each with Instructions + Expected Result and an AC coverage matrix.
+- **Manual E2E scripts** are written per platform at `e2e/test-scripts/backend-office/web/SPEC-XXX-*.md` and `e2e/test-scripts/backend-office/native/SPEC-XXX-*.md`, each with Instructions + Expected Result and an AC coverage matrix.
 - **Implementation order for a slice**: backend first (schema → data → use cases → API), then web and/or native.
 - **Spec sign-off**: never move a spec to `implemented` without Brian's explicit approval.
 

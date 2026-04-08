@@ -13,9 +13,9 @@ Companion to `REQUIREMENTS.md` §7 Phase 0. This checklist is the concrete start
 
 Before touching any files, the implementing session must read:
 
-- [ ] `docs/auth-hub/ARCHITECTURE.md`
-- [ ] `docs/auth-hub/REQUIREMENTS.md` (especially §2 layout and §7 Phase 0)
-- [ ] `docs/auth-hub/COMPLIANCE.md`
+- [ ] `docs/products/auth-hub/ARCHITECTURE.md`
+- [ ] `docs/products/auth-hub/REQUIREMENTS.md` (especially §2 layout and §7 Phase 0)
+- [ ] `docs/products/auth-hub/COMPLIANCE.md`
 - [ ] Root `package.json`, `turbo.json`, `CLAUDE.md`
 - [ ] `apps/web/package.json`, `apps/native/package.json`, `packages/backend/package.json`
 - [ ] `packages/backend/convex/convex.config.ts` (if present) and `packages/backend/convex/schema.ts`
@@ -116,7 +116,7 @@ The implementing session must grep for and update each occurrence of `apps/web`,
 
 - [ ] Use `git mv` for directory renames so history is preserved.
 - [ ] Single PR, single logical change: "Phase 0: rename apps/packages for multi-project monorepo."
-- [ ] PR description links to `docs/auth-hub/REQUIREMENTS.md` §7 Phase 0.
+- [ ] PR description links to `docs/products/auth-hub/REQUIREMENTS.md` §7 Phase 0.
 - [ ] Reviewer checklist: "No behavioral changes; renames and path updates only."
 
 ---

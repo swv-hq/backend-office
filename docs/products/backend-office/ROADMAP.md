@@ -2,8 +2,8 @@
 
 ## Context
 
-- [Business Plan](../BackEndOffice_BusinessPlan.md) — Product vision, target customer, design principles
-- [Engineering Spec](../BackEndOffice_EngineeringSpec.md) — Technical architecture, feature details, data model
+- [Business Plan](./BusinessPlan.md) — Product vision, target customer, design principles
+- [Engineering Spec](./EngineeringSpec.md) — Technical architecture, feature details, data model
 
 ## Architecture Decisions
 
