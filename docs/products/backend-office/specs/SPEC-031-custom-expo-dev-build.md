@@ -1,5 +1,5 @@
 ---
-id: SPEC-031
+id: BO-SPEC-031
 title: Custom Expo Dev Build
 status: implemented
 priority: P0
@@ -8,7 +8,7 @@ created: 2026-04-01
 updated: 2026-04-01
 ---
 
-# SPEC-031: Custom Expo Dev Build
+# BO-SPEC-031: Custom Expo Dev Build
 
 ## Problem Statement
 
@@ -27,14 +27,14 @@ A custom Expo development client is configured and buildable locally (and option
 
 ## Acceptance Criteria
 
-- **SPEC-031.AC1** [native]: `expo-dev-client` package installed and configured in the native app
-- **SPEC-031.AC2** [native]: `eas.json` created with at least `development` and `preview` build profiles for iOS
-- **SPEC-031.AC3** [native]: `app.json` (or `app.config.ts`) updated with required fields: `ios.bundleIdentifier`, `slug`, and `name` reflecting "Back-End Office" branding
-- **SPEC-031.AC4** [native]: Development build runs successfully on the iOS Simulator using `expo start --dev-client`
-- **SPEC-031.AC5** [native]: Development build installable on a physical iOS device (via EAS Build or local `npx expo run:ios --device`)
-- **SPEC-031.AC6** [native]: `expo-secure-store` and all existing native plugins function correctly in the custom dev build (verified manually)
-- **SPEC-031.AC7** [native]: Dev scripts updated in `package.json`: `dev` command uses `--dev-client` flag
-- **SPEC-031.AC8** [native, web]: All workspaces pass typecheck and lint with zero errors after changes
+- **BO-SPEC-031.AC1** [native]: `expo-dev-client` package installed and configured in the native app
+- **BO-SPEC-031.AC2** [native]: `eas.json` created with at least `development` and `preview` build profiles for iOS
+- **BO-SPEC-031.AC3** [native]: `app.json` (or `app.config.ts`) updated with required fields: `ios.bundleIdentifier`, `slug`, and `name` reflecting "Back-End Office" branding
+- **BO-SPEC-031.AC4** [native]: Development build runs successfully on the iOS Simulator using `expo start --dev-client`
+- **BO-SPEC-031.AC5** [native]: Development build installable on a physical iOS device (via EAS Build or local `npx expo run:ios --device`)
+- **BO-SPEC-031.AC6** [native]: `expo-secure-store` and all existing native plugins function correctly in the custom dev build (verified manually)
+- **BO-SPEC-031.AC7** [native]: Dev scripts updated in `package.json`: `dev` command uses `--dev-client` flag
+- **BO-SPEC-031.AC8** [native, web]: All workspaces pass typecheck and lint with zero errors after changes
 
 ## Decisions
 
@@ -74,9 +74,9 @@ A custom Expo development client is configured and buildable locally (and option
 
 ### Dependencies
 
-- This is a prerequisite for SPEC-030 (App Store & Distribution) since EAS Build configuration established here is extended for production builds.
+- This is a prerequisite for BO-SPEC-030 (App Store & Distribution) since EAS Build configuration established here is extended for production builds.
 
 ## Manual Test Scripts
 
 <!-- Web: N/A — native only -->
-<!-- Native: e2e/test-scripts/backend-office/native/SPEC-031-custom-expo-dev-build.md -->
+<!-- Native: e2e/test-scripts/backend-office/native/BO-SPEC-031-custom-expo-dev-build.md -->

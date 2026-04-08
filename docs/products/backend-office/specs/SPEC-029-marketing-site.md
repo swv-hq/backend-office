@@ -1,5 +1,5 @@
 ---
-id: SPEC-029
+id: BO-SPEC-029
 title: Marketing Site Rebrand
 status: draft
 priority: P1
@@ -8,7 +8,7 @@ created: 2026-04-01
 updated: 2026-04-01
 ---
 
-# SPEC-029: Marketing Site Rebrand
+# BO-SPEC-029: Marketing Site Rebrand
 
 ## Problem Statement
 
@@ -26,18 +26,18 @@ A single-page marketing site that communicates what Back-End Office does, who it
 
 ## Acceptance Criteria
 
-- **SPEC-029.AC1** [web]: Hero section: headline communicating the core value prop ("The back office that fits in your pocket"), subheadline targeting the solo tradesperson, prominent "Download on the App Store" button
-- **SPEC-029.AC2** [web]: Problem section: 3-4 pain points that resonate with the target customer (missed calls, 9pm invoicing, unprofessional estimates, no idea what they earned)
-- **SPEC-029.AC3** [web]: Features section: visual overview of key features with trade-relevant imagery (voice-to-estimate, auto missed-call reply, instant invoicing, get paid on the spot)
-- **SPEC-029.AC4** [web]: Social proof section: testimonials from beta testers (or placeholder structure for them)
-- **SPEC-029.AC5** [web]: Pricing section: simple pricing card with monthly rate, introductory offer, and what's included
-- **SPEC-029.AC6** [web]: Footer: links to privacy policy, terms, support contact
-- **SPEC-029.AC7** [web]: Android interest form: "Coming soon to Android" with email capture for waitlist
-- **SPEC-029.AC8** [web]: Mobile-first responsive design — site looks great on phones since much of the traffic will come from social media links on mobile
-- **SPEC-029.AC9** [web]: SEO basics: proper meta tags, Open Graph tags for social sharing, descriptive page title
-- **SPEC-029.AC10** [web]: Demo video placeholder: section for a product demo video (can be populated later). YouTube or native video embed.
-- **SPEC-029.AC11** [web]: Trade-specific messaging: content speaks to handymen, plumbers, and electricians — not generic "contractors"
-- **SPEC-029.AC12** [web]: All code passes typecheck and lint
+- **BO-SPEC-029.AC1** [web]: Hero section: headline communicating the core value prop ("The back office that fits in your pocket"), subheadline targeting the solo tradesperson, prominent "Download on the App Store" button
+- **BO-SPEC-029.AC2** [web]: Problem section: 3-4 pain points that resonate with the target customer (missed calls, 9pm invoicing, unprofessional estimates, no idea what they earned)
+- **BO-SPEC-029.AC3** [web]: Features section: visual overview of key features with trade-relevant imagery (voice-to-estimate, auto missed-call reply, instant invoicing, get paid on the spot)
+- **BO-SPEC-029.AC4** [web]: Social proof section: testimonials from beta testers (or placeholder structure for them)
+- **BO-SPEC-029.AC5** [web]: Pricing section: simple pricing card with monthly rate, introductory offer, and what's included
+- **BO-SPEC-029.AC6** [web]: Footer: links to privacy policy, terms, support contact
+- **BO-SPEC-029.AC7** [web]: Android interest form: "Coming soon to Android" with email capture for waitlist
+- **BO-SPEC-029.AC8** [web]: Mobile-first responsive design — site looks great on phones since much of the traffic will come from social media links on mobile
+- **BO-SPEC-029.AC9** [web]: SEO basics: proper meta tags, Open Graph tags for social sharing, descriptive page title
+- **BO-SPEC-029.AC10** [web]: Demo video placeholder: section for a product demo video (can be populated later). YouTube or native video embed.
+- **BO-SPEC-029.AC11** [web]: Trade-specific messaging: content speaks to handymen, plumbers, and electricians — not generic "contractors"
+- **BO-SPEC-029.AC12** [web]: All code passes typecheck and lint
 
 ## Open Questions
 

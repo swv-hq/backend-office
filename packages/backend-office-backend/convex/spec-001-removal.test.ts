@@ -5,22 +5,22 @@ import * as path from "node:path";
 const convexDir = path.resolve(__dirname);
 const backendRoot = path.resolve(__dirname, "..");
 
-describe("SPEC-001: Notes Domain Removal - Backend", () => {
-  it("schema.ts does not define a notes table [SPEC-001.AC1]", () => {
+describe("BO-SPEC-001: Notes Domain Removal - Backend", () => {
+  it("schema.ts does not define a notes table [BO-SPEC-001.AC1]", () => {
     const schema = fs.readFileSync(path.join(convexDir, "schema.ts"), "utf-8");
     expect(schema).not.toContain("notes: defineTable");
     expect(schema).not.toMatch(/^\s*notes:\s*defineTable/m);
   });
 
-  it("notes.ts does not exist [SPEC-001.AC2]", () => {
+  it("notes.ts does not exist [BO-SPEC-001.AC2]", () => {
     expect(fs.existsSync(path.join(convexDir, "notes.ts"))).toBe(false);
   });
 
-  it("openai.ts does not exist [SPEC-001.AC3]", () => {
+  it("openai.ts does not exist [BO-SPEC-001.AC3]", () => {
     expect(fs.existsSync(path.join(convexDir, "openai.ts"))).toBe(false);
   });
 
-  it("no OPENAI_API_KEY references in convex/ source files [SPEC-001.AC3]", () => {
+  it("no OPENAI_API_KEY references in convex/ source files [BO-SPEC-001.AC3]", () => {
     const sourceFiles = fs
       .readdirSync(convexDir)
       .filter((f) => f.endsWith(".ts") && !f.includes(".test."))
@@ -32,13 +32,13 @@ describe("SPEC-001: Notes Domain Removal - Backend", () => {
     }
   });
 
-  it("schema.ts is valid TypeScript (no stale references) [SPEC-001.AC9]", () => {
+  it("schema.ts is valid TypeScript (no stale references) [BO-SPEC-001.AC9]", () => {
     const schema = fs.readFileSync(path.join(convexDir, "schema.ts"), "utf-8");
     expect(schema).not.toContain("notes: defineTable");
     expect(schema).not.toContain("openai");
   });
 
-  it("no remaining source files reference deleted modules [SPEC-001.AC10]", () => {
+  it("no remaining source files reference deleted modules [BO-SPEC-001.AC10]", () => {
     const sourceFiles = fs
       .readdirSync(convexDir)
       .filter((f) => f.endsWith(".ts") && !f.includes(".test."))
@@ -53,7 +53,7 @@ describe("SPEC-001: Notes Domain Removal - Backend", () => {
     }
   });
 
-  it("package.json does not include openai dependency [SPEC-001.AC13]", () => {
+  it("package.json does not include openai dependency [BO-SPEC-001.AC13]", () => {
     const pkg = JSON.parse(
       fs.readFileSync(path.join(backendRoot, "package.json"), "utf-8"),
     );

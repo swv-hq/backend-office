@@ -1,5 +1,5 @@
 ---
-id: SPEC-030
+id: BO-SPEC-030
 title: App Store & Distribution
 status: draft
 priority: P0
@@ -8,7 +8,7 @@ created: 2026-04-01
 updated: 2026-04-01
 ---
 
-# SPEC-030: App Store & Distribution
+# BO-SPEC-030: App Store & Distribution
 
 ## Problem Statement
 
@@ -27,17 +27,17 @@ Beta testers can install the app via TestFlight. The App Store listing is polish
 
 ## Acceptance Criteria
 
-- **SPEC-030.AC1** [native]: Expo EAS Build configured for iOS production builds
-- **SPEC-030.AC2** [native]: TestFlight distribution set up: app uploaded, internal/external testing groups configured
-- **SPEC-030.AC3** [native]: Beta invite link shareable with test group (10-20 initial testers)
-- **SPEC-030.AC4** [native]: App Store listing prepared: app name ("Back-End Office"), subtitle, description, keywords, screenshots, app icon, privacy policy URL
-- **SPEC-030.AC5** [native]: App icon designed reflecting the Back-End Office brand
-- **SPEC-030.AC6** [native]: Screenshot set showing key features: onboarding, missed call notification, voice-to-estimate, invoice with payment
-- **SPEC-030.AC7** [native]: App Store privacy "nutrition labels" accurately reflect data collection: phone number, location (geofencing), payment info, contacts
-- **SPEC-030.AC8** [native]: App review submission notes prepared: explain Twilio integration, location usage, payment flows (Apple reviewers need context)
-- **SPEC-030.AC9** [web]: Android waitlist functional on marketing site (SPEC-029 AC7): email stored, confirmation shown
-- **SPEC-030.AC10** [native]: EAS Update configured for over-the-air JavaScript updates (bug fixes without full App Store review)
-- **SPEC-030.AC11** [native, web]: All code passes typecheck and lint
+- **BO-SPEC-030.AC1** [native]: Expo EAS Build configured for iOS production builds
+- **BO-SPEC-030.AC2** [native]: TestFlight distribution set up: app uploaded, internal/external testing groups configured
+- **BO-SPEC-030.AC3** [native]: Beta invite link shareable with test group (10-20 initial testers)
+- **BO-SPEC-030.AC4** [native]: App Store listing prepared: app name ("Back-End Office"), subtitle, description, keywords, screenshots, app icon, privacy policy URL
+- **BO-SPEC-030.AC5** [native]: App icon designed reflecting the Back-End Office brand
+- **BO-SPEC-030.AC6** [native]: Screenshot set showing key features: onboarding, missed call notification, voice-to-estimate, invoice with payment
+- **BO-SPEC-030.AC7** [native]: App Store privacy "nutrition labels" accurately reflect data collection: phone number, location (geofencing), payment info, contacts
+- **BO-SPEC-030.AC8** [native]: App review submission notes prepared: explain Twilio integration, location usage, payment flows (Apple reviewers need context)
+- **BO-SPEC-030.AC9** [web]: Android waitlist functional on marketing site (BO-SPEC-029 AC7): email stored, confirmation shown
+- **BO-SPEC-030.AC10** [native]: EAS Update configured for over-the-air JavaScript updates (bug fixes without full App Store review)
+- **BO-SPEC-030.AC11** [native, web]: All code passes typecheck and lint
 
 ## Open Questions
 
