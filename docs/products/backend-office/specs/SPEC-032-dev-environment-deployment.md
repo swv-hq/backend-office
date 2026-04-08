@@ -56,5 +56,5 @@ A fully deployed dev environment where the Convex backend, Next.js web app, and 
 
 ## Manual Test Scripts
 
-<!-- Web: e2e/test-scripts/web/SPEC-032-dev-environment-deployment.md -->
-<!-- Native: e2e/test-scripts/native/SPEC-032-dev-environment-deployment.md -->
+<!-- Web: e2e/test-scripts/backend-office/web/SPEC-032-dev-environment-deployment.md -->
+<!-- Native: e2e/test-scripts/backend-office/native/SPEC-032-dev-environment-deployment.md -->

@@ -79,4 +79,4 @@ A custom Expo development client is configured and buildable locally (and option
 ## Manual Test Scripts
 
 <!-- Web: N/A — native only -->
-<!-- Native: e2e/test-scripts/native/SPEC-031-custom-expo-dev-build.md -->
+<!-- Native: e2e/test-scripts/backend-office/native/SPEC-031-custom-expo-dev-build.md -->

@@ -20,18 +20,18 @@ const platformTestPatterns: Record<Platform, string[]> = {
   web: [
     "apps/backend-office-web/src/**/*.test.ts",
     "apps/backend-office-web/src/**/*.test.tsx",
-    "e2e/test-scripts/web/*.md",
+    "e2e/test-scripts/backend-office/web/*.md",
   ],
   native: [
     "apps/backend-office-native/src/**/*.test.ts",
     "apps/backend-office-native/src/**/*.test.tsx",
-    "e2e/test-scripts/native/*.md",
+    "e2e/test-scripts/backend-office/native/*.md",
   ],
   backend: ["packages/backend-office-backend/convex/**/*.test.ts"],
 };
 
 // 1. Find all spec files and extract acceptance criteria IDs with platform tags
-const specPattern = "docs/specs/*.md";
+const specPattern = "docs/products/backend-office/specs/*.md";
 const specFiles = globSync(specPattern, { cwd: rootDir }).filter(
   (f) => !f.endsWith("_TEMPLATE.md") && !f.endsWith("ROADMAP.md"),
 );
@@ -161,7 +161,7 @@ console.log(bold("\n=== Spec Coverage Report ===\n"));
 if (skippedSpecs.length > 0) {
   console.log(
     dim(
-      `Skipped ${skippedSpecs.length} spec(s) not yet in-progress: ${skippedSpecs.map((f) => f.replace("docs/specs/", "")).join(", ")}`,
+      `Skipped ${skippedSpecs.length} spec(s) not yet in-progress: ${skippedSpecs.map((f) => f.replace("docs/products/backend-office/specs/", "")).join(", ")}`,
     ),
   );
   console.log();
@@ -170,11 +170,13 @@ if (skippedSpecs.length > 0) {
 if (total === 0) {
   console.log(
     yellow(
-      "No acceptance criteria found. Add specs to docs/specs/ using the template.",
+      "No acceptance criteria found. Add specs to docs/products/backend-office/specs/ using the template.",
     ),
   );
   console.log(
-    dim("  Copy docs/specs/_TEMPLATE.md and define SPEC-XXX.AC# criteria.\n"),
+    dim(
+      "  Copy docs/products/backend-office/specs/_TEMPLATE.md and define SPEC-XXX.AC# criteria.\n",
+    ),
   );
   process.exit(0);
 }
