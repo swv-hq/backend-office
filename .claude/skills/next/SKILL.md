@@ -19,7 +19,12 @@ gh issue list \
 
 ### Specs
 
-Read the frontmatter of each spec file in `docs/products/backend-office/specs/` (excluding `_TEMPLATE.md`). Extract `id`, `title`, `status`, `priority`, and `phase` from each.
+This monorepo hosts multiple products. Read the frontmatter of each spec file under **every** product:
+
+- `docs/products/backend-office/specs/*.md` (prefix `BO-SPEC-`)
+- `docs/products/auth-hub/specs/*.md` (prefix `AH-SPEC-`)
+
+Use `docs/products/*/specs/*.md` and skip `_TEMPLATE.md`. Extract `id`, `title`, `status`, `priority`, and `phase` from each. Tag every spec with its product (derived from the path) so they can be grouped in the display.
 
 Include specs with these statuses: `draft`, `in-review`, `approved`, `in-progress`, `in-testing`
 
@@ -33,11 +38,11 @@ Exclude specs with status: `implemented`
 2. **Enhancements & Features** — Issues with `enhancement` or `feature` labels, sorted oldest first
 3. **Other** — Issues without a type label, sorted oldest first
 
-### Specs (shown after issues)
+### Specs (shown after issues, grouped by product)
 
-Sort by phase (ascending), then spec number (ascending). The spec number order reflects the intended build sequence from the roadmap — respect it over priority. Priority is shown for context but does not change ordering.
+Group specs by product first (backend-office, then auth-hub). Within each product, sort by phase (ascending), then spec number (ascending). The spec number order reflects the intended build sequence from the roadmap — respect it over priority. Priority is shown for context but does not change ordering.
 
-Only show specs from the current and next phase (i.e., if Phase 1 has unfinished specs, show Phase 1 and Phase 2 only).
+Only show specs from the current and next phase **within each product** (i.e., if backend-office Phase 1 has unfinished specs, show backend-office Phase 1 and Phase 2 only; auth-hub phases are independent).
 
 ## Display Format
 
@@ -50,12 +55,15 @@ Only show specs from the current and next phase (i.e., if Phase 1 has unfinished
 ### Enhancements & Features
 2. #15 - Add dark mode toggle (2 days ago)
 
-### Specs — Phase 1: MVP
-3. SPEC-006 - Per-Holding User Overrides [draft, P1]
-4. SPEC-007 - Holdings Tagging System [draft, P1]
+### Specs — backend-office — Phase 1: MVP
+3. BO-SPEC-006 - Per-Holding User Overrides [draft, P1]
+4. BO-SPEC-007 - Holdings Tagging System [draft, P1]
 
-### Specs — Phase 2: Tax & Cashflow
-5. SPEC-010 - Account-Level Metrics [draft, P1]
+### Specs — backend-office — Phase 2: Tax & Cashflow
+5. BO-SPEC-010 - Account-Level Metrics [draft, P1]
+
+### Specs — auth-hub — Phase 1: Identity Core
+6. AH-SPEC-001 - Tenants table + RS256 keys [draft, P0]
 ```
 
 For issues show:
@@ -77,7 +85,7 @@ Ask: **"Which item would you like to work on?"**
 When the user picks one:
 
 - **If an issue**: fetch full details with `gh issue view <number> --repo swv-hq/backend-office` and present them
-- **If a spec**: read the full spec file at `docs/products/backend-office/specs/SPEC-XXX-*.md` and present it
+- **If a spec**: read the full spec file at `docs/products/<product>/specs/SPEC-XXX-*.md` (resolve `<product>` from the spec ID prefix: `BO-` → `backend-office`, `AH-` → `auth-hub`) and present it
 
 Then ask how they'd like to proceed.
 
