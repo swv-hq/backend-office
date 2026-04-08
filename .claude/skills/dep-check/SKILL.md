@@ -11,9 +11,9 @@ Audit and summarize outdated dependencies across all three monorepo workspaces.
 ## Workflow
 
 1. **Gather data** — Run `npm outdated` in each workspace in parallel:
-   - `packages/backend`
-   - `apps/web`
-   - `apps/native`
+   - `packages/backend-office-backend`
+   - `apps/backend-office-web`
+   - `apps/backend-office-native`
      Also check latest versions of key dependencies (convex, @clerk/nextjs, expo) via `npm view`.
 
 2. **Classify each outdated package** into one of:

@@ -38,7 +38,7 @@ All notes-related code is removed from the backend, web, and native workspaces. 
 - **SPEC-001.AC10** [backend, web, native]: All workspaces pass lint (`turbo run lint`) with zero errors
 - **SPEC-001.AC11** [web, native]: App compiles and runs — authenticated user sees an empty shell, unauthenticated user sees login
 - **SPEC-001.AC12** [web]: Site metadata in layout.tsx updated from "Notes App" to "Back-End Office" branding
-- **SPEC-001.AC13** [backend]: OpenAI npm dependency removed from packages/backend/package.json
+- **SPEC-001.AC13** [backend]: OpenAI npm dependency removed from packages/backend-office-backend/package.json
 
 ## Open Questions
 

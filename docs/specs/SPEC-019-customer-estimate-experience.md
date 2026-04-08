@@ -52,7 +52,7 @@ The customer receives an SMS (and email if available) with a link to a mobile-fi
 
 ## Technical Notes
 
-- The public web route uses Next.js dynamic routing: `apps/web/src/app/estimate/[token]/page.tsx`
+- The public web route uses Next.js dynamic routing: `apps/backend-office-web/src/app/estimate/[token]/page.tsx`
 - Token-based access: generate a secure random token when the estimate is sent. Store it on the estimate record. The web page queries the estimate by token (no auth required).
 - Customer replies are stored on a new `customerReplies` field or a separate table linked to the estimate.
 - AI analysis of customer replies uses the same Claude provider interface. The prompt includes the original estimate, the customer's message, and instructions to extract actionable insights.

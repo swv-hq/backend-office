@@ -8,9 +8,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a Turborepo monorepo with three workspaces:
 
-- `apps/web/` — Next.js 16 + React 19 + Tailwind CSS v4 + Clerk auth (marketing site + web dashboard)
-- `apps/native/` — React Native (Expo 55) + Clerk auth (primary mobile app)
-- `packages/backend/` — Convex backend shared by both apps (schema, queries, mutations, actions)
+- `apps/backend-office-web/` — Next.js 16 + React 19 + Tailwind CSS v4 + Clerk auth (marketing site + web dashboard)
+- `apps/backend-office-native/` — React Native (Expo 55) + Clerk auth (primary mobile app)
+- `packages/backend-office-backend/` — Convex backend shared by both apps (schema, queries, mutations, actions)
 
 ## Critical Rules
 
@@ -19,9 +19,9 @@ This is a Turborepo monorepo with three workspaces:
 - **Run typecheck after changes** — Run `npm run typecheck` and fix any errors.
 - **Run lint after changes** — Run `npm run lint` and fix any errors.
 - **Run format after changes** — Run `npm run format` and fix any errors.
-- **Run backend tests after Convex changes** — Run `cd packages/backend && npm test` and fix any errors.
-- **Run web tests after web changes** — Run `cd apps/web && npm test` and fix any errors.
-- **Run native tests after native changes** — Run `cd apps/native && npm test` and fix any errors.
+- **Run backend tests after Convex changes** — Run `cd packages/backend-office-backend && npm test` and fix any errors.
+- **Run web tests after web changes** — Run `cd apps/backend-office-web && npm test` and fix any errors.
+- **Run native tests after native changes** — Run `cd apps/backend-office-native && npm test` and fix any errors.
 - **Run spec coverage after feature work** — Run `npm run test:spec-coverage` to verify all ACs have linked tests.
 - **Run build after larger changes** — Run `npm run build` to catch build errors.
 - **After changes run a security check and make sure the changes are secure.**
@@ -57,16 +57,16 @@ npm run format           # Prettier format all files
 npm run clean            # Clear build artifacts and node_modules
 
 # Backend (Convex)
-cd packages/backend && npx convex dev     # Start Convex dev server
-cd packages/backend && npm test           # Run backend tests
+cd packages/backend-office-backend && npx convex dev     # Start Convex dev server
+cd packages/backend-office-backend && npm test           # Run backend tests
 
 # Web (Next.js)
-cd apps/web && npm run dev                # Start web dev server (port 3001)
-cd apps/web && npm test                   # Run web tests
+cd apps/backend-office-web && npm run dev                # Start web dev server (port 3001)
+cd apps/backend-office-web && npm test                   # Run web tests
 
 # Native (Expo)
-cd apps/native && npx expo start          # Start Expo dev server
-cd apps/native && npm test                # Run native tests
+cd apps/backend-office-native && npx expo start          # Start Expo dev server
+cd apps/backend-office-native && npm test                # Run native tests
 
 # Spec Coverage
 npm run test:spec-coverage                # Verify all AC IDs have linked tests
@@ -77,9 +77,9 @@ npm run test:spec-coverage:strict         # Fail if not 100% coverage
 
 ### Workspaces
 
-- **`apps/web/`** — Next.js 16, React 19, Tailwind CSS v4, Clerk auth, App Router
-- **`apps/native/`** — React Native, Expo 55, Clerk auth, React Navigation
-- **`packages/backend/`** — Convex (serverless database + functions), shared by both apps
+- **`apps/backend-office-web/`** — Next.js 16, React 19, Tailwind CSS v4, Clerk auth, App Router
+- **`apps/backend-office-native/`** — React Native, Expo 55, Clerk auth, React Navigation
+- **`packages/backend-office-backend/`** — Convex (serverless database + functions), shared by both apps
 
 ### Backend Layered Architecture
 
@@ -102,15 +102,15 @@ npm run test:spec-coverage:strict         # Fail if not 100% coverage
 
 ### Key Directories
 
-- `apps/web/src/app/` — Next.js App Router pages
-- `apps/web/src/components/` — Web UI components
-- `apps/native/src/screens/` — React Native screens
-- `apps/native/src/navigation/` — React Navigation setup
-- `packages/backend/convex/` — Convex schema, queries, mutations, actions
-- `packages/backend/convex/data/` — Data access layer (pure CRUD)
-- `packages/backend/convex/useCases/` — Business logic layer
-- `packages/backend/convex/lib/` — Shared validators and utilities
-- `packages/backend/convex/_generated/` — Auto-generated types (do not edit)
+- `apps/backend-office-web/src/app/` — Next.js App Router pages
+- `apps/backend-office-web/src/components/` — Web UI components
+- `apps/backend-office-native/src/screens/` — React Native screens
+- `apps/backend-office-native/src/navigation/` — React Navigation setup
+- `packages/backend-office-backend/convex/` — Convex schema, queries, mutations, actions
+- `packages/backend-office-backend/convex/data/` — Data access layer (pure CRUD)
+- `packages/backend-office-backend/convex/useCases/` — Business logic layer
+- `packages/backend-office-backend/convex/lib/` — Shared validators and utilities
+- `packages/backend-office-backend/convex/_generated/` — Auto-generated types (do not edit)
 - `docs/specs/` — Feature specifications with acceptance criteria
 - `scripts/` — Development utility scripts (spec coverage)
 
@@ -132,9 +132,9 @@ The `build` skill owns the feature/bug/enhancement workflow. The project-specifi
 - **Specs** live in `docs/specs/`. Copy `_TEMPLATE.md` to `SPEC-XXX-feature-name.md`. Status progression: `draft` → `in-review` → `approved` → `in-progress` → `in-testing` → `implemented`. Keep `docs/specs/ROADMAP.md` in sync on every status change.
 - **Acceptance criteria** use IDs `SPEC-XXX.AC1`, `SPEC-XXX.AC2`, … and are platform-tagged `[web]`, `[native]`, `[backend]` (or combinations).
 - **Tests are tagged with AC IDs** and must live in the workspace matching the platform tag:
-  - `[backend]` → `packages/backend/convex/**/*.test.ts`
-  - `[web]` → `apps/web/src/**/*.test.ts(x)` or `e2e/test-scripts/web/`
-  - `[native]` → `apps/native/src/**/*.test.ts(x)` or `e2e/test-scripts/native/`
+  - `[backend]` → `packages/backend-office-backend/convex/**/*.test.ts`
+  - `[web]` → `apps/backend-office-web/src/**/*.test.ts(x)` or `e2e/test-scripts/web/`
+  - `[native]` → `apps/backend-office-native/src/**/*.test.ts(x)` or `e2e/test-scripts/native/`
   - Format: `it("does something [SPEC-XXX.AC1]", ...)`; for markdown E2E scripts, include `[SPEC-XXX.AC1]` inline.
 - **Coverage check**: `npm run test:spec-coverage` verifies every AC has a linked test in the right workspace.
 - **Manual E2E scripts** are written per platform at `e2e/test-scripts/web/SPEC-XXX-*.md` and `e2e/test-scripts/native/SPEC-XXX-*.md`, each with Instructions + Expected Result and an AC coverage matrix.
