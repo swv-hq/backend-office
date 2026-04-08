@@ -5,6 +5,15 @@ description: Show prioritized open issues and upcoming specs to help decide what
 
 Fetch and display prioritized open issues and upcoming spec features from the swv-hq/backend-office repository.
 
+## Repo Layout Detection
+
+Detect once, before fetching:
+
+- If `docs/products/` exists with one or more product subdirectories, this is a **multi-product monorepo**. Otherwise it is **single-product**.
+- In multi-product mode, specs live at `docs/products/<product>/specs/` and each product has its own phases. Phase scoping ("current and next phase only") is **per product**.
+
+Note: `swv-hq/backend-office` is filled in at install time. If the GitHub repo is later renamed, re-run install or derive the slug via `gh repo view --json nameWithOwner`.
+
 ## Fetching Data
 
 ### GitHub Issues
@@ -19,12 +28,7 @@ gh issue list \
 
 ### Specs
 
-This monorepo hosts multiple products. Read the frontmatter of each spec file under **every** product:
-
-- `docs/products/backend-office/specs/*.md` (prefix `BO-SPEC-`)
-- `docs/products/auth-hub/specs/*.md` (prefix `AH-SPEC-`)
-
-Use `docs/products/*/specs/*.md` and skip `_TEMPLATE.md`. Extract `id`, `title`, `status`, `priority`, and `phase` from each. Tag every spec with its product (derived from the path) so they can be grouped in the display.
+Read the frontmatter of each spec file. In single-product mode, scan `docs/specs/`. In multi-product mode, iterate `docs/products/*/specs/` and tag each spec with its product. Exclude `_TEMPLATE.md` and `ROADMAP.md`. Extract `id`, `title`, `status`, `priority`, and `phase` from each.
 
 Include specs with these statuses: `draft`, `in-review`, `approved`, `in-progress`, `in-testing`
 
@@ -38,11 +42,11 @@ Exclude specs with status: `implemented`
 2. **Enhancements & Features** — Issues with `enhancement` or `feature` labels, sorted oldest first
 3. **Other** — Issues without a type label, sorted oldest first
 
-### Specs (shown after issues, grouped by product)
+### Specs (shown after issues)
 
-Group specs by product first (backend-office, then auth-hub). Within each product, sort by phase (ascending), then spec number (ascending). The spec number order reflects the intended build sequence from the roadmap — respect it over priority. Priority is shown for context but does not change ordering.
+Sort by phase (ascending), then spec number (ascending). The spec number order reflects the intended build sequence from the roadmap — respect it over priority. Priority is shown for context but does not change ordering.
 
-Only show specs from the current and next phase **within each product** (i.e., if backend-office Phase 1 has unfinished specs, show backend-office Phase 1 and Phase 2 only; auth-hub phases are independent).
+Only show specs from the current and next phase (i.e., if Phase 1 has unfinished specs, show Phase 1 and Phase 2 only). In multi-product mode this scoping is **per product** — each product has its own current/next phases.
 
 ## Display Format
 
@@ -55,16 +59,25 @@ Only show specs from the current and next phase **within each product** (i.e., i
 ### Enhancements & Features
 2. #15 - Add dark mode toggle (2 days ago)
 
+### Specs — Phase 1: MVP
+3. SPEC-006 - Per-Holding User Overrides [draft, P1]
+4. SPEC-007 - Holdings Tagging System [draft, P1]
+
+### Specs — Phase 2: Tax & Cashflow
+5. SPEC-010 - Account-Level Metrics [draft, P1]
+```
+
+In multi-product mode, headings include the product name and spec IDs use the product prefix:
+
+```
 ### Specs — backend-office — Phase 1: MVP
 3. BO-SPEC-006 - Per-Holding User Overrides [draft, P1]
-4. BO-SPEC-007 - Holdings Tagging System [draft, P1]
 
-### Specs — backend-office — Phase 2: Tax & Cashflow
-5. BO-SPEC-010 - Account-Level Metrics [draft, P1]
-
-### Specs — auth-hub — Phase 1: Identity Core
-6. AH-SPEC-001 - Tenants table + RS256 keys [draft, P0]
+### Specs — auth-hub — Phase 1: Foundations
+4. AH-SPEC-002 - SSO Provider Wiring [draft, P1]
 ```
+
+Suppress any product heading whose spec list is empty — do not print empty sections.
 
 For issues show:
 
@@ -84,8 +97,8 @@ Ask: **"Which item would you like to work on?"**
 
 When the user picks one:
 
-- **If an issue**: fetch full details with `gh issue view <number> --repo swv-hq/backend-office` and present them
-- **If a spec**: read the full spec file at `docs/products/<product>/specs/SPEC-XXX-*.md` (resolve `<product>` from the spec ID prefix: `BO-` → `backend-office`, `AH-` → `auth-hub`) and present it
+- **If an issue**: fetch full details with `gh issue view <number> --repo swv-hq/backend-office` and present them. If the issue carries a `product:<name>` label, set product context so the downstream `build` skill inherits it.
+- **If a spec**: read the full spec file (`docs/specs/SPEC-XXX-*.md` in single-product mode, or `docs/products/<product>/specs/<PREFIX>-SPEC-XXX-*.md` in multi-product mode) and present it. Derive product context from the spec's prefix/path.
 
 Then ask how they'd like to proceed.
 

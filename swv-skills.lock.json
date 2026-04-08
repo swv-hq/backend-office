@@ -1,18 +1,18 @@
 {
   "version": "3.0.0",
-  "packageVersion": "3.1.3",
+  "packageVersion": "3.2.0",
   "installedAt": "2026-04-07T13:09:56.094Z",
-  "updatedAt": "2026-04-07T13:11:55.182Z",
+  "updatedAt": "2026-04-08T02:04:40.345Z",
   "skills": {
     "build": {
       "tool": "claude-code",
       "dest": ".claude/skills/build",
       "files": {
-        ".claude/skills/build/SKILL.md": "269f9c348d20bb458b5e14b41e5abe8ac1e4da11d67cddf7c4550cea39140b17",
-        ".claude/skills/build/bug-workflow.md": "48cabbe4e4adc946625ecb5e3e177b158c3dbdd8303094698e62bc58b3e1e605",
+        ".claude/skills/build/SKILL.md": "ceda0ffebaefd886830d11e2dfdb21c48ec2418f96f69792d2d6e93baf184972",
+        ".claude/skills/build/bug-workflow.md": "789d4fbc4ff1edf9bc821f429010264324a84362017fabc041a497edb996e19a",
         ".claude/skills/build/code-review.md": "e4be656db405a96d6f32af3e2c408a124a58e572d9df4eb72eff39aef50cd72c",
-        ".claude/skills/build/enhancement-workflow.md": "5d539b23a90c249a202b11955ca3ca6f5f095f85fd339a0c6d561e8faf86d9c3",
-        ".claude/skills/build/feature-workflow.md": "979c3835a7feeaf478b6d862ded27f91a19c839c83cf84ca6bd2d703f70f895c",
+        ".claude/skills/build/enhancement-workflow.md": "e2d1bedc0d404b78d653668f9987f83a58d16a0d0bc24b2a370afcdd6e2e2a89",
+        ".claude/skills/build/feature-workflow.md": "39156cacbb300bb4ef46a0d103c908334f43bee2a89dcb8a2bdb2e45f188d503",
         ".claude/skills/build/spec-template.md": "d43e75382d7d94ed97cafbd09d15c2aac3295816712509e757d3abc94554e9df"
       }
     },
@@ -20,7 +20,14 @@
       "tool": "claude-code",
       "dest": ".claude/skills/issue",
       "files": {
-        ".claude/skills/issue/SKILL.md": "fb02096ef13d08f0a3e792597894f467bd0d98310e0d96c4c04b2d3eab17ffee"
+        ".claude/skills/issue/SKILL.md": "f10fe9485506c265d4e64be49d769b4bc1aaa331961e5666b152a37582f2dadd"
+      }
+    },
+    "next": {
+      "tool": "claude-code",
+      "dest": ".claude/skills/next",
+      "files": {
+        ".claude/skills/next/SKILL.md": "6b9a7bcfdb32103a9b439e791547b07db653b0b6a99377b466adb501b730f49e"
       }
     },
     "ts-style": {
@@ -38,13 +45,6 @@
         ".cursor/commands/scaffold.md": "2e2e7ab87a03228b209553dd57dbe3984bdccc50739e8107597832ced44f6dd9"
       },
       "kind": "command"
-    },
-    "next": {
-      "tool": "claude-code",
-      "dest": ".claude/skills/next",
-      "files": {
-        ".claude/skills/next/SKILL.md": "29e4c0b38fe5c10170f45c9ff789491be7c7d3fb5373e0b9c5ee6e04a96bfdc9"
-      }
     }
   },
   "claudeMdSectionHash": "7aaac2a5fea817e9b0ac271fe0248306195209a56572d2b360d54e0c64a0b6c0"
