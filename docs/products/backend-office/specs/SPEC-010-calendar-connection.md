@@ -1,5 +1,5 @@
 ---
-id: SPEC-010
+id: BO-SPEC-010
 title: Calendar Connection
 status: draft
 priority: P0
@@ -8,7 +8,7 @@ created: 2026-04-01
 updated: 2026-04-06
 ---
 
-# SPEC-010: Calendar Connection
+# BO-SPEC-010: Calendar Connection
 
 ## Problem Statement
 
@@ -26,16 +26,16 @@ During onboarding (step 5), the contractor picks one of three options. All three
 
 ## Acceptance Criteria
 
-- **SPEC-010.AC1** [native]: Three options presented as equal choices (not "connect or skip"): "Google Calendar", "Apple Calendar", "Back-End Office Calendar"
-- **SPEC-010.AC2** [native]: "Back-End Office Calendar" option pitched as a feature: "We'll manage your schedule for you"
-- **SPEC-010.AC3** [native]: Google Calendar: OAuth 2.0 flow launched, requesting read+write calendar scopes
-- **SPEC-010.AC4** [backend]: Google Calendar: OAuth tokens stored securely, refresh token handling implemented
-- **SPEC-010.AC5** [native]: Apple Calendar: EventKit permission prompt triggered, read+write access requested
-- **SPEC-010.AC6** [native]: Apple Calendar: Permission denial handled gracefully — explain why access is needed, offer retry or switch to Back-End Office Calendar
-- **SPEC-010.AC7** [backend]: Selected calendar provider stored on contractor profile (`calendarProvider`: google | apple | in_app)
-- **SPEC-010.AC8** [native]: After connection, a confirmation message shows: "Calendar connected" with the selected provider name
-- **SPEC-010.AC9** [native]: Calendar can be changed later from app settings (SPEC-028)
-- **SPEC-010.AC10** [backend, native]: All code passes typecheck and lint
+- **BO-SPEC-010.AC1** [native]: Three options presented as equal choices (not "connect or skip"): "Google Calendar", "Apple Calendar", "Back-End Office Calendar"
+- **BO-SPEC-010.AC2** [native]: "Back-End Office Calendar" option pitched as a feature: "We'll manage your schedule for you"
+- **BO-SPEC-010.AC3** [native]: Google Calendar: OAuth 2.0 flow launched, requesting read+write calendar scopes
+- **BO-SPEC-010.AC4** [backend]: Google Calendar: OAuth tokens stored securely, refresh token handling implemented
+- **BO-SPEC-010.AC5** [native]: Apple Calendar: EventKit permission prompt triggered, read+write access requested
+- **BO-SPEC-010.AC6** [native]: Apple Calendar: Permission denial handled gracefully — explain why access is needed, offer retry or switch to Back-End Office Calendar
+- **BO-SPEC-010.AC7** [backend]: Selected calendar provider stored on contractor profile (`calendarProvider`: google | apple | in_app)
+- **BO-SPEC-010.AC8** [native]: After connection, a confirmation message shows: "Calendar connected" with the selected provider name
+- **BO-SPEC-010.AC9** [native]: Calendar can be changed later from app settings (BO-SPEC-028)
+- **BO-SPEC-010.AC10** [backend, native]: All code passes typecheck and lint
 
 ## Open Questions
 
@@ -49,5 +49,5 @@ During onboarding (step 5), the contractor picks one of three options. All three
 - Apple Calendar: Use `expo-calendar` (wraps EventKit) for iOS. Read and write events directly on device.
 - For Google Calendar two-way sync, Google's Calendar API supports push notifications (webhooks) to notify of changes. This requires a publicly accessible endpoint — Convex HTTP endpoints work.
 - The in-app calendar option means all scheduling data lives in the Convex `jobSegments` table (using `scheduledAt` per segment). A single job with multiple segments produces multiple calendar entries — one per segment. No external API calls needed for the in-app option.
-- A calendar abstraction (similar to the provider pattern in SPEC-003) may be useful here: a calendar interface with Google, Apple, and InApp implementations. The unit of sync is a `jobSegment`, not a `job`. Each provider implementation maps a segment to a calendar event (one-to-one) and persists the external event id back on the segment for two-way sync.
+- A calendar abstraction (similar to the provider pattern in BO-SPEC-003) may be useful here: a calendar interface with Google, Apple, and InApp implementations. The unit of sync is a `jobSegment`, not a `job`. Each provider implementation maps a segment to a calendar event (one-to-one) and persists the external event id back on the segment for two-way sync.
 - Sync queries should use the `by_contractorId_scheduledAt` index on `jobSegments` to fetch segments within a date window.

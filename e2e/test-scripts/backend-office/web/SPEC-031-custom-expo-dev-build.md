@@ -1,10 +1,10 @@
-# SPEC-031: Custom Expo Dev Build — Web E2E Test Script
+# BO-SPEC-031: Custom Expo Dev Build — Web E2E Test Script
 
 This spec is primarily native-focused. The only web-relevant AC is AC8 (cross-workspace typecheck and lint).
 
 ---
 
-## Test 1: Cross-Workspace Typecheck and Lint [SPEC-031.AC8]
+## Test 1: Cross-Workspace Typecheck and Lint [BO-SPEC-031.AC8]
 
 **Prerequisites:**
 
@@ -26,6 +26,6 @@ This spec is primarily native-focused. The only web-relevant AC is AC8 (cross-wo
 
 ## AC Coverage Matrix
 
-| AC ID        | Test(s) | Platform    |
-| ------------ | ------- | ----------- |
-| SPEC-031.AC8 | Test 1  | native, web |
+| AC ID           | Test(s) | Platform    |
+| --------------- | ------- | ----------- |
+| BO-SPEC-031.AC8 | Test 1  | native, web |

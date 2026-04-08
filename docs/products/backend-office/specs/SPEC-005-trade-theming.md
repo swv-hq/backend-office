@@ -1,5 +1,5 @@
 ---
-id: SPEC-005
+id: BO-SPEC-005
 title: Trade Theming System
 status: draft
 priority: P0
@@ -8,7 +8,7 @@ created: 2026-04-01
 updated: 2026-04-01
 ---
 
-# SPEC-005: Trade Theming System
+# BO-SPEC-005: Trade Theming System
 
 ## Problem Statement
 
@@ -26,15 +26,15 @@ After selecting their trade during onboarding, the entire app adapts: color sche
 
 ## Acceptance Criteria
 
-- **SPEC-005.AC1** [native]: Theme provider component wraps the app, exposing current trade theme via context
-- **SPEC-005.AC2** [native]: Three complete trade themes defined: handyman, plumber, electrician — each with primary color, secondary color, accent color, and icon set
-- **SPEC-005.AC3** [native]: Terminology map per trade: job-related terms adapt (e.g., "service call" vs "job" vs "work order", trade-specific material categories)
-- **SPEC-005.AC4** [native]: All UI components consume theme from context — no hardcoded colors or trade-specific strings
-- **SPEC-005.AC5** [native]: Theme switches at runtime when contractor's trade type is loaded from their profile
-- **SPEC-005.AC6** [backend]: Trade-specific terminology available as a shared constant/config that both backend (for AI prompts) and frontend can reference
-- **SPEC-005.AC7** [web]: Customer-facing pages (estimates, invoices) reflect the contractor's trade theme — colors and terminology match what the contractor sees
-- **SPEC-005.AC8** [native]: Default/fallback theme displays correctly when trade type is not yet set (during onboarding before trade selection)
-- **SPEC-005.AC9** [native, web]: All themed screens pass visual review — no broken styles, unreadable text, or missing icons across all three trade themes
+- **BO-SPEC-005.AC1** [native]: Theme provider component wraps the app, exposing current trade theme via context
+- **BO-SPEC-005.AC2** [native]: Three complete trade themes defined: handyman, plumber, electrician — each with primary color, secondary color, accent color, and icon set
+- **BO-SPEC-005.AC3** [native]: Terminology map per trade: job-related terms adapt (e.g., "service call" vs "job" vs "work order", trade-specific material categories)
+- **BO-SPEC-005.AC4** [native]: All UI components consume theme from context — no hardcoded colors or trade-specific strings
+- **BO-SPEC-005.AC5** [native]: Theme switches at runtime when contractor's trade type is loaded from their profile
+- **BO-SPEC-005.AC6** [backend]: Trade-specific terminology available as a shared constant/config that both backend (for AI prompts) and frontend can reference
+- **BO-SPEC-005.AC7** [web]: Customer-facing pages (estimates, invoices) reflect the contractor's trade theme — colors and terminology match what the contractor sees
+- **BO-SPEC-005.AC8** [native]: Default/fallback theme displays correctly when trade type is not yet set (during onboarding before trade selection)
+- **BO-SPEC-005.AC9** [native, web]: All themed screens pass visual review — no broken styles, unreadable text, or missing icons across all three trade themes
 
 ## Open Questions
 

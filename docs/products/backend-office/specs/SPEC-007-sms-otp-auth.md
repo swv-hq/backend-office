@@ -1,5 +1,5 @@
 ---
-id: SPEC-007
+id: BO-SPEC-007
 title: SMS OTP Authentication
 status: draft
 priority: P0
@@ -8,7 +8,7 @@ created: 2026-04-01
 updated: 2026-04-01
 ---
 
-# SPEC-007: SMS OTP Authentication
+# BO-SPEC-007: SMS OTP Authentication
 
 ## Problem Statement
 
@@ -26,16 +26,16 @@ Contractors can sign up and log in by entering their phone number and verifying 
 
 ## Acceptance Criteria
 
-- **SPEC-007.AC1** [native]: Login screen shows three auth options: phone number, Google, Apple
-- **SPEC-007.AC2** [native]: Phone login flow: enter phone number -> receive SMS code -> enter code -> authenticated
-- **SPEC-007.AC3** [native]: Phone number input validates format before sending OTP (US numbers at minimum, international as supported by Clerk)
-- **SPEC-007.AC4** [native]: Error states handled: invalid phone number, expired code, wrong code, rate limiting
-- **SPEC-007.AC5** [native]: Resend code option available after a cooldown period (e.g., 30 seconds)
-- **SPEC-007.AC6** [backend]: Clerk configured with SMS OTP authentication enabled
-- **SPEC-007.AC7** [native]: New users who sign up via phone are created in Clerk and can proceed to onboarding
-- **SPEC-007.AC8** [native]: Existing users who log in via phone are authenticated and proceed to the main app
-- **SPEC-007.AC9** [web]: SMS OTP login available on web for customer-facing flows if needed in future (Clerk config supports it)
-- **SPEC-007.AC10** [native]: All auth flows pass typecheck and lint
+- **BO-SPEC-007.AC1** [native]: Login screen shows three auth options: phone number, Google, Apple
+- **BO-SPEC-007.AC2** [native]: Phone login flow: enter phone number -> receive SMS code -> enter code -> authenticated
+- **BO-SPEC-007.AC3** [native]: Phone number input validates format before sending OTP (US numbers at minimum, international as supported by Clerk)
+- **BO-SPEC-007.AC4** [native]: Error states handled: invalid phone number, expired code, wrong code, rate limiting
+- **BO-SPEC-007.AC5** [native]: Resend code option available after a cooldown period (e.g., 30 seconds)
+- **BO-SPEC-007.AC6** [backend]: Clerk configured with SMS OTP authentication enabled
+- **BO-SPEC-007.AC7** [native]: New users who sign up via phone are created in Clerk and can proceed to onboarding
+- **BO-SPEC-007.AC8** [native]: Existing users who log in via phone are authenticated and proceed to the main app
+- **BO-SPEC-007.AC9** [web]: SMS OTP login available on web for customer-facing flows if needed in future (Clerk config supports it)
+- **BO-SPEC-007.AC10** [native]: All auth flows pass typecheck and lint
 
 ## Open Questions
 

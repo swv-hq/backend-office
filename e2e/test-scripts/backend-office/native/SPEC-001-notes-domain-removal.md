@@ -1,4 +1,4 @@
-# SPEC-001: Notes Domain Removal — Native E2E Test Script
+# BO-SPEC-001: Notes Domain Removal — Native E2E Test Script
 
 ## Prerequisites
 
@@ -8,7 +8,7 @@
 
 ---
 
-## Test 1: Authenticated user sees HomeScreen placeholder [SPEC-001.AC8] [SPEC-001.AC11]
+## Test 1: Authenticated user sees HomeScreen placeholder [BO-SPEC-001.AC8] [BO-SPEC-001.AC11]
 
 **Instructions:**
 
@@ -22,7 +22,7 @@
 - Screen displays "Back-End Office" subtitle
 - A "Log out" button is visible
 
-## Test 2: Unauthenticated user sees login [SPEC-001.AC11]
+## Test 2: Unauthenticated user sees login [BO-SPEC-001.AC11]
 
 **Instructions:**
 
@@ -33,7 +33,7 @@
 - Login screen appears with Google and Apple sign-in buttons
 - No references to "notes" anywhere on screen
 
-## Test 3: No notes screens accessible [SPEC-001.AC7]
+## Test 3: No notes screens accessible [BO-SPEC-001.AC7]
 
 **Instructions:**
 
@@ -45,7 +45,7 @@
 - No notes dashboard, create note, or note detail screens exist
 - Navigation only shows HomeScreen after authentication
 
-## Test 4: Logout works from HomeScreen [SPEC-001.AC8]
+## Test 4: Logout works from HomeScreen [BO-SPEC-001.AC8]
 
 **Instructions:**
 
@@ -57,7 +57,7 @@
 
 - User is signed out and returned to the LoginScreen
 
-## Test 5: Typecheck passes [SPEC-001.AC9]
+## Test 5: Typecheck passes [BO-SPEC-001.AC9]
 
 **Instructions:**
 
@@ -67,7 +67,7 @@
 
 - Command exits with code 0, no type errors
 
-## Test 6: Lint passes [SPEC-001.AC10]
+## Test 6: Lint passes [BO-SPEC-001.AC10]
 
 **Instructions:**
 
@@ -81,10 +81,10 @@
 
 ## AC Coverage Matrix
 
-| AC            | Tests          |
-| ------------- | -------------- |
-| SPEC-001.AC7  | Test 3         |
-| SPEC-001.AC8  | Test 1, Test 4 |
-| SPEC-001.AC9  | Test 5         |
-| SPEC-001.AC10 | Test 6         |
-| SPEC-001.AC11 | Test 1, Test 2 |
+| AC               | Tests          |
+| ---------------- | -------------- |
+| BO-SPEC-001.AC7  | Test 3         |
+| BO-SPEC-001.AC8  | Test 1, Test 4 |
+| BO-SPEC-001.AC9  | Test 5         |
+| BO-SPEC-001.AC10 | Test 6         |
+| BO-SPEC-001.AC11 | Test 1, Test 2 |

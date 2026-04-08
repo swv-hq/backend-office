@@ -1,5 +1,5 @@
 ---
-id: SPEC-013
+id: BO-SPEC-013
 title: Contact Management
 status: draft
 priority: P0
@@ -8,7 +8,7 @@ created: 2026-04-01
 updated: 2026-04-01
 ---
 
-# SPEC-013: Contact Management
+# BO-SPEC-013: Contact Management
 
 ## Problem Statement
 
@@ -26,18 +26,18 @@ Contractors see a searchable list of all their contacts, auto-created from calls
 
 ## Acceptance Criteria
 
-- **SPEC-013.AC1** [native]: Contact list screen showing all contacts sorted by most recent interaction
-- **SPEC-013.AC2** [native]: Search bar filters contacts by name, phone number, or notes
-- **SPEC-013.AC3** [native]: Contact detail screen showing: name, phone, email, address, source, notes, and linked jobs/estimates/invoices
-- **SPEC-013.AC4** [native]: Voice-first contact creation: tap microphone button, speak contact details ("John Smith, 555-0123, met him at Home Depot, needs kitchen remodel"), AI parses into structured fields
-- **SPEC-013.AC5** [backend]: AI provider parses voice transcript into structured contact fields: name, phone, email (if mentioned), address (if mentioned), notes
-- **SPEC-013.AC6** [native]: Manual contact creation form as fallback: text fields for name, phone, email, address, notes
-- **SPEC-013.AC7** [native]: Edit contact: tap any field to modify, save updates
-- **SPEC-013.AC8** [native]: Tap phone number to initiate a call; tap email to compose an email
-- **SPEC-013.AC9** [backend]: Contacts query filtered by authenticated contractor's ID (ownership enforced)
-- **SPEC-013.AC10** [backend]: Duplicate detection: when auto-creating a contact from a missed call, check if the phone number already exists for this contractor. If so, update the existing record rather than creating a duplicate.
-- **SPEC-013.AC11** [backend]: Audit log entries for contact creation, updates, and deletion
-- **SPEC-013.AC12** [backend, native]: All code passes typecheck and lint
+- **BO-SPEC-013.AC1** [native]: Contact list screen showing all contacts sorted by most recent interaction
+- **BO-SPEC-013.AC2** [native]: Search bar filters contacts by name, phone number, or notes
+- **BO-SPEC-013.AC3** [native]: Contact detail screen showing: name, phone, email, address, source, notes, and linked jobs/estimates/invoices
+- **BO-SPEC-013.AC4** [native]: Voice-first contact creation: tap microphone button, speak contact details ("John Smith, 555-0123, met him at Home Depot, needs kitchen remodel"), AI parses into structured fields
+- **BO-SPEC-013.AC5** [backend]: AI provider parses voice transcript into structured contact fields: name, phone, email (if mentioned), address (if mentioned), notes
+- **BO-SPEC-013.AC6** [native]: Manual contact creation form as fallback: text fields for name, phone, email, address, notes
+- **BO-SPEC-013.AC7** [native]: Edit contact: tap any field to modify, save updates
+- **BO-SPEC-013.AC8** [native]: Tap phone number to initiate a call; tap email to compose an email
+- **BO-SPEC-013.AC9** [backend]: Contacts query filtered by authenticated contractor's ID (ownership enforced)
+- **BO-SPEC-013.AC10** [backend]: Duplicate detection: when auto-creating a contact from a missed call, check if the phone number already exists for this contractor. If so, update the existing record rather than creating a duplicate.
+- **BO-SPEC-013.AC11** [backend]: Audit log entries for contact creation, updates, and deletion
+- **BO-SPEC-013.AC12** [backend, native]: All code passes typecheck and lint
 
 ## Open Questions
 

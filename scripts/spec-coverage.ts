@@ -36,8 +36,8 @@ const specFiles = globSync(specPattern, { cwd: rootDir }).filter(
   (f) => !f.endsWith("_TEMPLATE.md") && !f.endsWith("ROADMAP.md"),
 );
 
-const acIdRegex = /SPEC-\d+\.AC\d+/g;
-const acPlatformRegex = /\*\*(SPEC-\d+\.AC\d+)\*\*\s*\[([^\]]+)\]/g;
+const acIdRegex = /(?:BO|AH)-SPEC-\d+\.AC\d+/g;
+const acPlatformRegex = /\*\*((?:BO|AH)-SPEC-\d+\.AC\d+)\*\*\s*\[([^\]]+)\]/g;
 const statusRegex = /^status:\s*(.+)$/m;
 const activeStatuses = new Set(["in-progress", "in-testing", "implemented"]);
 
@@ -175,7 +175,7 @@ if (total === 0) {
   );
   console.log(
     dim(
-      "  Copy docs/products/backend-office/specs/_TEMPLATE.md and define SPEC-XXX.AC# criteria.\n",
+      "  Copy docs/products/backend-office/specs/_TEMPLATE.md and define BO-SPEC-XXX.AC# criteria.\n",
     ),
   );
   process.exit(0);

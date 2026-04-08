@@ -7,13 +7,13 @@ function readJson(filePath: string) {
   return JSON.parse(fs.readFileSync(path.join(nativeRoot, filePath), "utf-8"));
 }
 
-describe("SPEC-031: Custom Expo Dev Build", () => {
-  it("expo-dev-client is installed as a dependency [SPEC-031.AC1]", () => {
+describe("BO-SPEC-031: Custom Expo Dev Build", () => {
+  it("expo-dev-client is installed as a dependency [BO-SPEC-031.AC1]", () => {
     const pkg = readJson("package.json");
     expect(pkg.dependencies).toHaveProperty("expo-dev-client");
   });
 
-  describe("eas.json build profiles [SPEC-031.AC2]", () => {
+  describe("eas.json build profiles [BO-SPEC-031.AC2]", () => {
     let eas: Record<string, unknown>;
 
     beforeAll(() => {
@@ -40,7 +40,7 @@ describe("SPEC-031: Custom Expo Dev Build", () => {
     });
   });
 
-  describe("app.json branding [SPEC-031.AC3]", () => {
+  describe("app.json branding [BO-SPEC-031.AC3]", () => {
     let expo: Record<string, unknown>;
 
     beforeAll(() => {
@@ -62,7 +62,7 @@ describe("SPEC-031: Custom Expo Dev Build", () => {
     });
   });
 
-  it("dev script uses --dev-client flag [SPEC-031.AC7]", () => {
+  it("dev script uses --dev-client flag [BO-SPEC-031.AC7]", () => {
     const pkg = readJson("package.json");
     expect(pkg.scripts.dev).toContain("--dev-client");
   });

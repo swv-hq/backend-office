@@ -1,5 +1,5 @@
 ---
-id: SPEC-022
+id: BO-SPEC-022
 title: Customer Payments
 status: draft
 priority: P0
@@ -8,7 +8,7 @@ created: 2026-04-01
 updated: 2026-04-06
 ---
 
-# SPEC-022: Customer Payments
+# BO-SPEC-022: Customer Payments
 
 ## Problem Statement
 
@@ -29,19 +29,19 @@ The customer taps "Pay Now" on the invoice web page, enters their card via Strip
 
 ## Acceptance Criteria
 
-- **SPEC-022.AC1** [web]: Public route `/invoice/[token]` renders the invoice as a mobile-first web page. No login required. Token-based access.
-- **SPEC-022.AC2** [web]: Invoice page shows: invoice number (e.g., `INV-1042-3`), invoice type badge ("Deposit" / "Progress" / "Final"), contractor business name/logo, trade-themed colors, itemized line items (positive work lines AND any deposit credit lines as negative-amount entries with their source invoice number referenced in the description), total amount due (which is always `sum(lineItems)` — the deposit credits naturally reduce the visible balance), "Pay Now" button. For non-final invoices, the page makes clear this is a partial payment toward an ongoing job.
-- **SPEC-022.AC3** [web]: "Pay Now" button opens Stripe Checkout (hosted payment page) pre-configured with the invoice amount and contractor's Stripe Connect account as the destination. If the invoice total is zero or negative (over-deposited final invoice), the "Pay Now" button is hidden and the page shows "No payment due."
-- **SPEC-022.AC4** [backend]: Stripe Checkout session created with: amount, currency (USD), contractor's connected account, platform application fee (if applicable), success/cancel redirect URLs. One Stripe session per invoice.
-- **SPEC-022.AC5** [backend]: Stripe `checkout.session.completed` webhook handled: invoice status updated to "paid", `paidAt` timestamp set, `stripePaymentId` stored. After the update, `computeJobRollup` is called and the resulting status written back to the job.
-- **SPEC-022.AC6** [backend]: Job status rollup to "paid" is emergent from `computeJobRollup` — it requires that all non-canceled segments are completed AND every non-draft invoice for the job is `paid`. Paying a deposit or a progress invoice in isolation does not move the job to "paid"; it only updates the invoice and may leave the job at `in_progress` or `completed`.
-- **SPEC-022.AC7** [native]: Contractor receives push notification: "Payment received: ${amount} from {customerName} for {jobDescription}"
-- **SPEC-022.AC8** [web]: After successful payment, customer sees a confirmation page: "Payment received. Thank you!"
-- **SPEC-022.AC9** [web]: Invoice page shows "Paid" badge with payment date if the invoice has already been paid (prevents double payment)
-- **SPEC-022.AC10** [backend]: All Stripe interactions go through the payments provider interface (SPEC-003)
-- **SPEC-022.AC11** [backend]: Stripe webhook signature verification on all incoming webhooks
-- **SPEC-022.AC12** [backend]: Audit log entries for payment session created, payment received
-- **SPEC-022.AC13** [backend, web]: All code passes typecheck and lint
+- **BO-SPEC-022.AC1** [web]: Public route `/invoice/[token]` renders the invoice as a mobile-first web page. No login required. Token-based access.
+- **BO-SPEC-022.AC2** [web]: Invoice page shows: invoice number (e.g., `INV-1042-3`), invoice type badge ("Deposit" / "Progress" / "Final"), contractor business name/logo, trade-themed colors, itemized line items (positive work lines AND any deposit credit lines as negative-amount entries with their source invoice number referenced in the description), total amount due (which is always `sum(lineItems)` — the deposit credits naturally reduce the visible balance), "Pay Now" button. For non-final invoices, the page makes clear this is a partial payment toward an ongoing job.
+- **BO-SPEC-022.AC3** [web]: "Pay Now" button opens Stripe Checkout (hosted payment page) pre-configured with the invoice amount and contractor's Stripe Connect account as the destination. If the invoice total is zero or negative (over-deposited final invoice), the "Pay Now" button is hidden and the page shows "No payment due."
+- **BO-SPEC-022.AC4** [backend]: Stripe Checkout session created with: amount, currency (USD), contractor's connected account, platform application fee (if applicable), success/cancel redirect URLs. One Stripe session per invoice.
+- **BO-SPEC-022.AC5** [backend]: Stripe `checkout.session.completed` webhook handled: invoice status updated to "paid", `paidAt` timestamp set, `stripePaymentId` stored. After the update, `computeJobRollup` is called and the resulting status written back to the job.
+- **BO-SPEC-022.AC6** [backend]: Job status rollup to "paid" is emergent from `computeJobRollup` — it requires that all non-canceled segments are completed AND every non-draft invoice for the job is `paid`. Paying a deposit or a progress invoice in isolation does not move the job to "paid"; it only updates the invoice and may leave the job at `in_progress` or `completed`.
+- **BO-SPEC-022.AC7** [native]: Contractor receives push notification: "Payment received: ${amount} from {customerName} for {jobDescription}"
+- **BO-SPEC-022.AC8** [web]: After successful payment, customer sees a confirmation page: "Payment received. Thank you!"
+- **BO-SPEC-022.AC9** [web]: Invoice page shows "Paid" badge with payment date if the invoice has already been paid (prevents double payment)
+- **BO-SPEC-022.AC10** [backend]: All Stripe interactions go through the payments provider interface (BO-SPEC-003)
+- **BO-SPEC-022.AC11** [backend]: Stripe webhook signature verification on all incoming webhooks
+- **BO-SPEC-022.AC12** [backend]: Audit log entries for payment session created, payment received
+- **BO-SPEC-022.AC13** [backend, web]: All code passes typecheck and lint
 
 ## Open Questions
 
@@ -53,7 +53,7 @@ The customer taps "Pay Now" on the invoice web page, enters their card via Strip
 
 - Stripe Checkout is the fastest integration path: create a session with `stripe.checkout.sessions.create()`, redirect customer to the hosted page, handle the success webhook.
 - Use Stripe Connect's `payment_intent_data.application_fee_amount` to take the platform fee on each transaction (if implementing transaction fees).
-- The invoice token (same pattern as estimate tokens in SPEC-019) provides secure, no-auth access.
+- The invoice token (same pattern as estimate tokens in BO-SPEC-019) provides secure, no-auth access.
 - Webhook endpoint: Convex HTTP action that verifies the Stripe webhook signature (`stripe.webhooks.constructEvent()`), then updates the invoice and job records.
 - The success redirect URL should point back to the invoice page, which now shows the "Paid" status.
-- Trade theming applies to the invoice page the same way it does for estimates (SPEC-019).
+- Trade theming applies to the invoice page the same way it does for estimates (BO-SPEC-019).

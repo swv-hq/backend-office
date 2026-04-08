@@ -1,5 +1,5 @@
 ---
-id: SPEC-023
+id: BO-SPEC-023
 title: Subscription Billing
 status: draft
 priority: P0
@@ -8,7 +8,7 @@ created: 2026-04-01
 updated: 2026-04-01
 ---
 
-# SPEC-023: Subscription Billing
+# BO-SPEC-023: Subscription Billing
 
 ## Problem Statement
 
@@ -26,19 +26,19 @@ After the contractor completes onboarding and their Stripe account is active, a 
 
 ## Acceptance Criteria
 
-- **SPEC-023.AC1** [backend]: Stripe subscription created for the contractor after their Stripe Connect account is fully onboarded and verified
-- **SPEC-023.AC2** [backend]: Subscription uses Stripe Billing with a product/price configured for Back-End Office monthly plan
-- **SPEC-023.AC3** [backend]: Introductory pricing: first month at a reduced rate (configurable). Subsequent months at full rate. Implemented via Stripe coupon or promotional price.
-- **SPEC-023.AC4** [backend]: Subscription amount deducted directly from the contractor's Stripe connected account balance (not charged to a separate payment method)
-- **SPEC-023.AC5** [backend]: Stripe `invoice.payment_succeeded` webhook updates contractor's subscription status to "active"
-- **SPEC-023.AC6** [backend]: Stripe `invoice.payment_failed` webhook: contractor notified via push notification. Grace period before account features are limited.
-- **SPEC-023.AC7** [backend]: Stripe `customer.subscription.deleted` webhook: handle cancellation gracefully
-- **SPEC-023.AC8** [native]: Contractor can view their subscription status and billing history in settings (SPEC-028)
-- **SPEC-023.AC9** [native]: Push notification sent on each successful billing cycle: "Your Back-End Office subscription has been renewed"
-- **SPEC-023.AC10** [backend]: Subscription pricing (introductory and standard rates) configurable via environment variables or Convex config — not hardcoded
-- **SPEC-023.AC11** [backend]: All Stripe interactions go through the payments provider interface (SPEC-003)
-- **SPEC-023.AC12** [backend]: Audit log entries for subscription creation, renewal, failure, and cancellation
-- **SPEC-023.AC13** [backend, native]: All code passes typecheck and lint
+- **BO-SPEC-023.AC1** [backend]: Stripe subscription created for the contractor after their Stripe Connect account is fully onboarded and verified
+- **BO-SPEC-023.AC2** [backend]: Subscription uses Stripe Billing with a product/price configured for Back-End Office monthly plan
+- **BO-SPEC-023.AC3** [backend]: Introductory pricing: first month at a reduced rate (configurable). Subsequent months at full rate. Implemented via Stripe coupon or promotional price.
+- **BO-SPEC-023.AC4** [backend]: Subscription amount deducted directly from the contractor's Stripe connected account balance (not charged to a separate payment method)
+- **BO-SPEC-023.AC5** [backend]: Stripe `invoice.payment_succeeded` webhook updates contractor's subscription status to "active"
+- **BO-SPEC-023.AC6** [backend]: Stripe `invoice.payment_failed` webhook: contractor notified via push notification. Grace period before account features are limited.
+- **BO-SPEC-023.AC7** [backend]: Stripe `customer.subscription.deleted` webhook: handle cancellation gracefully
+- **BO-SPEC-023.AC8** [native]: Contractor can view their subscription status and billing history in settings (BO-SPEC-028)
+- **BO-SPEC-023.AC9** [native]: Push notification sent on each successful billing cycle: "Your Back-End Office subscription has been renewed"
+- **BO-SPEC-023.AC10** [backend]: Subscription pricing (introductory and standard rates) configurable via environment variables or Convex config — not hardcoded
+- **BO-SPEC-023.AC11** [backend]: All Stripe interactions go through the payments provider interface (BO-SPEC-003)
+- **BO-SPEC-023.AC12** [backend]: Audit log entries for subscription creation, renewal, failure, and cancellation
+- **BO-SPEC-023.AC13** [backend, native]: All code passes typecheck and lint
 
 ## Open Questions
 

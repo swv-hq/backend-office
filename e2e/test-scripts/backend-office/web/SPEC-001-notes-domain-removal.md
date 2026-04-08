@@ -1,4 +1,4 @@
-# SPEC-001: Notes Domain Removal — Web E2E Test Script
+# BO-SPEC-001: Notes Domain Removal — Web E2E Test Script
 
 ## Prerequisites
 
@@ -7,7 +7,7 @@
 
 ---
 
-## Test 1: Notes pages are removed [SPEC-001.AC4]
+## Test 1: Notes pages are removed [BO-SPEC-001.AC4]
 
 **Instructions:**
 
@@ -17,7 +17,7 @@
 
 - Page returns 404 (Not Found)
 
-## Test 2: Notes detail page is removed [SPEC-001.AC4]
+## Test 2: Notes detail page is removed [BO-SPEC-001.AC4]
 
 **Instructions:**
 
@@ -27,7 +27,7 @@
 
 - Page returns 404 (Not Found)
 
-## Test 3: Header navigation updated [SPEC-001.AC6]
+## Test 3: Header navigation updated [BO-SPEC-001.AC6]
 
 **Instructions:**
 
@@ -40,7 +40,7 @@
 - Authenticated: "Dashboard" button links to `/`
 - Unauthenticated: "Sign in" and "Get Started" buttons link to `/`
 
-## Test 4: User dropdown updated [SPEC-001.AC6]
+## Test 4: User dropdown updated [BO-SPEC-001.AC6]
 
 **Instructions:**
 
@@ -52,7 +52,7 @@
 
 - "Dashboard" link points to `/`, not `/notes`
 
-## Test 5: Site metadata updated [SPEC-001.AC12]
+## Test 5: Site metadata updated [BO-SPEC-001.AC12]
 
 **Instructions:**
 
@@ -63,7 +63,7 @@
 
 - Tab title shows "Back-End Office" (not "Notes App")
 
-## Test 6: Typecheck passes [SPEC-001.AC9]
+## Test 6: Typecheck passes [BO-SPEC-001.AC9]
 
 **Instructions:**
 
@@ -73,7 +73,7 @@
 
 - Command exits with code 0, no type errors
 
-## Test 7: Lint passes [SPEC-001.AC10]
+## Test 7: Lint passes [BO-SPEC-001.AC10]
 
 **Instructions:**
 
@@ -83,7 +83,7 @@
 
 - Command exits with code 0, no lint errors
 
-## Test 8: Build succeeds [SPEC-001.AC11]
+## Test 8: Build succeeds [BO-SPEC-001.AC11]
 
 **Instructions:**
 
@@ -98,12 +98,12 @@
 
 ## AC Coverage Matrix
 
-| AC            | Tests                                                                 |
-| ------------- | --------------------------------------------------------------------- |
-| SPEC-001.AC4  | Test 1, Test 2                                                        |
-| SPEC-001.AC5  | Test 1, Test 2 (pages gone, components were only used by those pages) |
-| SPEC-001.AC6  | Test 3, Test 4                                                        |
-| SPEC-001.AC9  | Test 6                                                                |
-| SPEC-001.AC10 | Test 7                                                                |
-| SPEC-001.AC11 | Test 8                                                                |
-| SPEC-001.AC12 | Test 5                                                                |
+| AC               | Tests                                                                 |
+| ---------------- | --------------------------------------------------------------------- |
+| BO-SPEC-001.AC4  | Test 1, Test 2                                                        |
+| BO-SPEC-001.AC5  | Test 1, Test 2 (pages gone, components were only used by those pages) |
+| BO-SPEC-001.AC6  | Test 3, Test 4                                                        |
+| BO-SPEC-001.AC9  | Test 6                                                                |
+| BO-SPEC-001.AC10 | Test 7                                                                |
+| BO-SPEC-001.AC11 | Test 8                                                                |
+| BO-SPEC-001.AC12 | Test 5                                                                |

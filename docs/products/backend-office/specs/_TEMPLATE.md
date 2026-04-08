@@ -1,5 +1,5 @@
 ---
-id: SPEC-XXX
+id: BO-SPEC-XXX
 title: Feature Title
 status: draft | in-review | approved | in-progress | in-testing | implemented
 priority: P0 | P1 | P2
@@ -8,7 +8,7 @@ created: YYYY-MM-DD
 updated: YYYY-MM-DD
 ---
 
-# SPEC-XXX: Feature Title
+# BO-SPEC-XXX: Feature Title
 
 ## Problem Statement
 
@@ -31,9 +31,9 @@ updated: YYYY-MM-DD
 <!-- Tag each AC with the platform(s) it applies to: [web], [native], [backend], or combinations like [web, native] -->
 <!-- The spec-coverage script uses these tags to verify tests exist in the correct workspace(s) -->
 
-- **SPEC-XXX.AC1** [backend]:
-- **SPEC-XXX.AC2** [web, native]:
-- **SPEC-XXX.AC3** [native]:
+- **BO-SPEC-XXX.AC1** [backend]:
+- **BO-SPEC-XXX.AC2** [web, native]:
+- **BO-SPEC-XXX.AC3** [native]:
 
 ## Open Questions
 
@@ -46,5 +46,5 @@ updated: YYYY-MM-DD
 ## Manual Test Scripts
 
 <!-- Created during development. Separate scripts for web and native when both platforms are involved. -->
-<!-- Web: e2e/test-scripts/backend-office/web/SPEC-XXX-feature-name.md -->
-<!-- Native: e2e/test-scripts/backend-office/native/SPEC-XXX-feature-name.md -->
+<!-- Web: e2e/test-scripts/backend-office/web/BO-SPEC-XXX-feature-name.md -->
+<!-- Native: e2e/test-scripts/backend-office/native/BO-SPEC-XXX-feature-name.md -->

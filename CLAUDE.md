@@ -129,15 +129,15 @@ npm run test:spec-coverage:strict         # Fail if not 100% coverage
 
 The `build` skill owns the feature/bug/enhancement workflow. The project-specific conventions the skill relies on:
 
-- **Specs** live in `docs/products/backend-office/specs/`. Copy `_TEMPLATE.md` to `SPEC-XXX-feature-name.md`. Status progression: `draft` → `in-review` → `approved` → `in-progress` → `in-testing` → `implemented`. Keep `docs/products/backend-office/ROADMAP.md` in sync on every status change.
-- **Acceptance criteria** use IDs `SPEC-XXX.AC1`, `SPEC-XXX.AC2`, … and are platform-tagged `[web]`, `[native]`, `[backend]` (or combinations).
+- **Specs** live in `docs/products/backend-office/specs/`. Copy `_TEMPLATE.md` to `BO-SPEC-XXX-feature-name.md`. Status progression: `draft` → `in-review` → `approved` → `in-progress` → `in-testing` → `implemented`. Keep `docs/products/backend-office/ROADMAP.md` in sync on every status change.
+- **Acceptance criteria** use IDs `BO-SPEC-XXX.AC1`, `BO-SPEC-XXX.AC2`, … and are platform-tagged `[web]`, `[native]`, `[backend]` (or combinations).
 - **Tests are tagged with AC IDs** and must live in the workspace matching the platform tag:
   - `[backend]` → `packages/backend-office-backend/convex/**/*.test.ts`
   - `[web]` → `apps/backend-office-web/src/**/*.test.ts(x)` or `e2e/test-scripts/backend-office/web/`
   - `[native]` → `apps/backend-office-native/src/**/*.test.ts(x)` or `e2e/test-scripts/backend-office/native/`
-  - Format: `it("does something [SPEC-XXX.AC1]", ...)`; for markdown E2E scripts, include `[SPEC-XXX.AC1]` inline.
+  - Format: `it("does something [BO-SPEC-XXX.AC1]", ...)`; for markdown E2E scripts, include `[BO-SPEC-XXX.AC1]` inline.
 - **Coverage check**: `npm run test:spec-coverage` verifies every AC has a linked test in the right workspace.
-- **Manual E2E scripts** are written per platform at `e2e/test-scripts/backend-office/web/SPEC-XXX-*.md` and `e2e/test-scripts/backend-office/native/SPEC-XXX-*.md`, each with Instructions + Expected Result and an AC coverage matrix.
+- **Manual E2E scripts** are written per platform at `e2e/test-scripts/backend-office/web/BO-SPEC-XXX-*.md` and `e2e/test-scripts/backend-office/native/BO-SPEC-XXX-*.md`, each with Instructions + Expected Result and an AC coverage matrix.
 - **Implementation order for a slice**: backend first (schema → data → use cases → API), then web and/or native.
 - **Spec sign-off**: never move a spec to `implemented` without Brian's explicit approval.
 

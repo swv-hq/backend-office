@@ -13,12 +13,12 @@ const convexDir = path.resolve(__dirname);
 const readFile = (filename: string) =>
   fs.readFileSync(path.join(convexDir, filename), "utf-8");
 
-describe("SPEC-002: Core Data Model", () => {
+describe("BO-SPEC-002: Core Data Model", () => {
   const schema = readFile("schema.ts");
   const validators = readFile("lib/validators.ts");
   const jobStatusSrc = readFile("lib/jobStatus.ts");
 
-  describe("contractors table [SPEC-002.AC1]", () => {
+  describe("contractors table [BO-SPEC-002.AC1]", () => {
     it("defines the contractors table", () => {
       expect(schema).toContain("contractors: defineTable");
     });
@@ -67,7 +67,7 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("contacts table [SPEC-002.AC2]", () => {
+  describe("contacts table [BO-SPEC-002.AC2]", () => {
     it("defines the contacts table", () => {
       expect(schema).toContain("contacts: defineTable");
     });
@@ -96,7 +96,7 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("jobs table [SPEC-002.AC3]", () => {
+  describe("jobs table [BO-SPEC-002.AC3]", () => {
     it("defines the jobs table", () => {
       expect(schema).toContain("jobs: defineTable");
     });
@@ -125,7 +125,7 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("estimates table [SPEC-002.AC4]", () => {
+  describe("estimates table [BO-SPEC-002.AC4]", () => {
     it("defines the estimates table", () => {
       expect(schema).toContain("estimates: defineTable");
     });
@@ -173,7 +173,7 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("invoices table [SPEC-002.AC5]", () => {
+  describe("invoices table [BO-SPEC-002.AC5]", () => {
     it("defines the invoices table", () => {
       expect(schema).toContain("invoices: defineTable");
     });
@@ -204,7 +204,7 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("callLogs table [SPEC-002.AC6]", () => {
+  describe("callLogs table [BO-SPEC-002.AC6]", () => {
     it("defines the callLogs table", () => {
       expect(schema).toContain("callLogs: defineTable");
     });
@@ -255,7 +255,7 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("accessTokens table [SPEC-002.AC7]", () => {
+  describe("accessTokens table [BO-SPEC-002.AC7]", () => {
     it("defines the accessTokens table", () => {
       expect(schema).toContain("accessTokens: defineTable");
     });
@@ -273,7 +273,7 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("indexes [SPEC-002.AC8]", () => {
+  describe("indexes [BO-SPEC-002.AC8]", () => {
     it("has contractor indexes", () => {
       expect(schema).toContain("by_userId");
     });
@@ -302,7 +302,7 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("validators [SPEC-002.AC9]", () => {
+  describe("validators [BO-SPEC-002.AC9]", () => {
     it("validators.ts uses proper Convex validator functions", () => {
       expect(validators).toContain("v.object(");
       expect(validators).toContain("v.string()");
@@ -323,7 +323,7 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("schema compilation [SPEC-002.AC10] [SPEC-002.AC11]", () => {
+  describe("schema compilation [BO-SPEC-002.AC10] [BO-SPEC-002.AC11]", () => {
     it("schema.ts exports defineSchema", () => {
       expect(schema).toContain("defineSchema");
       expect(schema).toContain("export default");
@@ -338,7 +338,7 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("jobSegments table [SPEC-002.AC12]", () => {
+  describe("jobSegments table [BO-SPEC-002.AC12]", () => {
     it("defines the jobSegments table", () => {
       expect(schema).toContain("jobSegments: defineTable");
     });
@@ -390,7 +390,7 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("line item segment tagging [SPEC-002.AC13]", () => {
+  describe("line item segment tagging [BO-SPEC-002.AC13]", () => {
     it("lineItemValidator allows optional segmentId", () => {
       expect(validators).toContain("segmentId");
       expect(validators).toMatch(
@@ -409,7 +409,7 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("invoice updates [SPEC-002.AC5]", () => {
+  describe("invoice updates [BO-SPEC-002.AC5]", () => {
     it("invoices table has invoiceType union", () => {
       expect(schema).toContain('v.literal("deposit")');
       expect(schema).toContain('v.literal("progress")');
@@ -433,13 +433,13 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("estimate numbering and segment fields [SPEC-002.AC4] [SPEC-002.AC15]", () => {
+  describe("estimate numbering and segment fields [BO-SPEC-002.AC4] [BO-SPEC-002.AC15]", () => {
     it("estimates table has estimateNumber string", () => {
       expect(schema).toMatch(/estimateNumber:\s*v\.string\(\)/);
     });
   });
 
-  describe("numbering counters [SPEC-002.AC15] [SPEC-002.AC16]", () => {
+  describe("numbering counters [BO-SPEC-002.AC15] [BO-SPEC-002.AC16]", () => {
     it("contractors table has nextJobNumber", () => {
       expect(schema).toMatch(/nextJobNumber:\s*v\.number\(\)/);
     });
@@ -455,7 +455,7 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("jobStatus helper [SPEC-002.AC14]", () => {
+  describe("jobStatus helper [BO-SPEC-002.AC14]", () => {
     it("module exports computeJobRollup", () => {
       expect(jobStatusSrc).toContain("export function computeJobRollup");
     });
@@ -584,7 +584,7 @@ describe("SPEC-002: Core Data Model", () => {
     });
   });
 
-  describe("negative line items allowed [SPEC-002.AC17]", () => {
+  describe("negative line items allowed [BO-SPEC-002.AC17]", () => {
     it("lineItemValidator does not constrain unitPrice/total to non-negative", () => {
       // The validator uses v.number() which permits negatives — verify there
       // is no positivity guard applied to either field.

@@ -1,5 +1,5 @@
 ---
-id: SPEC-009
+id: BO-SPEC-009
 title: Phone Number Setup
 status: draft
 priority: P0
@@ -8,7 +8,7 @@ created: 2026-04-01
 updated: 2026-04-01
 ---
 
-# SPEC-009: Phone Number Setup
+# BO-SPEC-009: Phone Number Setup
 
 ## Problem Statement
 
@@ -26,19 +26,19 @@ During onboarding (step 4), the contractor chooses one of two paths. Both result
 
 ## Acceptance Criteria
 
-- **SPEC-009.AC1** [native]: Two clear options presented: "Get a new business number" and "Use my existing number"
-- **SPEC-009.AC2** [native]: Path A — New number: contractor selects area code preference, app provisions a Twilio number in that area code
-- **SPEC-009.AC3** [backend]: Path A — Twilio API called to provision a local phone number with voice and SMS capabilities
-- **SPEC-009.AC4** [backend]: Path A — Provisioned number stored on contractor profile (`twilioPhoneNumber`)
-- **SPEC-009.AC5** [native]: Path A — Contractor sees their new number displayed with a brief explanation: "This is your new business line. Share it with customers — the app manages it for you."
-- **SPEC-009.AC6** [native]: Path B — Existing number: contractor enters their current business phone number
-- **SPEC-009.AC7** [backend]: Path B — Twilio number provisioned behind the scenes (contractor doesn't see it directly)
-- **SPEC-009.AC8** [native]: Path B — Step-by-step guided instructions for setting up call forwarding from their carrier to the Twilio number (carrier-specific instructions for major US carriers: AT&T, Verizon, T-Mobile)
-- **SPEC-009.AC9** [native]: Path B — "Test my forwarding" button that initiates a test call to verify forwarding is working
-- **SPEC-009.AC10** [backend]: Path B — `forwardingConfigured` flag set to true after successful test
-- **SPEC-009.AC11** [backend]: Twilio webhooks configured on the provisioned number for: incoming call, voicemail, SMS received
-- **SPEC-009.AC12** [native]: Error handling: Twilio provisioning failure shows a retry option with a clear error message
-- **SPEC-009.AC13** [backend, native]: All code passes typecheck and lint
+- **BO-SPEC-009.AC1** [native]: Two clear options presented: "Get a new business number" and "Use my existing number"
+- **BO-SPEC-009.AC2** [native]: Path A — New number: contractor selects area code preference, app provisions a Twilio number in that area code
+- **BO-SPEC-009.AC3** [backend]: Path A — Twilio API called to provision a local phone number with voice and SMS capabilities
+- **BO-SPEC-009.AC4** [backend]: Path A — Provisioned number stored on contractor profile (`twilioPhoneNumber`)
+- **BO-SPEC-009.AC5** [native]: Path A — Contractor sees their new number displayed with a brief explanation: "This is your new business line. Share it with customers — the app manages it for you."
+- **BO-SPEC-009.AC6** [native]: Path B — Existing number: contractor enters their current business phone number
+- **BO-SPEC-009.AC7** [backend]: Path B — Twilio number provisioned behind the scenes (contractor doesn't see it directly)
+- **BO-SPEC-009.AC8** [native]: Path B — Step-by-step guided instructions for setting up call forwarding from their carrier to the Twilio number (carrier-specific instructions for major US carriers: AT&T, Verizon, T-Mobile)
+- **BO-SPEC-009.AC9** [native]: Path B — "Test my forwarding" button that initiates a test call to verify forwarding is working
+- **BO-SPEC-009.AC10** [backend]: Path B — `forwardingConfigured` flag set to true after successful test
+- **BO-SPEC-009.AC11** [backend]: Twilio webhooks configured on the provisioned number for: incoming call, voicemail, SMS received
+- **BO-SPEC-009.AC12** [native]: Error handling: Twilio provisioning failure shows a retry option with a clear error message
+- **BO-SPEC-009.AC13** [backend, native]: All code passes typecheck and lint
 
 ## Open Questions
 
@@ -53,4 +53,4 @@ During onboarding (step 4), the contractor chooses one of two paths. Both result
 - Webhook URLs point to Convex HTTP endpoints that handle incoming calls, voicemail, and SMS events.
 - Call forwarding setup varies by carrier. Common method: dial `*72` + forwarding number. Provide carrier-specific instructions for the top 3 US carriers.
 - The test call for Path B can be a Twilio-initiated outbound call to the contractor's existing number that, when forwarded, hits the Twilio webhook and confirms the forwarding works.
-- All Twilio interactions go through the telephony provider interface (SPEC-003).
+- All Twilio interactions go through the telephony provider interface (BO-SPEC-003).

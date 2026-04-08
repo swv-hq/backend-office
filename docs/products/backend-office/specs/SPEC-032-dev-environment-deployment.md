@@ -1,5 +1,5 @@
 ---
-id: SPEC-032
+id: BO-SPEC-032
 title: Dev Environment Deployment
 status: draft
 priority: P0
@@ -8,7 +8,7 @@ created: 2026-04-01
 updated: 2026-04-01
 ---
 
-# SPEC-032: Dev Environment Deployment
+# BO-SPEC-032: Dev Environment Deployment
 
 ## Problem Statement
 
@@ -27,22 +27,22 @@ A fully deployed dev environment where the Convex backend, Next.js web app, and 
 
 ## Acceptance Criteria
 
-- **SPEC-032.AC1** [backend]: Convex project deployed to a persistent dev deployment (not just `npx convex dev` local)
-- **SPEC-032.AC2** [backend]: Environment variables configured in the Convex dashboard for dev-tier external services (Clerk, and placeholder values for Twilio/Stripe/Deepgram/Anthropic keys as those integrations are built)
-- **SPEC-032.AC3** [web]: Next.js web app deployed to Vercel (or equivalent) connected to the dev Convex deployment
-- **SPEC-032.AC4** [web]: Clerk authentication functional on the deployed web app (sign-up, sign-in, sign-out work end-to-end)
-- **SPEC-032.AC5** [native]: React Native app configured to connect to the deployed dev Convex backend (via environment config, not hardcoded URLs)
-- **SPEC-032.AC6** [native]: Clerk authentication functional in the native app against the deployed backend
-- **SPEC-032.AC7** [backend, web]: Deployment commands documented in the project README or a `docs/deployment.md` guide
-- **SPEC-032.AC8** [backend]: Convex deployment uses a separate project/deployment from any future production environment (clear dev/prod separation)
-- **SPEC-032.AC9** [web]: Environment-specific configuration (Convex URL, Clerk publishable key) managed via environment variables, not committed secrets
-- **SPEC-032.AC10** [backend, web, native]: All workspaces pass typecheck and lint with zero errors after changes
+- **BO-SPEC-032.AC1** [backend]: Convex project deployed to a persistent dev deployment (not just `npx convex dev` local)
+- **BO-SPEC-032.AC2** [backend]: Environment variables configured in the Convex dashboard for dev-tier external services (Clerk, and placeholder values for Twilio/Stripe/Deepgram/Anthropic keys as those integrations are built)
+- **BO-SPEC-032.AC3** [web]: Next.js web app deployed to Vercel (or equivalent) connected to the dev Convex deployment
+- **BO-SPEC-032.AC4** [web]: Clerk authentication functional on the deployed web app (sign-up, sign-in, sign-out work end-to-end)
+- **BO-SPEC-032.AC5** [native]: React Native app configured to connect to the deployed dev Convex backend (via environment config, not hardcoded URLs)
+- **BO-SPEC-032.AC6** [native]: Clerk authentication functional in the native app against the deployed backend
+- **BO-SPEC-032.AC7** [backend, web]: Deployment commands documented in the project README or a `docs/deployment.md` guide
+- **BO-SPEC-032.AC8** [backend]: Convex deployment uses a separate project/deployment from any future production environment (clear dev/prod separation)
+- **BO-SPEC-032.AC9** [web]: Environment-specific configuration (Convex URL, Clerk publishable key) managed via environment variables, not committed secrets
+- **BO-SPEC-032.AC10** [backend, web, native]: All workspaces pass typecheck and lint with zero errors after changes
 
 ## Open Questions
 
 - Which Vercel plan/account for the web app? Free tier should be sufficient for dev.
 - Do we need a custom domain for the dev web app, or is the default Vercel URL fine for now?
-- Should the native dev build (SPEC-031) connect to the deployed dev backend by default, or should that be a toggle?
+- Should the native dev build (BO-SPEC-031) connect to the deployed dev backend by default, or should that be a toggle?
 - Do we need separate Clerk applications for dev vs. production, or can we use Clerk's dev/prod instance modes?
 
 ## Technical Notes
@@ -56,5 +56,5 @@ A fully deployed dev environment where the Convex backend, Next.js web app, and 
 
 ## Manual Test Scripts
 
-<!-- Web: e2e/test-scripts/backend-office/web/SPEC-032-dev-environment-deployment.md -->
-<!-- Native: e2e/test-scripts/backend-office/native/SPEC-032-dev-environment-deployment.md -->
+<!-- Web: e2e/test-scripts/backend-office/web/BO-SPEC-032-dev-environment-deployment.md -->
+<!-- Native: e2e/test-scripts/backend-office/native/BO-SPEC-032-dev-environment-deployment.md -->

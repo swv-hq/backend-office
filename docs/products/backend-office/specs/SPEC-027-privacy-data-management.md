@@ -1,5 +1,5 @@
 ---
-id: SPEC-027
+id: BO-SPEC-027
 title: Privacy & Data Management
 status: draft
 priority: P0
@@ -8,7 +8,7 @@ created: 2026-04-01
 updated: 2026-04-01
 ---
 
-# SPEC-027: Privacy & Data Management
+# BO-SPEC-027: Privacy & Data Management
 
 ## Problem Statement
 
@@ -27,17 +27,17 @@ A privacy policy is published, contractors can delete their account and all asso
 
 ## Acceptance Criteria
 
-- **SPEC-027.AC1** [web]: Privacy policy page published at `/privacy` — covers: what data is collected, how it's used, who it's shared with (Twilio, Stripe, Deepgram, Anthropic), data retention, user rights under CCPA
-- **SPEC-027.AC2** [web]: Privacy policy link included in the app footer, customer-facing estimate/invoice pages, and during onboarding
-- **SPEC-027.AC3** [native]: "Delete My Account" option in settings. Requires confirmation ("This will permanently delete all your data including contacts, jobs, estimates, invoices, and recordings.")
-- **SPEC-027.AC4** [backend]: Account deletion mutation: deletes or anonymizes all contractor data — profile, contacts, jobs, estimates, invoices, call logs, voicemail recordings, time entries, audit logs. Stripe account disconnected (not deleted — that's Stripe's domain).
-- **SPEC-027.AC5** [backend]: Account deletion is a cascading operation: all related records across all tables are removed
-- **SPEC-027.AC6** [backend]: Voicemail and voice recording audio files deleted from Convex file storage as part of account deletion
-- **SPEC-027.AC7** [native]: 90-day audio retention notice displayed wherever voicemail recordings appear: "Audio recordings are retained for 90 days"
-- **SPEC-027.AC8** [backend]: Server-side query filter: voicemail audio URLs are not returned for recordings older than 90 days (even if the file hasn't been cleaned up yet)
-- **SPEC-027.AC9** [native]: Terms of service acceptance during onboarding (checkbox or "By continuing, you agree to our Terms and Privacy Policy" with links)
-- **SPEC-027.AC10** [backend]: Audit log entry for account deletion (logged before the deletion occurs, with contractor ID for record-keeping)
-- **SPEC-027.AC11** [backend, web, native]: All code passes typecheck and lint
+- **BO-SPEC-027.AC1** [web]: Privacy policy page published at `/privacy` — covers: what data is collected, how it's used, who it's shared with (Twilio, Stripe, Deepgram, Anthropic), data retention, user rights under CCPA
+- **BO-SPEC-027.AC2** [web]: Privacy policy link included in the app footer, customer-facing estimate/invoice pages, and during onboarding
+- **BO-SPEC-027.AC3** [native]: "Delete My Account" option in settings. Requires confirmation ("This will permanently delete all your data including contacts, jobs, estimates, invoices, and recordings.")
+- **BO-SPEC-027.AC4** [backend]: Account deletion mutation: deletes or anonymizes all contractor data — profile, contacts, jobs, estimates, invoices, call logs, voicemail recordings, time entries, audit logs. Stripe account disconnected (not deleted — that's Stripe's domain).
+- **BO-SPEC-027.AC5** [backend]: Account deletion is a cascading operation: all related records across all tables are removed
+- **BO-SPEC-027.AC6** [backend]: Voicemail and voice recording audio files deleted from Convex file storage as part of account deletion
+- **BO-SPEC-027.AC7** [native]: 90-day audio retention notice displayed wherever voicemail recordings appear: "Audio recordings are retained for 90 days"
+- **BO-SPEC-027.AC8** [backend]: Server-side query filter: voicemail audio URLs are not returned for recordings older than 90 days (even if the file hasn't been cleaned up yet)
+- **BO-SPEC-027.AC9** [native]: Terms of service acceptance during onboarding (checkbox or "By continuing, you agree to our Terms and Privacy Policy" with links)
+- **BO-SPEC-027.AC10** [backend]: Audit log entry for account deletion (logged before the deletion occurs, with contractor ID for record-keeping)
+- **BO-SPEC-027.AC11** [backend, web, native]: All code passes typecheck and lint
 
 ## Open Questions
 
