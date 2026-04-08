@@ -1,5 +1,5 @@
 {
-  "name": "native-app",
+  "name": "@backend-office/native",
   "version": "1.0.0",
   "main": "index.tsx",
   "scripts": {
@@ -16,7 +16,7 @@
   "dependencies": {
     "@clerk/clerk-expo": "^2.19.31",
     "@expo/vector-icons": "^15.0.3",
-    "@packages/backend": "*",
+    "@backend-office/backend": "*",
     "@react-native/virtualized-lists": "^0.82.1",
     "@react-navigation/bottom-tabs": "^7.8.11",
     "@react-navigation/native": "^7.1.24",

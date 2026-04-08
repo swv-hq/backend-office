@@ -19,7 +19,7 @@
 
 **Instructions:**
 
-1. Open a terminal in `apps/native/`
+1. Open a terminal in `apps/backend-office-native/`
 2. Run `npx expo run:ios`
 3. Wait for the native build to complete (first build takes 5-15 minutes; subsequent builds are faster)
 4. Observe the iOS Simulator launching
@@ -42,7 +42,7 @@
 
 **Instructions:**
 
-1. Open a terminal in `apps/native/`
+1. Open a terminal in `apps/backend-office-native/`
 2. Run `npm run dev`
 3. Observe the Expo CLI output
 4. Open the dev build app on the simulator
@@ -67,7 +67,7 @@
 
 **Instructions:**
 
-1. Open a terminal in `apps/native/`
+1. Open a terminal in `apps/backend-office-native/`
 2. Run `eas build --profile preview --platform ios`
 3. Follow prompts for Apple Developer credentials (signing certificates, provisioning profiles)
 4. Wait for the cloud build to complete (typically 10-20 minutes)
@@ -86,15 +86,15 @@
 **Prerequisites:**
 
 - Development build running on simulator or device (complete Test 1 or Test 3 first)
-- Dev server running (`npm run dev` in `apps/native/`)
-- **Convex backend running** (`cd packages/backend && npx convex dev`)
+- Dev server running (`npm run dev` in `apps/backend-office-native/`)
+- **Convex backend running** (`cd packages/backend-office-backend && npx convex dev`)
 - `.env.local` configured with valid `EXPO_PUBLIC_CONVEX_URL` and `EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY`
 - Network connectivity (Clerk auth requires internet)
 
 **Instructions:**
 
-1. Start the Convex dev server: `cd packages/backend && npx convex dev`
-2. Start the Expo dev server: `cd apps/native && npm run dev`
+1. Start the Convex dev server: `cd packages/backend-office-backend && npx convex dev`
+2. Start the Expo dev server: `cd apps/backend-office-native && npm run dev`
 3. Launch the dev build on the simulator or physical device
 4. Navigate to the sign-in screen
 5. Attempt to sign in with Clerk (which uses `expo-secure-store` for token storage)
@@ -119,13 +119,13 @@
 **Instructions:**
 
 1. Open a terminal at the monorepo root
-2. Run `npx turbo run typecheck --filter=native-app --filter=@packages/backend`
-3. Run `npx turbo run lint --filter=native-app`
+2. Run `npx turbo run typecheck --filter=@backend-office/native --filter=@backend-office/backend-office-backend`
+3. Run `npx turbo run lint --filter=@backend-office/native`
 
 **Expected Result:**
 
-- Typecheck passes with zero errors for native-app and backend
-- Lint passes with zero errors for native-app
+- Typecheck passes with zero errors for @backend-office/native and backend
+- Lint passes with zero errors for @backend-office/native
 
 ---
 

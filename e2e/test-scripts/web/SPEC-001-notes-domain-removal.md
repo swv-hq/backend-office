@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Web dev server running (`cd apps/web && npm run dev`)
+- Web dev server running (`cd apps/backend-office-web && npm run dev`)
 - Clerk authentication configured
 
 ---
@@ -67,7 +67,7 @@
 
 **Instructions:**
 
-1. Run `cd apps/web && npm run typecheck`
+1. Run `cd apps/backend-office-web && npm run typecheck`
 
 **Expected Result:**
 
@@ -77,7 +77,7 @@
 
 **Instructions:**
 
-1. Run `cd apps/web && npm run lint`
+1. Run `cd apps/backend-office-web && npm run lint`
 
 **Expected Result:**
 
@@ -87,7 +87,7 @@
 
 **Instructions:**
 
-1. Run `cd apps/web && npm run build`
+1. Run `cd apps/backend-office-web && npm run build`
 
 **Expected Result:**
 

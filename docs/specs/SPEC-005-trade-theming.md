@@ -47,4 +47,4 @@ After selecting their trade during onboarding, the entire app adapts: color sche
 - Use React context for the theme provider on native. The theme object includes colors, typography overrides, terminology map, and icon mappings.
 - Terminology map is a key-value structure: `{ jobLabel: "Service Call", materialCategory: "Plumbing Supplies", ... }`. AI prompts on the backend reference the same map to generate trade-appropriate language in estimates and invoices.
 - Customer-facing web pages receive the contractor's trade type via the estimate/invoice data and apply the corresponding theme.
-- Keep the theme definitions in a shared location (e.g., `packages/backend/convex/lib/themes.ts`) so backend AI prompts and frontend rendering use the same source of truth.
+- Keep the theme definitions in a shared location (e.g., `packages/backend-office-backend/convex/lib/themes.ts`) so backend AI prompts and frontend rendering use the same source of truth.

@@ -18,16 +18,16 @@ const dim = (text: string) => `\x1b[2m${text}\x1b[0m`;
 type Platform = "web" | "native" | "backend";
 const platformTestPatterns: Record<Platform, string[]> = {
   web: [
-    "apps/web/src/**/*.test.ts",
-    "apps/web/src/**/*.test.tsx",
+    "apps/backend-office-web/src/**/*.test.ts",
+    "apps/backend-office-web/src/**/*.test.tsx",
     "e2e/test-scripts/web/*.md",
   ],
   native: [
-    "apps/native/src/**/*.test.ts",
-    "apps/native/src/**/*.test.tsx",
+    "apps/backend-office-native/src/**/*.test.ts",
+    "apps/backend-office-native/src/**/*.test.tsx",
     "e2e/test-scripts/native/*.md",
   ],
-  backend: ["packages/backend/convex/**/*.test.ts"],
+  backend: ["packages/backend-office-backend/convex/**/*.test.ts"],
 };
 
 // 1. Find all spec files and extract acceptance criteria IDs with platform tags

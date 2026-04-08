@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as lib_jobStatus from "../lib/jobStatus.js";
 import type * as lib_validators from "../lib/validators.js";
 
 import type {
@@ -17,6 +18,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  "lib/jobStatus": typeof lib_jobStatus;
   "lib/validators": typeof lib_validators;
 }>;
 

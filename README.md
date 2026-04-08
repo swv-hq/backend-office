@@ -38,7 +38,7 @@ Run `npm install`.
 > that.
 
 ```sh
-npm run setup --workspace packages/backend
+npm run setup --workspace packages/backend-office-backend
 ```
 
 The script will log you into Convex if you aren't already and prompt you to
@@ -62,11 +62,11 @@ The `setup` command should now finish successfully.
 
 ### 3. Configure both apps
 
-In each app directory (`apps/web`, `apps/native`) create a `.env.local` file
+In each app directory (`apps/backend-office-web`, `apps/backend-office-native`) create a `.env.local` file
 using the `.example.env` as a template and fill out your Convex and Clerk
 environment variables.
 
-- Use the `CONVEX_URL` from `packages/backend/.env.local` for
+- Use the `CONVEX_URL` from `packages/backend-office-backend/.env.local` for
   `{NEXT,EXPO}_PUBLIC_CONVEX_URL`.
 - The Clerk publishable & secret keys can be found
   [here](https://dashboard.clerk.com/last-active?path=api-keys).
@@ -86,13 +86,13 @@ If you'd rather see all of the logs in one place, delete the
 
 ## Deploying
 
-In order to both deploy the frontend and Convex, run this as the build command from the apps/web directory:
+In order to both deploy the frontend and Convex, run this as the build command from the apps/backend-office-web directory:
 
 ```sh
-cd ../../packages/backend && npx convex deploy --cmd 'cd ../../apps/web && turbo run build' --cmd-url-env-var-name NEXT_PUBLIC_CONVEX_URL
+cd ../../packages/backend-office-backend && npx convex deploy --cmd 'cd ../../apps/backend-office-web && turbo run build' --cmd-url-env-var-name NEXT_PUBLIC_CONVEX_URL
 ```
 
-There is a vercel.json file in the apps/web directory with this configuration for Vercel.
+There is a vercel.json file in the apps/backend-office-web directory with this configuration for Vercel.
 
 ## What's inside?
 
@@ -103,12 +103,12 @@ This monorepo template includes the following packages/apps:
 - `web`: a [Next.js 16](https://nextjs.org/) app with Tailwind CSS and Clerk
 - `native`: a [React Native](https://reactnative.dev/) app built with
   [expo](https://docs.expo.dev/)
-- `packages/backend`: a [Convex](https://www.convex.dev/) folder with the
+- `packages/backend-office-backend`: a [Convex](https://www.convex.dev/) folder with the
   database schema and shared functions
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-To install a new package, `cd` into that directory, such as [packages/backend](./packages/backend/), and then run `npm install mypackage@latest`
+To install a new package, `cd` into that directory, such as [packages/backend-office-backend](./packages/backend-office-backend/), and then run `npm install mypackage@latest`
 
 ### Utilities
 

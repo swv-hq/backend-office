@@ -110,7 +110,7 @@ verifyOwnership(resource.contractorId, contractorId, "update", "job");
 ## Directory Structure
 
 ```
-packages/backend/convex/
+packages/backend-office-backend/convex/
 ├── schema.ts                    # Layer 1: Table definitions + indexes
 ├── contractors.ts               # Layer 4: API — contractor endpoints
 ├── jobs.ts                      # Layer 4: API — job endpoints

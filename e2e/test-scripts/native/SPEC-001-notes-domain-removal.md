@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Expo dev server running (`cd apps/native && npx expo start --dev-client`)
+- Expo dev server running (`cd apps/backend-office-native && npx expo start --dev-client`)
 - iOS Simulator or physical device with dev client installed
 - Clerk authentication configured
 
@@ -61,7 +61,7 @@
 
 **Instructions:**
 
-1. Run `cd apps/native && npm run typecheck`
+1. Run `cd apps/backend-office-native && npm run typecheck`
 
 **Expected Result:**
 
@@ -71,7 +71,7 @@
 
 **Instructions:**
 
-1. Run `cd apps/native && npm run lint` (if lint script exists)
+1. Run `cd apps/backend-office-native && npm run lint` (if lint script exists)
 
 **Expected Result:**
 
