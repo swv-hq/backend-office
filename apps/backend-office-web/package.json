@@ -11,11 +11,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@backend-office/backend": "*",
     "@clerk/clerk-react": "^5.57.1",
-    "@clerk/nextjs": "^6.35.6",
+    "@clerk/nextjs": "^6.39.3",
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
-    "@backend-office/backend": "*",
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
     "@radix-ui/react-slot": "^1.2.4",
