@@ -1,4 +1,3 @@
-import * as crypto from "node:crypto";
 import type {
   ChargeSubscriptionInput,
   ChargeSubscriptionResult,
@@ -121,7 +120,7 @@ export class StripePaymentsProvider implements PaymentsProvider {
   async handlePaymentWebhook(
     input: HandlePaymentWebhookInput,
   ): Promise<PaymentWebhookEvent> {
-    verifyStripeSignature(
+    await verifyStripeSignature(
       input.rawBody,
       input.signatureHeader,
       this.webhookSecret,
@@ -185,11 +184,11 @@ export class StripePaymentsProvider implements PaymentsProvider {
   }
 }
 
-function verifyStripeSignature(
+async function verifyStripeSignature(
   payload: string,
   header: string,
   secret: string,
-): void {
+): Promise<void> {
   const parts = header
     .split(",")
     .reduce<Record<string, string[]>>((acc, part) => {
@@ -210,21 +209,49 @@ function verifyStripeSignature(
   ) {
     throw new Error("Stripe signature timestamp outside tolerance window");
   }
-  const expected = crypto
-    .createHmac("sha256", secret)
-    .update(`${timestamp}.${payload}`)
-    .digest("hex");
-  const expectedBuf = Buffer.from(expected, "hex");
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
+  const expected = new Uint8Array(
+    await crypto.subtle.sign(
+      "HMAC",
+      key,
+      encoder.encode(`${timestamp}.${payload}`),
+    ),
+  );
   const matched = signatures.some((sig) => {
-    const sigBuf = Buffer.from(sig, "hex");
+    const sigBytes = hexToBytes(sig);
     return (
-      sigBuf.length === expectedBuf.length &&
-      crypto.timingSafeEqual(sigBuf, expectedBuf)
+      sigBytes !== null &&
+      sigBytes.length === expected.length &&
+      timingSafeEqualBytes(sigBytes, expected)
     );
   });
   if (!matched) {
     throw new Error("Invalid Stripe webhook signature");
   }
+}
+
+function hexToBytes(hex: string): Uint8Array | null {
+  if (hex.length % 2 !== 0) return null;
+  const out = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < out.length; i++) {
+    const byte = Number.parseInt(hex.substring(i * 2, i * 2 + 2), 16);
+    if (Number.isNaN(byte)) return null;
+    out[i] = byte;
+  }
+  return out;
+}
+
+function timingSafeEqualBytes(a: Uint8Array, b: Uint8Array): boolean {
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) diff |= a[i]! ^ b[i]!;
+  return diff === 0;
 }
 
 async function safeReadError(response: Response): Promise<string> {

@@ -1,7 +1,7 @@
 ---
 id: BO-SPEC-004
 title: Audit Logging
-status: draft
+status: implemented
 priority: P0
 phase: 0
 created: 2026-04-01
@@ -57,3 +57,28 @@ Every significant mutation (create, update, delete) and sensitive read operation
 - For auth events (AC4), wire Clerk webhooks to a Convex HTTP endpoint that calls `logAudit()` with `auth_success` / `auth_failure`.
 - Derived job status changes (AC3) are written by `computeJobRollup`; have it call `logAudit()` whenever the rolled-up status differs from the prior value.
 - **Retention enforcement (AC11):** A Convex cron runs daily and deletes entries with `timestamp < now - 365 days`. Use the `by_contractor_timestamp` index (or a dedicated `by_timestamp` index if needed) to scan the tail efficiently, and batch deletes to stay within mutation limits. The purge runs as an internal mutation; it is the only code path permitted to delete from `auditLogs`, and AC6's "no API surface to mutate or remove" applies to all callers other than this scheduled purge.
+
+## Scope Note
+
+This spec lands the audit-logging **foundation** only: the `auditLogs` table, the `logAudit()` helper, internal retrieval queries, append-only enforcement, and the daily retention cron. The downstream feature specs that introduce entity mutations (BO-SPEC-007 auth, BO-SPEC-012 calls, BO-SPEC-013 contacts, BO-SPEC-020 jobs, BO-SPEC-017/018 estimates, BO-SPEC-021 invoices) are responsible for calling `logAudit()` from their own mutations to satisfy AC1–AC5 and AC7 in their domains. AC6, AC8, AC9, AC10, AC11, AC12 are fully satisfied by this build. AC1–AC5/AC7 are satisfied at the contract level (helper accepts the right shapes; transactional invariant holds because it runs inside the calling mutation).
+
+## Slice Plan
+
+1. **Slice 1 — Schema + `logAudit` helper** [AC1, AC5, AC7, AC10]
+   Add `auditLogs` table with `by_contractor_timestamp`, `by_entity`, and `by_timestamp` indexes. Implement `internalMutation logAudit` in `convex/data/auditLogs.ts`. Tests verify entry shape, that null/system actor is accepted, and that the helper enforces the lightweight `details` contract.
+
+2. **Slice 2 — Retrieval queries** [AC8, AC9]
+   Internal queries `listByContractor(contractorId, from, to)` and `listByEntity(entityType, entityId)`. Tests verify range scans use the indexes and that results are scoped correctly.
+
+3. **Slice 3 — Append-only surface** [AC6]
+   Lock the module surface so only `logAudit` (insert), the two read queries, and the purge (Slice 4) can touch the table. Tests assert no exported update/delete API exists outside the purge.
+
+4. **Slice 4 — Daily retention purge cron** [AC11]
+   Internal mutation that batch-deletes entries with `timestamp < now - 365 days`, registered in `convex/crons.ts`. Tests verify boundary behavior (kept vs. deleted) and batching.
+
+5. **Slice 5 — Typecheck / lint / build pass** [AC12]
+   Final verification across the workspace.
+
+## Manual Test Script
+
+No manual E2E script. This is a backend-only infrastructure spec with no user-facing surface — the audit log table is internal and has no UI. All verification is automated in `packages/backend-office-backend/convex/spec-004-audit-logging.test.ts` via `convex-test`. Downstream feature specs that wire `logAudit()` into their own mutations will include their own E2E scripts as part of those features.

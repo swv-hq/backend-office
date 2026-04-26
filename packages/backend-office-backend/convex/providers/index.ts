@@ -4,7 +4,7 @@ import { DeepgramSTTProvider } from "./deepgram";
 import type { STTProvider } from "./stt";
 import type { PaymentsProvider } from "./payments";
 import type { PricingProvider } from "./pricing";
-import { StubPricingProvider } from "./pricing-stub";
+import { StubPricingProvider } from "./pricingStub";
 import { StripePaymentsProvider } from "./stripe";
 import type { TelephonyProvider } from "./telephony";
 import { TwilioTelephonyProvider } from "./twilio";

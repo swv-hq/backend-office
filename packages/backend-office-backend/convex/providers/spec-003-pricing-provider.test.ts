@@ -1,6 +1,6 @@
 import { describe, it, expect, afterEach } from "vitest";
 import type { PricingProvider } from "./pricing";
-import { StubPricingProvider } from "./pricing-stub";
+import { StubPricingProvider } from "./pricingStub";
 import { getPricingProvider } from "./index";
 
 describe("BO-SPEC-003: Pricing Provider", () => {

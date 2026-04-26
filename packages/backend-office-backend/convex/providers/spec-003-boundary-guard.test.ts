@@ -4,11 +4,13 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 
 const backendRoot = path.resolve(__dirname, "..", "..");
+// Use a pid-suffixed filename so this test never collides with other test
+// files (e.g. BO-SPEC-004's typecheck test) that share the convex/ tree.
 const fixtureFile = path.join(
   backendRoot,
   "convex",
   "useCases",
-  "__boundary-guard-fixture__.ts",
+  `__boundary-guard-fixture-${process.pid}__.ts`,
 );
 
 function runEslintOn(file: string): { exitCode: number; stdout: string } {

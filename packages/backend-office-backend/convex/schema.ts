@@ -179,6 +179,34 @@ export default defineSchema({
     .index("by_contactId", ["contactId"])
     .index("by_callbackStatus", ["callbackStatus"]),
 
+  auditLogs: defineTable({
+    contractorId: v.optional(v.id("contractors")),
+    action: v.union(
+      v.literal("create"),
+      v.literal("update"),
+      v.literal("delete"),
+      v.literal("access"),
+      v.literal("auth_success"),
+      v.literal("auth_failure"),
+    ),
+    entityType: v.union(
+      v.literal("contractor"),
+      v.literal("contact"),
+      v.literal("job"),
+      v.literal("jobSegment"),
+      v.literal("estimate"),
+      v.literal("invoice"),
+      v.literal("callLog"),
+    ),
+    entityId: v.string(),
+    details: v.optional(v.any()),
+    ipAddress: v.optional(v.string()),
+    timestamp: v.number(),
+  })
+    .index("by_contractor_timestamp", ["contractorId", "timestamp"])
+    .index("by_entity", ["entityType", "entityId"])
+    .index("by_timestamp", ["timestamp"]),
+
   accessTokens: defineTable({
     entityType: v.string(),
     entityId: v.string(),
