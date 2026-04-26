@@ -1,11 +1,11 @@
 ---
 id: BO-SPEC-003
 title: Provider Abstraction Layer
-status: draft
+status: implemented
 priority: P0
 phase: 0
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-25
 ---
 
 # BO-SPEC-003: Provider Abstraction Layer
@@ -39,15 +39,24 @@ Each external integration category has a TypeScript interface defining the contr
 - **BO-SPEC-003.AC11** [backend]: No Convex action or mutation imports a vendor SDK directly — all external calls go through the provider layer
 - **BO-SPEC-003.AC12** [backend]: Backend passes typecheck with zero errors
 
-## Open Questions
+## Resolved Decisions
 
-- Should the pricing data provider interface be stubbed initially (returning empty results) until the external service is selected?
-- Should provider configuration (which implementation to use) be environment variables or Convex config?
+- **Pricing provider:** Define the interface and ship a stub implementation returning empty/null. Claude's AI provider serves as the fallback for pricing suggestions using training knowledge until an external pricing vendor is selected.
+- **Provider configuration:** Environment variables (read via `process.env` in the registry), set via `npx convex env set`. Same surface as vendor SDK API keys; no separate Convex config table.
 
 ## Technical Notes
 
 - Interfaces live in a `providers/` directory within the Convex package (e.g., `convex/providers/ai.ts`, `convex/providers/stt.ts`).
 - Concrete implementations live alongside (e.g., `convex/providers/claude.ts`, `convex/providers/deepgram.ts`).
 - The factory/registry can start simple — a single file that exports the active implementation for each interface. No need for runtime DI containers.
-- The pricing data provider can have a stub implementation that returns empty/null until the external service is chosen. Claude's AI provider can serve as fallback for pricing suggestions using training knowledge.
 - Convex actions are where external API calls happen. The provider implementations will be used within actions.
+
+## Slice Plan
+
+Each slice ships an interface + its concrete implementation + a registry entry, end-to-end testable via convex-test. Slice 1 establishes the pattern (registry scaffold, env-var wiring, test conventions); slices 2–5 follow the template.
+
+1. **Slice 1: Registry scaffold + AI provider (Claude)** — `BO-SPEC-003.AC1`, `AC6`, partial `AC10`. Sets up `convex/providers/` directory, the registry pattern, env-var configuration, and the first interface + Claude implementation.
+2. **Slice 2: STT provider (Deepgram)** — `BO-SPEC-003.AC2`, `AC7`. Adds STT interface and Deepgram impl to the registry.
+3. **Slice 3: Telephony provider (Twilio)** — `BO-SPEC-003.AC3`, `AC8`. Adds telephony interface and Twilio impl.
+4. **Slice 4: Payments provider (Stripe)** — `BO-SPEC-003.AC4`, `AC9`. Adds payments interface and Stripe Connect impl.
+5. **Slice 5: Pricing provider (stub) + boundary guard** — `BO-SPEC-003.AC5`, completes `AC10`, `AC11`, `AC12`. Adds pricing interface with stub returning empty results. Adds a guard test that scans `convex/*.ts` and `convex/useCases/**` for direct vendor SDK imports. Final typecheck pass.

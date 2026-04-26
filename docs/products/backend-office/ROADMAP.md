@@ -47,7 +47,7 @@ Clear the slate, set up the new architecture. Everything else builds on this.
 | -------------------------------------------------------- | -------------------------- | -------- | ----------- |
 | [BO-SPEC-001](BO-SPEC-001-notes-domain-removal.md)       | Notes Domain Removal       | P0       | implemented |
 | [BO-SPEC-002](BO-SPEC-002-core-data-model.md)            | Core Data Model            | P0       | implemented |
-| [BO-SPEC-003](BO-SPEC-003-provider-abstraction-layer.md) | Provider Abstraction Layer | P0       | draft       |
+| [BO-SPEC-003](BO-SPEC-003-provider-abstraction-layer.md) | Provider Abstraction Layer | P0       | implemented |
 | [BO-SPEC-004](BO-SPEC-004-audit-logging.md)              | Audit Logging              | P0       | draft       |
 | [BO-SPEC-005](BO-SPEC-005-trade-theming.md)              | Trade Theming System       | P0       | draft       |
 | [BO-SPEC-006](BO-SPEC-006-monitoring-alerting.md)        | Monitoring & Alerting      | P0       | draft       |
