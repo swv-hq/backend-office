@@ -1,21 +1,20 @@
 # CLAUDE.md
 
-This file provides monorepo-wide guidance to Claude Code (claude.ai/code). Per-product rules live in `docs/products/<product>/CLAUDE.md` — read those when working on a specific product.
+This file provides repo-wide guidance to Claude Code (claude.ai/code). Product-specific rules live in [`docs/products/backend-office/CLAUDE.md`](docs/products/backend-office/CLAUDE.md) — read it before starting work.
 
 ## Repo Overview
 
-**swv-platform** — agency monorepo (Turborepo + npm workspaces) hosting multiple products. Each product owns one or more workspaces under `apps/` and may share a `packages/<product>-backend` Convex deployment. Cross-product code lives in `packages/` (shared) or `docs/shared/`.
+**backend-office** — Turborepo + npm workspaces repo for the backend-office product. Three workspaces:
 
-## Products
+| Workspace                                                            | Purpose                                       |
+| -------------------------------------------------------------------- | --------------------------------------------- |
+| [`apps/backend-office-web`](apps/backend-office-web)                 | Next.js web app                               |
+| [`apps/backend-office-native`](apps/backend-office-native)           | Expo / React Native app                       |
+| [`packages/backend-office-backend`](packages/backend-office-backend) | Convex backend (schema, functions, use cases) |
 
-This monorepo hosts multiple products. When the user's task is scoped to a single product, **load that product's `docs/products/<product>/CLAUDE.md` before doing anything else** — it contains the workspace inventory, test commands, spec ID prefix, and product-specific conventions.
+Shared cross-workspace code lives in `packages/`. Product docs and specs live in [`docs/products/backend-office/`](docs/products/backend-office/).
 
-| Product            | Workspaces                                                                                 | Spec prefix   | Docs                                                                                                                   |
-| ------------------ | ------------------------------------------------------------------------------------------ | ------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| **backend-office** | `apps/backend-office-web`, `apps/backend-office-native`, `packages/backend-office-backend` | `BO-SPEC-XXX` | [`docs/products/backend-office/`](docs/products/backend-office/) ([CLAUDE.md](docs/products/backend-office/CLAUDE.md)) |
-| **auth-hub**       | `apps/auth-hub` (Phase 1+)                                                                 | `AH-SPEC-XXX` | [`docs/products/auth-hub/`](docs/products/auth-hub/) ([CLAUDE.md](docs/products/auth-hub/CLAUDE.md))                   |
-
-## Critical Rules (apply to every product)
+## Critical Rules
 
 - **Never commit, push, or create PRs without Brian's explicit approval.**
 - **Always create backend, web, native, and e2e tests when adding new features.** Test edge cases: empty inputs, boundaries, auth states, error handling. Use TDD: write tests first, verify they fail, implement, verify they pass.
@@ -27,7 +26,7 @@ This monorepo hosts multiple products. When the user's task is scoped to a singl
 - **Run build after larger changes** — `npm run build`.
 - **After changes run a security check.**
 - **After changes run a performance check.**
-- **Per-product test commands** live in each product's `CLAUDE.md`. Run them after touching that product's code.
+- **Per-workspace test commands** live in [`docs/products/backend-office/CLAUDE.md`](docs/products/backend-office/CLAUDE.md). Run them after touching that workspace's code.
 
 ## Code Quality Rules
 
@@ -47,22 +46,22 @@ This monorepo hosts multiple products. When the user's task is scoped to a singl
 - Lazy load components and routes where appropriate
 - Profile before optimizing — don't prematurely optimize
 
-## Monorepo Commands
+## Repo Commands
 
 ```bash
-npm run dev                            # Start all apps + backend in parallel (TUI)
+npm run dev                            # Start web + native + backend in parallel (TUI)
 npm run build                          # Build all workspaces
 npm run lint                           # Lint all packages (ESLint 9 flat config)
 npm run typecheck                      # Type check all packages
 npm run format                         # Prettier format all files
 npm run clean                          # Clear build artifacts and node_modules
-npm run test:spec-coverage             # Verify all AC IDs have linked tests (per product)
-npm run test:spec-coverage:strict      # Fail if any product is below 100%
+npm run test:spec-coverage             # Verify all AC IDs have linked tests
+npm run test:spec-coverage:strict      # Fail if coverage is below 100%
 ```
 
 ## Backend Layered Architecture
 
-**Read [docs/shared/architecture.md](docs/shared/architecture.md) before writing any Convex code.** This pattern applies to **every** product's Convex deployment.
+**Read [docs/shared/architecture.md](docs/shared/architecture.md) before writing any Convex code.** The Convex backend lives in [`packages/backend-office-backend/convex/`](packages/backend-office-backend/convex/).
 
 | Layer        | Directory          | Responsibility                                                                               |
 | ------------ | ------------------ | -------------------------------------------------------------------------------------------- |
@@ -79,27 +78,25 @@ npm run test:spec-coverage:strict      # Fail if any product is below 100%
 - Always use `withIndex()` — never use `filter()`
 - Every API function must include `args` and `returns` validators
 
-## Spec System (cross-product conventions)
+## Spec System
 
-The `build` skill owns the feature/bug/enhancement workflow. The conventions that apply across every product:
+The `build` skill owns the feature/bug/enhancement workflow.
 
-- **Specs** live in `docs/products/<product>/specs/`. Copy the product's `_TEMPLATE.md` to `<PREFIX>-SPEC-XXX-feature-name.md`. Status progression: `draft` → `in-review` → `approved` → `in-progress` → `in-testing` → `implemented`. Keep that product's `ROADMAP.md` in sync on every status change.
-- **Acceptance criteria** use IDs like `BO-SPEC-001.AC1` or `AH-SPEC-001.AC1` and are platform-tagged `[web]`, `[native]`, `[backend]` (or combinations). Each product's CLAUDE.md spells out which workspace each platform tag maps to.
+- **Specs** live in [`docs/products/backend-office/specs/`](docs/products/backend-office/specs/). Copy `_TEMPLATE.md` to `BO-SPEC-XXX-feature-name.md`. Status progression: `draft` → `in-review` → `approved` → `in-progress` → `in-testing` → `implemented`. Keep [`ROADMAP.md`](docs/products/backend-office/ROADMAP.md) in sync on every status change.
+- **Acceptance criteria** use IDs like `BO-SPEC-001.AC1` and are platform-tagged `[web]`, `[native]`, `[backend]` (or combinations), mapping to the three workspaces above.
 - **Tests are tagged with AC IDs**. Format: `it("does something [BO-SPEC-001.AC1]", ...)`. For markdown E2E scripts, include the AC ID inline.
-- **Coverage check**: `npm run test:spec-coverage` validates every AC against its own product's workspaces. Cross-product leakage is impossible by construction — the script scopes by `BO-`/`AH-` prefix.
-- **Manual E2E scripts** live at `e2e/test-scripts/<product>/{web,native}/<PREFIX>-SPEC-XXX-*.md`.
+- **Coverage check**: `npm run test:spec-coverage` validates every AC against the workspaces.
+- **Manual E2E scripts** live at `e2e/test-scripts/{web,native}/BO-SPEC-XXX-*.md`.
 - **Implementation order for a slice**: backend first (schema → data → use cases → API), then web and/or native.
 - **Spec sign-off**: never move a spec to `implemented` without Brian's explicit approval.
 
 ## Key Documentation
 
-| Document                                                       | Purpose                                                                     |
-| -------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [docs/shared/architecture.md](docs/shared/architecture.md)     | Backend layered architecture (4-layer pattern, all products)                |
-| [docs/products/backend-office/](docs/products/backend-office/) | backend-office product docs (BusinessPlan, EngineeringSpec, ROADMAP, specs) |
-| [docs/products/auth-hub/](docs/products/auth-hub/)             | Auth Hub product docs (Architecture, Requirements, Compliance, Phase plans) |
-
-**Read the relevant product's CLAUDE.md before working in that area.**
+| Document                                                                         | Purpose                                               |
+| -------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| [docs/products/backend-office/CLAUDE.md](docs/products/backend-office/CLAUDE.md) | Product-specific conventions, workspace test commands |
+| [docs/shared/architecture.md](docs/shared/architecture.md)                       | Backend layered architecture (4-layer pattern)        |
+| [docs/products/backend-office/](docs/products/backend-office/)                   | BusinessPlan, EngineeringSpec, ROADMAP, specs         |
 
 <!-- convex-ai-start -->
 
