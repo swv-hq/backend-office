@@ -5,7 +5,7 @@ status: draft
 priority: P0
 phase: 0
 created: 2026-04-01
-updated: 2026-04-06
+updated: 2026-04-25
 ---
 
 # BO-SPEC-004: Audit Logging
@@ -27,23 +27,33 @@ Every significant mutation (create, update, delete) and sensitive read operation
 
 ## Acceptance Criteria
 
-- **BO-SPEC-004.AC1** [backend]: `auditLogs` table stores: contractorId (optional — null for system actions), action (string: create, update, delete, access, auth_success, auth_failure), entityType (string: contractor, contact, job, jobSegment, estimate, invoice, callLog), entityId (string), details (optional object with before/after state or context), ipAddress (optional), timestamp
-- **BO-SPEC-004.AC2** [backend]: Helper function `logAudit()` that mutations and actions call to create audit log entries
-- **BO-SPEC-004.AC3** [backend]: All mutations that create, update, or delete contractors, contacts, jobs, jobSegments, estimates, invoices, or call logs call `logAudit()` with appropriate action and entity info. Segment status transitions (scheduled → in_progress → completed, and cancellation) are logged. Derived job status changes written back by `computeJobRollup` are also logged as `update` events on the parent job, with `details` indicating the previous and new status.
-- **BO-SPEC-004.AC4** [backend]: Auth events (login success, login failure) are logged when detectable via Clerk webhooks or session events
-- **BO-SPEC-004.AC5** [backend]: Audit log entries are append-only — no mutation exists to update or delete audit log records
-- **BO-SPEC-004.AC6** [backend]: Index on auditLogs by contractorId + timestamp for efficient querying
-- **BO-SPEC-004.AC7** [backend]: Index on auditLogs by entityType + entityId for entity-specific history
-- **BO-SPEC-004.AC8** [backend]: Backend passes typecheck with zero errors
+- **BO-SPEC-004.AC1** [backend]: Every create, update, and delete on contractors, contacts, jobs, jobSegments, estimates, invoices, and call logs produces an audit log entry capturing the actor, action, entity type, entity ID, timestamp, and a lightweight details payload describing what changed.
+- **BO-SPEC-004.AC2** [backend]: Job segment status transitions (scheduled → in_progress → completed, and cancellation) are logged as discrete events.
+- **BO-SPEC-004.AC3** [backend]: Derived job status changes (rolled up from segments) are logged as update events on the parent job, with details indicating previous and new status.
+- **BO-SPEC-004.AC4** [backend]: Successful and failed authentication events are logged with timestamp, actor (when known), and IP address (when available).
+- **BO-SPEC-004.AC5** [backend]: System-initiated actions with no human actor are logged with a null/system actor rather than being skipped.
+- **BO-SPEC-004.AC6** [backend]: Audit log entries cannot be modified or deleted by application code — no API surface exists to mutate or remove an existing entry.
+- **BO-SPEC-004.AC7** [backend]: An audit entry exists if and only if the underlying data change committed — a failed/aborted mutation produces no orphan audit record, and a committed change is never missing its audit record.
+- **BO-SPEC-004.AC8** [backend]: Audit logs can be retrieved for a given contractor over a time range without scanning the full table.
+- **BO-SPEC-004.AC9** [backend]: Audit logs can be retrieved for a specific entity (by entity type and ID) to reconstruct its full change history.
+- **BO-SPEC-004.AC10** [backend]: Audit details payloads exclude sensitive values (auth tokens, passwords, full PII bodies); only identifiers and the names/values of changed fields relevant to the action are recorded.
+- **BO-SPEC-004.AC11** [backend]: Audit log entries older than 365 days are automatically purged; entries within the retention window are never auto-deleted.
+- **BO-SPEC-004.AC12** [backend]: Backend passes typecheck with zero errors.
 
-## Open Questions
+## Resolved Decisions
 
-- Should audit logs be queryable by the contractor in-app (e.g., "activity history"), or are they internal/developer-only for MVP?
-- What is the retention policy for audit logs? They could grow large over time.
+- **Audience (MVP):** Internal/developer-only. No contractor-facing query API or activity-history UI. A user-facing activity feed, if/when needed, will be a separate spec with its own table and shape — not a view over `auditLogs`.
+- **Retention:** 365 days, uniform across all event types, enforced by a daily scheduled job. Sufficient for a full SOC 2 audit cycle and most incident investigations; bounds storage growth and keeps privacy/data-deletion obligations tractable. Revisit if/when entering a regulated vertical (HIPAA, finance) that mandates longer retention.
 
 ## Technical Notes
 
-- `logAudit()` should be an internal mutation so it can be called from both mutations and actions.
-- Keep the `details` field lightweight — store relevant IDs and changed fields, not full document snapshots, to control storage growth.
-- Audit logging should not block or slow down the primary mutation. Since Convex mutations are transactional, the audit log write happens in the same transaction as the data change, ensuring consistency.
-- For auth events, Clerk can send webhooks to a Convex HTTP endpoint on login/logout events.
+- **Schema (`auditLogs` table):** `contractorId` (optional — null for system actions), `action` (string: `create`, `update`, `delete`, `access`, `auth_success`, `auth_failure`), `entityType` (string: `contractor`, `contact`, `job`, `jobSegment`, `estimate`, `invoice`, `callLog`), `entityId` (string), `details` (optional object), `ipAddress` (optional), `timestamp` (number).
+- **Indexes:**
+  - `by_contractor_timestamp` on `(contractorId, timestamp)` — supports AC8.
+  - `by_entity` on `(entityType, entityId)` — supports AC9.
+- **Helper:** Implement an internal mutation `logAudit()` that mutations and actions call to write entries. Keep it in `convex/data/auditLogs.ts` (data layer) with the calling logic in use cases.
+- Keep the `details` field lightweight — relevant IDs and changed field names/values, not full document snapshots — to control storage growth (supports AC10).
+- Convex mutations are transactional, so writing the audit entry inside the same mutation as the data change satisfies AC7 without extra coordination.
+- For auth events (AC4), wire Clerk webhooks to a Convex HTTP endpoint that calls `logAudit()` with `auth_success` / `auth_failure`.
+- Derived job status changes (AC3) are written by `computeJobRollup`; have it call `logAudit()` whenever the rolled-up status differs from the prior value.
+- **Retention enforcement (AC11):** A Convex cron runs daily and deletes entries with `timestamp < now - 365 days`. Use the `by_contractor_timestamp` index (or a dedicated `by_timestamp` index if needed) to scan the tail efficiently, and batch deletes to stay within mutation limits. The purge runs as an internal mutation; it is the only code path permitted to delete from `auditLogs`, and AC6's "no API surface to mutate or remove" applies to all callers other than this scheduled purge.
