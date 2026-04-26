@@ -43,96 +43,96 @@ draft → in-review → approved → in-progress → in-testing → implemented
 
 Clear the slate, set up the new architecture. Everything else builds on this.
 
-| Spec                                                     | Title                      | Priority | Status      |
-| -------------------------------------------------------- | -------------------------- | -------- | ----------- |
-| [BO-SPEC-001](BO-SPEC-001-notes-domain-removal.md)       | Notes Domain Removal       | P0       | implemented |
-| [BO-SPEC-002](BO-SPEC-002-core-data-model.md)            | Core Data Model            | P0       | implemented |
-| [BO-SPEC-003](BO-SPEC-003-provider-abstraction-layer.md) | Provider Abstraction Layer | P0       | implemented |
-| [BO-SPEC-004](BO-SPEC-004-audit-logging.md)              | Audit Logging              | P0       | draft       |
-| [BO-SPEC-005](BO-SPEC-005-trade-theming.md)              | Trade Theming System       | P0       | draft       |
-| [BO-SPEC-006](BO-SPEC-006-monitoring-alerting.md)        | Monitoring & Alerting      | P0       | draft       |
-| [BO-SPEC-031](BO-SPEC-031-custom-expo-dev-build.md)      | Custom Expo Dev Build      | P0       | implemented |
-| [BO-SPEC-032](BO-SPEC-032-dev-environment-deployment.md) | Dev Environment Deployment | P0       | draft       |
+| Spec                                                        | Title                      | Priority | Status      |
+| ----------------------------------------------------------- | -------------------------- | -------- | ----------- |
+| [BO-SPEC-001](specs/SPEC-001-notes-domain-removal.md)       | Notes Domain Removal       | P0       | implemented |
+| [BO-SPEC-002](specs/SPEC-002-core-data-model.md)            | Core Data Model            | P0       | implemented |
+| [BO-SPEC-003](specs/SPEC-003-provider-abstraction-layer.md) | Provider Abstraction Layer | P0       | implemented |
+| [BO-SPEC-004](specs/SPEC-004-audit-logging.md)              | Audit Logging              | P0       | draft       |
+| [BO-SPEC-005](specs/SPEC-005-trade-theming.md)              | Trade Theming System       | P0       | draft       |
+| [BO-SPEC-006](specs/SPEC-006-monitoring-alerting.md)        | Monitoring & Alerting      | P0       | draft       |
+| [BO-SPEC-031](specs/SPEC-031-custom-expo-dev-build.md)      | Custom Expo Dev Build      | P0       | implemented |
+| [BO-SPEC-032](specs/SPEC-032-dev-environment-deployment.md) | Dev Environment Deployment | P0       | draft       |
 
 ## Phase 1: Onboarding
 
 Get the contractor set up and ready in under 10 minutes. Nothing works without this.
 
-| Spec                                                    | Title                     | Priority | Status |
-| ------------------------------------------------------- | ------------------------- | -------- | ------ |
-| [BO-SPEC-007](BO-SPEC-007-sms-otp-auth.md)              | SMS OTP Authentication    | P0       | draft  |
-| [BO-SPEC-008](BO-SPEC-008-onboarding-wizard.md)         | Onboarding Wizard         | P0       | draft  |
-| [BO-SPEC-009](BO-SPEC-009-phone-number-setup.md)        | Phone Number Setup        | P0       | draft  |
-| [BO-SPEC-010](BO-SPEC-010-calendar-connection.md)       | Calendar Connection       | P0       | draft  |
-| [BO-SPEC-011](BO-SPEC-011-stripe-connect-onboarding.md) | Stripe Connect Onboarding | P0       | draft  |
+| Spec                                                       | Title                     | Priority | Status |
+| ---------------------------------------------------------- | ------------------------- | -------- | ------ |
+| [BO-SPEC-007](specs/SPEC-007-sms-otp-auth.md)              | SMS OTP Authentication    | P0       | draft  |
+| [BO-SPEC-008](specs/SPEC-008-onboarding-wizard.md)         | Onboarding Wizard         | P0       | draft  |
+| [BO-SPEC-009](specs/SPEC-009-phone-number-setup.md)        | Phone Number Setup        | P0       | draft  |
+| [BO-SPEC-010](specs/SPEC-010-calendar-connection.md)       | Calendar Connection       | P0       | draft  |
+| [BO-SPEC-011](specs/SPEC-011-stripe-connect-onboarding.md) | Stripe Connect Onboarding | P0       | draft  |
 
 ## Phase 2: Contacts & Missed Call Auto-Reply
 
 The first feature with immediate value — saving missed leads.
 
-| Spec                                                 | Title                                  | Priority | Status |
-| ---------------------------------------------------- | -------------------------------------- | -------- | ------ |
-| [BO-SPEC-012](BO-SPEC-012-missed-call-auto-reply.md) | Missed Call Detection & SMS Auto-Reply | P0       | draft  |
-| [BO-SPEC-013](BO-SPEC-013-contact-management.md)     | Contact Management                     | P0       | draft  |
+| Spec                                                    | Title                                  | Priority | Status |
+| ------------------------------------------------------- | -------------------------------------- | -------- | ------ |
+| [BO-SPEC-012](specs/SPEC-012-missed-call-auto-reply.md) | Missed Call Detection & SMS Auto-Reply | P0       | draft  |
+| [BO-SPEC-013](specs/SPEC-013-contact-management.md)     | Contact Management                     | P0       | draft  |
 
 ## Phase 3: Voicemail Intelligence & Callback Reminders
 
 Contractor sees who called, why, and gets reminded to call back.
 
-| Spec                                                  | Title                                   | Priority | Status |
-| ----------------------------------------------------- | --------------------------------------- | -------- | ------ |
-| [BO-SPEC-014](BO-SPEC-014-voicemail-transcription.md) | Voicemail Transcription & Summarization | P0       | draft  |
-| [BO-SPEC-015](BO-SPEC-015-push-notifications.md)      | Push Notification Infrastructure        | P0       | draft  |
-| [BO-SPEC-016](BO-SPEC-016-callback-reminders.md)      | Time-Based Callback Reminders           | P0       | draft  |
+| Spec                                                     | Title                                   | Priority | Status |
+| -------------------------------------------------------- | --------------------------------------- | -------- | ------ |
+| [BO-SPEC-014](specs/SPEC-014-voicemail-transcription.md) | Voicemail Transcription & Summarization | P0       | draft  |
+| [BO-SPEC-015](specs/SPEC-015-push-notifications.md)      | Push Notification Infrastructure        | P0       | draft  |
+| [BO-SPEC-016](specs/SPEC-016-callback-reminders.md)      | Time-Based Callback Reminders           | P0       | draft  |
 
 ## Phase 4: Voice-to-Estimate
 
 The killer feature. Contractor talks, customer gets a professional estimate.
 
-| Spec                                                       | Title                                      | Priority | Status |
-| ---------------------------------------------------------- | ------------------------------------------ | -------- | ------ |
-| [BO-SPEC-017](BO-SPEC-017-voice-to-estimate.md)            | Voice-to-Estimate Generation               | P0       | draft  |
-| [BO-SPEC-018](BO-SPEC-018-estimate-management.md)          | Estimate Management & Iterative Refinement | P0       | draft  |
-| [BO-SPEC-019](BO-SPEC-019-customer-estimate-experience.md) | Customer Estimate Experience               | P0       | draft  |
+| Spec                                                          | Title                                      | Priority | Status |
+| ------------------------------------------------------------- | ------------------------------------------ | -------- | ------ |
+| [BO-SPEC-017](specs/SPEC-017-voice-to-estimate.md)            | Voice-to-Estimate Generation               | P0       | draft  |
+| [BO-SPEC-018](specs/SPEC-018-estimate-management.md)          | Estimate Management & Iterative Refinement | P0       | draft  |
+| [BO-SPEC-019](specs/SPEC-019-customer-estimate-experience.md) | Customer Estimate Experience               | P0       | draft  |
 
 ## Phase 5: Jobs, Invoicing & Payments
 
 Close jobs, get paid, subscription billing.
 
-| Spec                                               | Title                | Priority | Status |
-| -------------------------------------------------- | -------------------- | -------- | ------ |
-| [BO-SPEC-020](BO-SPEC-020-job-lifecycle.md)        | Job Lifecycle        | P0       | draft  |
-| [BO-SPEC-021](BO-SPEC-021-voice-to-invoice.md)     | Voice-to-Invoice     | P0       | draft  |
-| [BO-SPEC-022](BO-SPEC-022-customer-payments.md)    | Customer Payments    | P0       | draft  |
-| [BO-SPEC-023](BO-SPEC-023-subscription-billing.md) | Subscription Billing | P0       | draft  |
+| Spec                                                  | Title                | Priority | Status |
+| ----------------------------------------------------- | -------------------- | -------- | ------ |
+| [BO-SPEC-020](specs/SPEC-020-job-lifecycle.md)        | Job Lifecycle        | P0       | draft  |
+| [BO-SPEC-021](specs/SPEC-021-voice-to-invoice.md)     | Voice-to-Invoice     | P0       | draft  |
+| [BO-SPEC-022](specs/SPEC-022-customer-payments.md)    | Customer Payments    | P0       | draft  |
+| [BO-SPEC-023](specs/SPEC-023-subscription-billing.md) | Subscription Billing | P0       | draft  |
 
 ## Phase 6: Geofencing & Time Tracking
 
 Smart location-aware features for job time tracking and callback reminders.
 
-| Spec                                                        | Title                         | Priority | Status |
-| ----------------------------------------------------------- | ----------------------------- | -------- | ------ |
-| [BO-SPEC-024](BO-SPEC-024-geofencing-infrastructure.md)     | Geofencing Infrastructure     | P1       | draft  |
-| [BO-SPEC-025](BO-SPEC-025-job-time-tracking.md)             | Job Time Tracking             | P1       | draft  |
-| [BO-SPEC-026](BO-SPEC-026-geofencing-callback-reminders.md) | Geofencing Callback Reminders | P1       | draft  |
+| Spec                                                           | Title                         | Priority | Status |
+| -------------------------------------------------------------- | ----------------------------- | -------- | ------ |
+| [BO-SPEC-024](specs/SPEC-024-geofencing-infrastructure.md)     | Geofencing Infrastructure     | P1       | draft  |
+| [BO-SPEC-025](specs/SPEC-025-job-time-tracking.md)             | Job Time Tracking             | P1       | draft  |
+| [BO-SPEC-026](specs/SPEC-026-geofencing-callback-reminders.md) | Geofencing Callback Reminders | P1       | draft  |
 
 ## Phase 7: Privacy, Compliance & Settings
 
 Pre-launch polish. Ensure legal compliance and give contractors control over their account.
 
-| Spec                                                  | Title                     | Priority | Status |
-| ----------------------------------------------------- | ------------------------- | -------- | ------ |
-| [BO-SPEC-027](BO-SPEC-027-privacy-data-management.md) | Privacy & Data Management | P0       | draft  |
-| [BO-SPEC-028](BO-SPEC-028-app-settings.md)            | App Settings              | P1       | draft  |
+| Spec                                                     | Title                     | Priority | Status |
+| -------------------------------------------------------- | ------------------------- | -------- | ------ |
+| [BO-SPEC-027](specs/SPEC-027-privacy-data-management.md) | Privacy & Data Management | P0       | draft  |
+| [BO-SPEC-028](specs/SPEC-028-app-settings.md)            | App Settings              | P1       | draft  |
 
 ## Phase 8: Launch Prep
 
 Get to market. Marketing site, app store listing, beta distribution.
 
-| Spec                                                 | Title                    | Priority | Status |
-| ---------------------------------------------------- | ------------------------ | -------- | ------ |
-| [BO-SPEC-029](BO-SPEC-029-marketing-site.md)         | Marketing Site Rebrand   | P1       | draft  |
-| [BO-SPEC-030](BO-SPEC-030-app-store-distribution.md) | App Store & Distribution | P0       | draft  |
+| Spec                                                    | Title                    | Priority | Status |
+| ------------------------------------------------------- | ------------------------ | -------- | ------ |
+| [BO-SPEC-029](specs/SPEC-029-marketing-site.md)         | Marketing Site Rebrand   | P1       | draft  |
+| [BO-SPEC-030](specs/SPEC-030-app-store-distribution.md) | App Store & Distribution | P0       | draft  |
 
 ---
 
