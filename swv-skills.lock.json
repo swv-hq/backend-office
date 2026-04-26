@@ -1,8 +1,8 @@
 {
   "version": "3.0.0",
-  "packageVersion": "3.4.0",
+  "packageVersion": "3.5.0",
   "installedAt": "2026-04-25T22:45:54.454Z",
-  "updatedAt": "2026-04-25T22:45:54.454Z",
+  "updatedAt": "2026-04-26T00:37:29.754Z",
   "skills": {
     "build": {
       "tool": "claude-code",
@@ -10,9 +10,9 @@
       "files": {
         ".claude/skills/build/SKILL.md": "9508acb8360b285d96271eb1e4882cffce973e19c3c9091c6a8278d2144e5e1b",
         ".claude/skills/build/bug-workflow.md": "526bc8a3237b8e0e2aca9e1d6d0bc5597230142d19ce7582f29f01d6d4d22af1",
-        ".claude/skills/build/code-review.md": "92e9a2f0178c0fc5d701542fc9d096b1bfbed8340872baddf64b1e197a8b2af2",
+        ".claude/skills/build/code-review.md": "f2fa141eafc16f06936150399ed7b75b46fd97ede7bf8945c19b7da54ebc6c95",
         ".claude/skills/build/enhancement-workflow.md": "3e9e59554f7b28337568b2b7a781a966c01541263bbf6108251c9a6c3049b497",
-        ".claude/skills/build/feature-workflow.md": "3594d5bc760390f996044d1bc62c716e1d52270d99935c74fdb41f7a8b9e3ff7",
+        ".claude/skills/build/feature-workflow.md": "663a9029a74fb4e6742b438fbef8801423f9502884a17435b1b1ea17dc0189d6",
         ".claude/skills/build/spec-template.md": "bce4bf3dba71902298db6b0401de4d7e33e72572e3c99439b94c0d6759f6d8fe",
         ".claude/skills/build/wireframe-alternatives.md": "42d8724183bdc3b18330247da0ba69a087dab9a8a33efc343601e57ba2f05bfc"
       }
