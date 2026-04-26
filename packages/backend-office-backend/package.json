@@ -2,6 +2,9 @@
   "name": "@backend-office/backend",
   "version": "1.0.0",
   "description": "",
+  "exports": {
+    "./themes": "./convex/lib/themes.ts"
+  },
   "scripts": {
     "dev": "convex dev",
     "setup": "convex dev --until-success",

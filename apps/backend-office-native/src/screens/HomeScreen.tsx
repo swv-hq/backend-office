@@ -10,10 +10,14 @@ import {
 } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useClerk, useUser } from "@clerk/clerk-expo";
+import { useTheme } from "../theme/ThemeProvider";
+import { useTerminology } from "../theme/useTerminology";
 
 const HomeScreen = () => {
   const { signOut } = useClerk();
   const { user } = useUser();
+  const { theme } = useTheme();
+  const terminology = useTerminology();
 
   const handleLogout = () => {
     if (Platform.OS === "ios") {
@@ -38,15 +42,24 @@ const HomeScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+    >
       <View style={styles.content}>
-        <Text style={styles.welcome}>
+        <Text style={[styles.welcome, { color: theme.colors.textPrimary }]}>
           Welcome{user?.firstName ? `, ${user.firstName}` : ""}!
         </Text>
-        <Text style={styles.subtitle}>Back-End Office</Text>
+        <Text style={[styles.subtitle, { color: theme.colors.textSecondary }]}>
+          Your {terminology.jobLabelPlural}
+        </Text>
       </View>
-      <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
-        <Text style={styles.logoutText}>Log out</Text>
+      <TouchableOpacity
+        onPress={handleLogout}
+        style={[styles.logoutButton, { borderColor: theme.colors.secondary }]}
+      >
+        <Text style={[styles.logoutText, { color: theme.colors.textPrimary }]}>
+          Log out
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -55,7 +68,6 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     justifyContent: "space-between",
     paddingTop: 100,
     paddingBottom: 50,
@@ -67,12 +79,10 @@ const styles = StyleSheet.create({
   welcome: {
     fontSize: RFValue(24),
     fontFamily: "SemiBold",
-    color: "#2D2D2D",
   },
   subtitle: {
     fontSize: RFValue(16),
     fontFamily: "Regular",
-    color: "#666",
     marginTop: 8,
   },
   logoutButton: {
@@ -81,12 +91,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#D0D5DD",
   },
   logoutText: {
     fontSize: RFValue(14),
     fontFamily: "SemiBold",
-    color: "#344054",
   },
 });
 

@@ -1,7 +1,7 @@
 ---
 id: BO-SPEC-005
 title: Trade Theming System
-status: draft
+status: implemented
 priority: P0
 phase: 0
 created: 2026-04-01
@@ -58,3 +58,21 @@ After selecting their trade during onboarding, the entire app adapts: color sche
   - Status colors (success/warning/error) are shared across themes and must use shape/icon redundancy (e.g., ✓ / ⚠ / ✕), not color alone.
   - Run palettes through a CVD simulator (e.g., Sim Daltonism, Stark) and a contrast checker before merge.
 - **Iconography strategy:** one shared base icon library (e.g., Lucide or Phosphor) for nav, actions, and form controls — never swapped per trade. Trade-specific icons appear only in: material category pickers, empty-state illustrations, onboarding screens, and dashboard hero artwork. This keeps the UI language consistent and the bundle lean while preserving trade flavor where it matters.
+
+## Slice Plan
+
+Phase 0 foundational work. Native today has only HomeScreen + LoginScreen and customer-facing web pages don't exist yet, so this spec ships _the system_ and integrates with what exists. AC1 ("every screen") and AC10 ("renders correctly across all three trades") are enforced as system-level guarantees (theme provider wraps the app; no hardcoded colors/strings) so future specs inherit them.
+
+Build order is backend foundation → native vertical → web vertical.
+
+1. **Slice 1: Shared theme + terminology source of truth** — `convex/lib/themes.ts` exports all three trade themes + neutral default + terminology map. Automated WCAG AA contrast + CVD-safe tests. Covers AC9 (token-level contrast verification).
+2. **Slice 2: Native ThemeProvider + persistence + neutral default** — `<ThemeProvider>` wrapping app, `useTheme()`, MMKV-persisted `tradeType` for first-paint, neutral default pre-onboarding, live update on profile change. HomeScreen + LoginScreen consume tokens. Covers AC1, AC4, AC5, AC6.
+3. **Slice 3: Three-trade visual distinctness on native** — All three palettes wired; render tests prove existing screens render correctly under all three trades. Covers AC2, AC10 (native).
+4. **Slice 4: Terminology hook (native + shared web util)** — `useTerminology()` on native; shared terminology lookup importable by web. Demonstrated on an existing label. Covers AC3.
+5. **Slice 5: Backend AI prompt terminology helper** — `buildPromptContext(tradeType)` helper injecting trade terminology + tone; consumed by future AI specs (017/018/021). Covers AC7.
+6. **Slice 6: Web customer-facing theming + terminology** — Web theme provider driven by trade in estimate/invoice payload; sample customer route renders themed; contrast tests. Covers AC8, AC9 (web), AC10 (web).
+
+## Manual Test Script
+
+- Native: [`e2e/test-scripts/backend-office/native/BO-SPEC-005-trade-theming.md`](../../../../e2e/test-scripts/backend-office/native/BO-SPEC-005-trade-theming.md)
+- Web: [`e2e/test-scripts/backend-office/web/BO-SPEC-005-trade-theming.md`](../../../../e2e/test-scripts/backend-office/web/BO-SPEC-005-trade-theming.md)

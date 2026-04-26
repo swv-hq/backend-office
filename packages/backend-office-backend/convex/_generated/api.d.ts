@@ -11,6 +11,8 @@
 import type * as crons from "../crons.js";
 import type * as data_auditLogs from "../data/auditLogs.js";
 import type * as lib_jobStatus from "../lib/jobStatus.js";
+import type * as lib_promptContext from "../lib/promptContext.js";
+import type * as lib_themes from "../lib/themes.js";
 import type * as lib_validators from "../lib/validators.js";
 import type * as providers_ai from "../providers/ai.js";
 import type * as providers_claude from "../providers/claude.js";
@@ -35,6 +37,8 @@ declare const fullApi: ApiFromModules<{
   crons: typeof crons;
   "data/auditLogs": typeof data_auditLogs;
   "lib/jobStatus": typeof lib_jobStatus;
+  "lib/promptContext": typeof lib_promptContext;
+  "lib/themes": typeof lib_themes;
   "lib/validators": typeof lib_validators;
   "providers/ai": typeof providers_ai;
   "providers/claude": typeof providers_claude;

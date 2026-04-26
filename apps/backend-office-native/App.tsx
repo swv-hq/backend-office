@@ -1,7 +1,32 @@
+import type { ReactNode } from "react";
 import { View, StatusBar, Platform, LogBox } from "react-native";
 import { useFonts } from "expo-font";
 import Navigation from "./src/navigation/Navigation";
 import ConvexClientProvider from "./ConvexClientProvider";
+import { ThemeProvider, useTheme } from "./src/theme/ThemeProvider";
+
+const ThemedShell = ({ children }: { children: ReactNode }) => {
+  const { theme } = useTheme();
+  const STATUS_BAR_HEIGHT =
+    Platform.OS === "ios" ? 50 : StatusBar.currentHeight;
+  return (
+    <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
+      <View
+        style={{
+          height: STATUS_BAR_HEIGHT,
+          backgroundColor: theme.colors.primary,
+        }}
+      >
+        <StatusBar
+          translucent
+          backgroundColor={theme.colors.primary}
+          barStyle="light-content"
+        />
+      </View>
+      {children}
+    </View>
+  );
+};
 
 export default function App() {
   LogBox.ignoreLogs(["Warning: ..."]);
@@ -23,21 +48,13 @@ export default function App() {
     return false;
   }
 
-  const STATUS_BAR_HEIGHT =
-    Platform.OS === "ios" ? 50 : StatusBar.currentHeight;
-
   return (
     <ConvexClientProvider>
-      <View style={{ flex: 1 }}>
-        <View style={{ height: STATUS_BAR_HEIGHT, backgroundColor: "#0D87E1" }}>
-          <StatusBar
-            translucent
-            backgroundColor={"#0D87E1"}
-            barStyle="light-content"
-          />
-        </View>
-        <Navigation />
-      </View>
+      <ThemeProvider trade={undefined}>
+        <ThemedShell>
+          <Navigation />
+        </ThemedShell>
+      </ThemeProvider>
     </ConvexClientProvider>
   );
 }

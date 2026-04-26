@@ -3,8 +3,10 @@ import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useOAuth } from "@clerk/clerk-expo";
 import { AntDesign } from "@expo/vector-icons";
+import { useTheme } from "../theme/ThemeProvider";
 
 const LoginScreen = () => {
+  const { theme } = useTheme();
   const { startOAuthFlow: startGoogleAuthFlow } = useOAuth({
     strategy: "oauth_google",
   });
@@ -31,42 +33,74 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
+    <View
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+    >
+      <View style={[styles.card, { backgroundColor: theme.colors.background }]}>
         <Image
-          source={require("../assets/icons/logo.png")} // Ensure the correct path to your logo image file
+          source={require("../assets/icons/logo.png")}
           style={styles.logo}
         />
-        <Text style={styles.title}>Log in to your account</Text>
-        <Text style={styles.subtitle}>Welcome! Please login below.</Text>
+        <Text style={[styles.title, { color: theme.colors.textPrimary }]}>
+          Log in to your account
+        </Text>
+        <Text style={[styles.subtitle, { color: theme.colors.textPrimary }]}>
+          Welcome! Please login below.
+        </Text>
         <TouchableOpacity
-          style={styles.buttonGoogle}
+          style={[
+            styles.buttonGoogle,
+            {
+              backgroundColor: theme.colors.background,
+              borderColor: theme.colors.secondary,
+            },
+          ]}
           onPress={() => onPress("google")}
         >
           <Image
             style={styles.googleIcon}
             source={require("../assets/icons/google.png")}
           />
-          <Text style={{ ...styles.buttonText, color: "#344054" }}>
+          <Text
+            style={[styles.buttonText, { color: theme.colors.textPrimary }]}
+          >
             Continue with Google
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.buttonApple}
+          style={[
+            styles.buttonApple,
+            {
+              backgroundColor: theme.colors.background,
+              borderColor: theme.colors.secondary,
+            },
+          ]}
           onPress={() => onPress("apple")}
         >
-          <AntDesign name="apple" size={24} color="black" />
+          <AntDesign name="apple" size={24} color={theme.colors.textPrimary} />
           <Text
-            style={{ ...styles.buttonText, color: "#344054", marginLeft: 12 }}
+            style={[
+              styles.buttonText,
+              { color: theme.colors.textPrimary, marginLeft: 12 },
+            ]}
           >
             Continue with Apple
           </Text>
         </TouchableOpacity>
 
         <View style={styles.signupContainer}>
-          <Text style={{ fontFamily: "Regular" }}>Don’t have an account? </Text>
-          <Text>Sign up above.</Text>
+          <Text
+            style={{
+              fontFamily: "Regular",
+              color: theme.colors.textPrimary,
+            }}
+          >
+            Don’t have an account?{" "}
+          </Text>
+          <Text style={{ color: theme.colors.textPrimary }}>
+            Sign up above.
+          </Text>
         </View>
       </View>
     </View>
@@ -76,10 +110,8 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
   },
   card: {
-    backgroundColor: "#fff",
     padding: 10,
     alignItems: "center",
     width: "98%",
@@ -97,7 +129,6 @@ const styles = StyleSheet.create({
   subtitle: {
     marginTop: 8,
     fontSize: RFValue(14),
-    color: "#000",
     fontFamily: "Regular",
     marginBottom: 32,
     textAlign: "center",
