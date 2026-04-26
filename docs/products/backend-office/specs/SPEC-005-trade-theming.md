@@ -5,7 +5,7 @@ status: draft
 priority: P0
 phase: 0
 created: 2026-04-01
-updated: 2026-04-01
+updated: 2026-04-25
 ---
 
 # BO-SPEC-005: Trade Theming System
@@ -26,25 +26,35 @@ After selecting their trade during onboarding, the entire app adapts: color sche
 
 ## Acceptance Criteria
 
-- **BO-SPEC-005.AC1** [native]: Theme provider component wraps the app, exposing current trade theme via context
-- **BO-SPEC-005.AC2** [native]: Three complete trade themes defined: handyman, plumber, electrician — each with primary color, secondary color, accent color, and icon set
-- **BO-SPEC-005.AC3** [native]: Terminology map per trade: job-related terms adapt (e.g., "service call" vs "job" vs "work order", trade-specific material categories)
-- **BO-SPEC-005.AC4** [native]: All UI components consume theme from context — no hardcoded colors or trade-specific strings
-- **BO-SPEC-005.AC5** [native]: Theme switches at runtime when contractor's trade type is loaded from their profile
-- **BO-SPEC-005.AC6** [backend]: Trade-specific terminology available as a shared constant/config that both backend (for AI prompts) and frontend can reference
-- **BO-SPEC-005.AC7** [web]: Customer-facing pages (estimates, invoices) reflect the contractor's trade theme — colors and terminology match what the contractor sees
-- **BO-SPEC-005.AC8** [native]: Default/fallback theme displays correctly when trade type is not yet set (during onboarding before trade selection)
-- **BO-SPEC-005.AC9** [native, web]: All themed screens pass visual review — no broken styles, unreadable text, or missing icons across all three trade themes
+- **BO-SPEC-005.AC1** [native]: After a contractor's trade is set, every screen in the app displays that trade's colors, icons, and terminology — no screen falls back to generic styling.
+- **BO-SPEC-005.AC2** [native]: Handyman, plumber, and electrician each present a visually distinct experience — a contractor opening the app can identify their trade without reading text.
+- **BO-SPEC-005.AC3** [native, web]: Trade-specific terminology replaces generic labels throughout the contractor's experience (e.g., a plumber sees "service call" where a handyman sees "job").
+- **BO-SPEC-005.AC4** [native]: When the contractor's trade is loaded or changed, the app's appearance and language update without requiring a restart or manual refresh.
+- **BO-SPEC-005.AC5** [native]: During onboarding, before a trade is selected, the app displays a neutral default appearance that is fully readable and usable.
+- **BO-SPEC-005.AC6** [native]: After app restart, the contractor's themed experience appears immediately on first paint — no flash of an incorrect or default theme.
+- **BO-SPEC-005.AC7** [backend]: AI-generated estimate and invoice content uses the contractor's trade-specific terminology and tone.
+- **BO-SPEC-005.AC8** [web]: Customer-facing estimate and invoice pages display the contractor's trade theme — the customer sees the same colors and language the contractor uses in the app.
+- **BO-SPEC-005.AC9** [native, web]: All three themes meet WCAG AA contrast standards for body text, headings, and interactive elements.
+- **BO-SPEC-005.AC10** [native, web]: Every themed screen renders correctly across all three trades — no broken layouts, clipped text, unreadable contrast, or missing icons.
 
 ## Open Questions
 
-- What are the specific color palettes for each trade? Need design input.
-- Should the app icon on the home screen change per trade, or is that a post-launch consideration? (Expo supports alternate icons on iOS but it adds complexity.)
-- How different should the icon sets be? Full custom icon packs or just accent icons?
+- ~~What are the specific color palettes for each trade?~~ **Resolved (2026-04-25):** Provisional palettes per trade, all verified color-blind-safe (deuteranopia, protanopia, tritanopia) — see Technical Notes. Refine with designer pre-launch.
+- ~~Should the app icon on the home screen change per trade?~~ **Resolved (2026-04-25):** Post-launch. v1 ships a single brand icon. Per-trade alternate icons (Expo iOS alternate icons / Android activity-alias) are deferred until designed assets exist and v1 has real-user feedback.
+- ~~How different should the icon sets be?~~ **Resolved (2026-04-25):** Accent icons only. Shared base icon library across all trades for nav/actions/forms; trade-specific icons used only in surfaces where trade flavor matters: material categories, empty states, onboarding, and dashboard hero artwork.
 
 ## Technical Notes
 
-- Use React context for the theme provider on native. The theme object includes colors, typography overrides, terminology map, and icon mappings.
-- Terminology map is a key-value structure: `{ jobLabel: "Service Call", materialCategory: "Plumbing Supplies", ... }`. AI prompts on the backend reference the same map to generate trade-appropriate language in estimates and invoices.
-- Customer-facing web pages receive the contractor's trade type via the estimate/invoice data and apply the corresponding theme.
-- Keep the theme definitions in a shared location (e.g., `packages/backend-office-backend/convex/lib/themes.ts`) so backend AI prompts and frontend rendering use the same source of truth.
+- Use a React context provider on native to expose the current theme (colors, typography overrides, terminology map, icon mappings) to all components. Components must consume from context — no hardcoded colors or trade-specific strings.
+- Terminology is a key-value map per trade: `{ jobLabel: "Service Call", materialCategory: "Plumbing Supplies", ... }`. Backend AI prompts and frontend rendering must reference the same map to stay consistent.
+- Define theme + terminology in a shared location (e.g., `packages/backend-office-backend/convex/lib/themes.ts`) so backend AI prompts and frontend rendering use one source of truth. Web customer-facing pages receive the contractor's trade via estimate/invoice payload and apply the matching theme.
+- Persist the last-known trade locally on native (e.g., MMKV/SecureStore) so the correct theme is available on first paint after restart, before the profile query resolves (AC6).
+- Default theme is a neutral palette used during onboarding pre-trade-selection (AC5). It must not look like any specific trade.
+- Verify WCAG AA contrast (AC9) with an automated check against each theme's color tokens; do not rely solely on visual review.
+- **Provisional trade palettes** (color-blind-safe — distinguishable under deuteranopia, protanopia, and tritanopia simulation; never rely on hue alone for state — pair with icon/label/shape):
+  - **Handyman** — primary `#2B2B2B` (charcoal), secondary `#5A5A5A` (slate), accent `#E8A33D` (amber). Warm/neutral pairing safe across CVD types.
+  - **Plumber** — primary `#0B3D5C` (deep navy), secondary `#1F6F8B` (steel blue), accent `#E8A33D` (amber). Blue/amber is the canonical CVD-safe pairing.
+  - **Electrician** — primary `#111111` (near-black), secondary `#3A3A3A` (graphite), accent `#F5C518` (electric yellow). High-luminance contrast keyed off lightness, not hue.
+  - Status colors (success/warning/error) are shared across themes and must use shape/icon redundancy (e.g., ✓ / ⚠ / ✕), not color alone.
+  - Run palettes through a CVD simulator (e.g., Sim Daltonism, Stark) and a contrast checker before merge.
+- **Iconography strategy:** one shared base icon library (e.g., Lucide or Phosphor) for nav, actions, and form controls — never swapped per trade. Trade-specific icons appear only in: material category pickers, empty-state illustrations, onboarding screens, and dashboard hero artwork. This keeps the UI language consistent and the bundle lean while preserving trade flavor where it matters.
