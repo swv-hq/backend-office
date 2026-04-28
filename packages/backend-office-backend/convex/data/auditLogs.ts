@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { internalMutation, internalQuery } from "../_generated/server";
+import { monitored } from "../lib/monitoring";
 
 const ACTION = v.union(
   v.literal("create"),
@@ -115,19 +116,23 @@ export const purgeExpired = internalMutation({
     now: v.optional(v.number()),
   },
   returns: v.object({ deleted: v.number(), hasMore: v.boolean() }),
-  handler: async (ctx, args) => {
-    const now = args.now ?? Date.now();
-    const cutoff = now - RETENTION_DAYS * DAY_MS;
-    const expired = await ctx.db
-      .query("auditLogs")
-      .withIndex("by_timestamp", (q) => q.lt("timestamp", cutoff))
-      .take(PURGE_BATCH_SIZE);
-    for (const row of expired) {
-      await ctx.db.delete(row._id);
-    }
-    return {
-      deleted: expired.length,
-      hasMore: expired.length === PURGE_BATCH_SIZE,
-    };
-  },
+  handler: monitored(
+    "mutation:purgeExpired",
+    async (ctx, args: { now?: number }, scope) => {
+      scope.setTag("triggered_by", "cron");
+      const now = args.now ?? Date.now();
+      const cutoff = now - RETENTION_DAYS * DAY_MS;
+      const expired = await ctx.db
+        .query("auditLogs")
+        .withIndex("by_timestamp", (q) => q.lt("timestamp", cutoff))
+        .take(PURGE_BATCH_SIZE);
+      for (const row of expired) {
+        await ctx.db.delete(row._id);
+      }
+      return {
+        deleted: expired.length,
+        hasMore: expired.length === PURGE_BATCH_SIZE,
+      };
+    },
+  ),
 });

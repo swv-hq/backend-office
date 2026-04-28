@@ -43,16 +43,17 @@ draft → in-review → approved → in-progress → in-testing → implemented
 
 Clear the slate, set up the new architecture. Everything else builds on this.
 
-| Spec                                                        | Title                      | Priority | Status      |
-| ----------------------------------------------------------- | -------------------------- | -------- | ----------- |
-| [BO-SPEC-001](specs/SPEC-001-notes-domain-removal.md)       | Notes Domain Removal       | P0       | implemented |
-| [BO-SPEC-002](specs/SPEC-002-core-data-model.md)            | Core Data Model            | P0       | implemented |
-| [BO-SPEC-003](specs/SPEC-003-provider-abstraction-layer.md) | Provider Abstraction Layer | P0       | implemented |
-| [BO-SPEC-004](specs/SPEC-004-audit-logging.md)              | Audit Logging              | P0       | implemented |
-| [BO-SPEC-005](specs/SPEC-005-trade-theming.md)              | Trade Theming System       | P0       | implemented |
-| [BO-SPEC-006](specs/SPEC-006-monitoring-alerting.md)        | Monitoring & Alerting      | P0       | draft       |
-| [BO-SPEC-031](specs/SPEC-031-custom-expo-dev-build.md)      | Custom Expo Dev Build      | P0       | implemented |
-| [BO-SPEC-032](specs/SPEC-032-dev-environment-deployment.md) | Dev Environment Deployment | P0       | draft       |
+| Spec                                                           | Title                               | Priority | Status      |
+| -------------------------------------------------------------- | ----------------------------------- | -------- | ----------- |
+| [BO-SPEC-001](specs/SPEC-001-notes-domain-removal.md)          | Notes Domain Removal                | P0       | implemented |
+| [BO-SPEC-002](specs/SPEC-002-core-data-model.md)               | Core Data Model                     | P0       | implemented |
+| [BO-SPEC-003](specs/SPEC-003-provider-abstraction-layer.md)    | Provider Abstraction Layer          | P0       | implemented |
+| [BO-SPEC-004](specs/SPEC-004-audit-logging.md)                 | Audit Logging                       | P0       | implemented |
+| [BO-SPEC-005](specs/SPEC-005-trade-theming.md)                 | Trade Theming System                | P0       | implemented |
+| [BO-SPEC-006](specs/SPEC-006-monitoring-alerting.md)           | Monitoring & Alerting               | P0       | implemented |
+| [BO-SPEC-031](specs/SPEC-031-custom-expo-dev-build.md)         | Custom Expo Dev Build               | P0       | implemented |
+| [BO-SPEC-032](specs/SPEC-032-dev-environment-deployment.md)    | Dev Environment Deployment          | P0       | draft       |
+| [BO-SPEC-033](specs/SPEC-033-third-party-integration-setup.md) | Third-Party Integration Setup (Dev) | P0       | draft       |
 
 ## Phase 1: Onboarding
 

@@ -207,6 +207,49 @@ export default defineSchema({
     .index("by_entity", ["entityType", "entityId"])
     .index("by_timestamp", ["timestamp"]),
 
+  providerHealthChecks: defineTable({
+    provider: v.string(),
+    status: v.union(
+      v.literal("ok"),
+      v.literal("degraded"),
+      v.literal("down"),
+      v.literal("stubbed"),
+    ),
+    latencyMs: v.optional(v.number()),
+    error: v.optional(v.string()),
+    details: v.optional(v.any()),
+    checkedAt: v.number(),
+  })
+    .index("by_provider_checkedAt", ["provider", "checkedAt"])
+    .index("by_checkedAt", ["checkedAt"]),
+
+  providerFailureLog: defineTable({
+    provider: v.string(),
+    endpoint: v.string(),
+    errorMessage: v.string(),
+    responseStatus: v.optional(v.number()),
+    context: v.optional(v.any()),
+    timestamp: v.number(),
+  })
+    .index("by_provider_timestamp", ["provider", "timestamp"])
+    .index("by_timestamp", ["timestamp"]),
+
+  alertHistory: defineTable({
+    severity: v.union(
+      v.literal("critical"),
+      v.literal("warning"),
+      v.literal("info"),
+    ),
+    source: v.string(),
+    title: v.string(),
+    message: v.string(),
+    payload: v.optional(v.any()),
+    transport: v.string(),
+    dispatchedAt: v.number(),
+  })
+    .index("by_dispatchedAt", ["dispatchedAt"])
+    .index("by_source_dispatchedAt", ["source", "dispatchedAt"]),
+
   accessTokens: defineTable({
     entityType: v.string(),
     entityId: v.string(),

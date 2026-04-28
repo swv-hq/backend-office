@@ -4,6 +4,9 @@ import { useFonts } from "expo-font";
 import Navigation from "./src/navigation/Navigation";
 import ConvexClientProvider from "./ConvexClientProvider";
 import { ThemeProvider, useTheme } from "./src/theme/ThemeProvider";
+import { initSentry } from "./src/lib/monitoring/sentry";
+
+initSentry();
 
 const ThemedShell = ({ children }: { children: ReactNode }) => {
   const { theme } = useTheme();

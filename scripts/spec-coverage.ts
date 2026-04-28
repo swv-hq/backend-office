@@ -41,7 +41,10 @@ const products: ProductConfig[] = [
         "apps/backend-office-native/src/**/*.test.tsx",
         "e2e/test-scripts/backend-office/native/*.md",
       ],
-      backend: ["packages/backend-office-backend/convex/**/*.test.ts"],
+      backend: [
+        "packages/backend-office-backend/convex/**/*.test.ts",
+        "e2e/test-scripts/backend-office/backend/*.md",
+      ],
     },
   },
   {
