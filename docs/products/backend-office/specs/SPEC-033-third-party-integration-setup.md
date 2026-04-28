@@ -3,9 +3,9 @@ id: BO-SPEC-033
 title: Third-Party Integration Setup (Dev)
 status: draft
 priority: P0
-phase: 0
+phase: 8
 created: 2026-04-25
-updated: 2026-04-26
+updated: 2026-04-28
 ---
 
 # BO-SPEC-033: Third-Party Integration Setup (Dev)
