@@ -21,7 +21,7 @@
     "turbo": "2.6.2"
   },
   "engines": {
-    "node": ">=20.19.4"
+    "node": ">=24.0.0 <25.0.0"
   },
   "workspaces": [
     "apps/*",
