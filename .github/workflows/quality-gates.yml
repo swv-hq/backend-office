@@ -50,6 +50,16 @@ jobs:
         run: npx prettier --check "**/*.{ts,tsx,js,jsx,json,md}" --ignore-path .gitignore
 
       - name: Build
+        # CI only needs the web build to typecheck/compile — it never connects
+        # to a real backend. Provide placeholder env vars so the Next.js
+        # prerender doesn't crash on module-init code that asserts these are
+        # set (ConvexReactClient + ClerkProvider).
+        # Per-PR builds with the real per-PR Convex URL happen in Vercel
+        # (Slices 2 + 3), not in this workflow.
+        env:
+          NEXT_PUBLIC_CONVEX_URL: https://placeholder-ci.convex.cloud
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_aGVsbG8taS1hbS1mYWtlLmNsZXJrLmFjY291bnRzLmRldiQ
+          CLERK_SECRET_KEY: sk_test_placeholder_ci_only
         run: npm run build
 
       - name: Test — backend (Convex)
