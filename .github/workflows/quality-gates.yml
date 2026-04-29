@@ -1,0 +1,68 @@
+name: Quality Gates
+
+# BO-SPEC-032.AC23: Every PR runs the project's full quality gate
+# (lint, typecheck, format, build, per-workspace tests, spec coverage)
+# and fails fast on the first issue.
+#
+# Sequential single-job design (per BO-SPEC-032 §"Quality Gates Workflow"):
+# cheapest checks (lint/typecheck) run first so they fail before the more
+# expensive ones (build/tests).
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Cancel in-progress runs for the same ref when a new commit lands.
+concurrency:
+  group: quality-gates-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  quality-gates:
+    name: Lint, typecheck, format, build, test, spec-coverage
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Format check
+        run: npx prettier --check "**/*.{ts,tsx,js,jsx,json,md}" --ignore-path .gitignore
+
+      - name: Build
+        run: npm run build
+
+      - name: Test — backend (Convex)
+        working-directory: packages/backend-office-backend
+        run: npm test
+
+      - name: Test — web
+        working-directory: apps/backend-office-web
+        run: npm test
+
+      - name: Test — native
+        working-directory: apps/backend-office-native
+        run: npm test
+
+      - name: Spec coverage (strict)
+        run: npm run test:spec-coverage:strict
